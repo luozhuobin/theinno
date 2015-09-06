@@ -1,0 +1,6 @@
+#header-container,
+#main-navigation-container,
+#footer-container,
+.no-print {
+	display:none;
+}

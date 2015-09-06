@@ -1,0 +1,80 @@
+<?php $this->getModel("header")->init();?>		
+<script type="text/javascript">
+/**
+ * 显示面试通知 备注内容
+ */
+function showRemark(id,obj){
+	var src = jQuery(obj).attr('src');
+	if(src == './Template/2012/images/db_arrow_down.gif'){
+		jQuery(obj).attr('src','./Template/2012/images/db_arrow_up.gif');
+		jQuery("#remark"+id).show();
+	}else if(src == './Template/2012/images/db_arrow_up.gif'){
+		jQuery(obj).attr('src','./Template/2012/images/db_arrow_down.gif');
+		jQuery("#remark"+id).hide();
+	}
+}
+</script>	
+<div id="body-container">
+	<div class="center clearfix">
+		<div class="col_2" style="width:100%">
+				<h2>消息记录</h2>
+				<table cellspacing="0" cellpadding="0" class="job-table" id="latest-jobs">
+					<thead>
+						<tr>
+							<th class="pos-col" scope="col">消息类型</th>
+							<th scope="col">来信公司</th>
+							<th scope="col">面试职位</th>
+							<th scope="col">面试时间</th>
+							<th scope="col">面试地点</th>
+							<th scope="col">接收时间</th>
+						</tr>
+					</thead>		
+					<tfoot>
+						<tr>
+							<td colspan="7" class="pageCont">
+								<?php echo $subPageCss2;?>
+							</td>
+						</tr>
+					</tfoot>
+					<tbody>
+						<?php
+							foreach($list as $key=>$value){
+						?>
+							<tr>
+								<td><?php echo $value['type'];?></td>
+								<td>
+									<a href="?m=company&action=info&comId=<?php echo $value['companyId'];?>" target="_blank"><?php echo $value['companyName'];?></a>
+									<img src="./Template/2012/images/db_arrow_down.gif" onclick="showRemark(<?php echo $value['jobId']?>,this);" style="cursor:pointer;"/>
+								</td>
+								<td><a href="?m=job&action=info&jobId=<?php echo $value['jobId'];?>" target="_blank"><?php echo $value['jobName'];?></a></td>
+								<td><?php echo $value['time'];?></td>
+								<td><?php echo $value['address'];?></td>
+								<td><?php echo $value['createTime'];?></td>
+							</tr>
+							<tr style="display:none;" id="remark<?php echo $value['jobId'];?>">
+								<td colspan="6" style="text-align:left;"><?php echo $value['desc'];?></td>
+							</tr>
+						<?php
+							}
+						?>
+						</tbody>		
+				</table>				
+			</div>
+	</div>
+</div>
+<style type="text/css">
+.logWrap{ min-width:130px; margin:0 auto; padding:5px; background:#fff;}
+.logCon{ background-color:#EEF8F9; border:#BBDDE5 1px solid; min-width:130px;}
+.logCon .close{ width:21px; height:21px; float:right; margin:9px 12px 0 0;}
+.logCon .logItem{ padding:20px 0 20px 25px;font-size:13px;}
+.logItem .check{ margin-left:60px; font-size:13px;}
+.logItem .reg_btn{ margin-top:10px; margin-left:110px;}
+</style>
+<div id="saveDiv" style="position: absolute; left: 508px; top: 126px; z-index: 10;display:none;" class="logWrap">
+	<div class="logCon">         
+    	<div class="logItem">
+			重新发布失败，请刷新页面重试。
+      	</div>
+    </div>   
+</div>
+<?php $this->getModel("header")->getFooter();?>

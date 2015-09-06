@@ -1,0 +1,31 @@
+<?php $this->getModel("header")->init();?>
+<body>
+<!-- 顶部菜单 -->
+<?php $this->getModel("header")->headerMenu();?>
+<!-- banner广告位 -->
+<?php $this->getModel("header")->getBanner();?>
+
+<div class="wapper newcontent">
+	<!-- 左侧菜单 -->
+	<?php $this->getModel("header")->getLeftMenu();?>
+    <div class="wright">
+    	<div class="com">
+        	<ul class="com newslist">
+        		<?php
+        			foreach($news as $key=>$value){
+						echo '<li>
+                				<a href="?m=news&action=info&t='.$_GET["t"].'&nId='.$value["id"].'">'.$value["title"].'</a><span>'.$value["date"].'</span>
+                			 </li>';
+					}
+        		?>
+            </ul>
+        </div>
+        <div class="com">
+                    <div class="fanye">
+                    	<?php echo $subPageCss1;?>
+                    </div>
+        </div>
+    </div>
+</div> 
+</body>
+</html>

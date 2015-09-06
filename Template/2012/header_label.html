@@ -1,0 +1,29 @@
+<?php
+	if(!empty($header_info)){
+?>
+<div id="login-box-container">
+	<div id="login-box">
+		<ul>
+			<li class="first">您好，<strong><a href="<?php echo '?m='.$header_identity;?>"><?php echo empty($header_info['name'])?$header_info['email']:$header_info['name'];?></a></strong></li>
+			<li class="last"><a href="<?php echo '?m='.$header_identity.'&action=editinfo';?>">修改资料</a></li>
+			<li class="last"><a href="<?php echo '?m='.$header_identity.'&action=editpwd';?>">修改密码</a></li>
+			<li class="last"><a href="<?php echo '?m='.$header_identity.'&action=logout';?>">退出</a></li>
+		</ul>
+	</div>
+</div>
+<?php
+}else{
+?>
+<div id="login-box-container">
+	<div id="login-box">
+		<ul>
+			<li class="first"><a href="?m=personal&action=register">雇员注册</a></li>
+			<li class="last"><a href="?m=company&action=register">雇主注册</a></li>
+			<li class="last"><a href="?m=personal&action=forgetpwd">雇员找回密码</a></li>
+			<li class="last"><a href="?m=company&action=forgetpwd">雇主找回密码</a></li>
+		</ul>
+	</div>
+</div>
+<?php
+}
+?>

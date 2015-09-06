@@ -1,0 +1,97 @@
+<!-- $ $ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title></title>
+	<meta name="robots" content="noindex, nofollow">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="./Template/Admin/css/General.css" rel="stylesheet" type="text/css" />
+	<link href="./Template/Admin/css/Main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>
+	<span class="action-span1">Manage - 企业详细信息</span>
+	<div style="clear:both"></div>
+</h1>
+<div class="list-div" id=listdiv>
+<table cellspacing='1' cellpadding='3' id="table1" width="100%">
+  <tr>
+    <th class="group-title" style="text-align: center;width:5%;">公司Id：</th>
+    <td class="group-title" >
+		<?PHP echo $list['id'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;width:5%;">公司名称：</th>
+    <td class="group-title" >
+		<?PHP echo $list['name'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >所在城市：</th>
+    <td class="group-title">
+		<?PHP echo $list['city'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >详细地址：</th>
+    <td class="group-title">
+		<?PHP echo $list['address'];?>
+	</td>
+  </tr>
+  <!-- <tr>
+    <th class="group-title" style="text-align: center;" >联系邮箱：</th>
+    <td class="group-title">
+		<?PHP echo $list['phone'];?>
+	</td>
+  </tr> -->
+  <tr>
+    <th class="group-title" style="text-align: center;" >联系电话：</th>
+    <td class="group-title">
+		<?PHP echo $list['phone'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >详细描述：</th>
+    <td class="group-title">
+		<?PHP echo nl2br($list['desc']);?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >审核状态：</th>
+    <td class="group-title">
+    	<?php echo $list['status'];?>
+	</td>
+  </tr>
+    <tr>
+    <th class="group-title" style="text-align: center;" >注册时间：</th>
+    <td class="group-title">
+		<?PHP echo $list['createTime'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >最后修改资料时间：</th>
+    <td class="group-title">
+		<?PHP echo $list['lastUpdateTime'];?>
+	</td>
+  </tr>
+     <tr>
+    <th class="group-title" style="text-align: center;" >营业执照号码：</th>
+    <td class="group-title">
+		<?PHP echo $list['code'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;white-space:pre-wrap;" >企业标志：</th>
+    <td class="group-title">
+		<img src="<?php echo $list['avatar'];?>" width="100" height="100"/>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >营业执照：</th>
+    <td class="group-title">
+		<img src="<?php echo $list['license'];?>" width="100" height="100"/>
+	</td>
+  </tr>
+  </table>
+</div>

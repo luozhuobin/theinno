@@ -1,0 +1,18 @@
+<div class="wleft">
+	<div class="com">
+		<ul class="com leftcate">
+			<li class="com">
+				<a href="?m=news&t=2" <?php echo $_GET["m"] == 'news' && $_GET["t"] == 2 ? 'class="on"' : '';?>>残就新闻</a>
+			</li>
+			<li class="com">
+				<a href="?m=news&t=1" <?php echo $_GET["m"] == 'news' && ($_GET["t"] == 1 || empty($_GET["t"]))? 'class="on"' : '';?>>活动培训</a>
+			</li>
+			<li class="com">
+				<a href="?m=news&t=3" <?php echo $_GET["m"] == 'news' && $_GET["t"] == 3 ? 'class="on"' : '';?>>名企招聘</a>
+			</li>
+			<li class="com">
+				<a href="?m=about" <?php echo $_GET["m"] == 'about' ? 'class="on"' : '';?>>关于映诺</a>
+			</li>
+		</ul>
+	</div>
+</div>

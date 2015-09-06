@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* CSS Document */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,
+pre,form,fieldset,input,textarea,p,blockquote,th,td {margin:0;padding:0;}
+body{background:#ffffff;font:normal 13px/160% "宋体"; color:#6a3805; padding-top:75px;   background-position:center bottom; background-repeat:no-repeat }
+table {border-collapse:collapse;border-spacing:0;}
+fieldset,img {border:0;}
+address,caption,cite,code,em,strong,th {font-style:normal;font-weight:normal;}
+ol,ul,dl,dd,li {list-style:none; margin:0px; padding:0px}
+
+caption,th {text-align:left;}
+h1,h2,h3,h4,h5,h6 {font-size:100%;}
+a{
+	text-decoration:none; color:#6a3805}
+a:hover,.leftcate li a.on{
+	color:#f19800}
+.fanye{ text-align:center; padding:20px 0 3px 0; margin:0px; width:100%; font-size:14px;}
+.fanye a{ padding:2px 6px;}
+.fanye .current{ background:#f19800; margin:0;color:#FFFFFF; padding:4px 7px;} 	
+/**/
+#uboxstyle .select_box{width:190px;height:38px;}
+#macstyle .select_box{width:91px;height:24px;}
+#tm2008style .select_box{width:102px;height:24px;}
+#uboxstyle div.tag_select{display:block;color:#959595;width:162px; padding:0 14px;height:38px; line-height:38px;}
+#uboxstyle div.tag_select_hover{display:block;color:#959595;width:162px; padding:0 14px;height:38px; line-height:38px; }
+#uboxstyle div.tag_select_open{display:block;color:#959595;width:162px; padding:0 14px;height:38px; line-height:38px;}
+#uboxstyle ul.tag_options{position:absolute;padding:0;margin:0;list-style:none; background-color:#fff;width:188px;padding:0px;margin:0; border-left:1px #6b3906 solid;border-right:1px #6b3906 solid;border-bottom:1px #6b3906 solid;border-top:1px #6b3906 solid;}
+#uboxstyle ul.tag_options li{ display:block;width:162px;padding:0 14px;height:38px;text-decoration:none;line-height:38px;color:#959595;}
+#uboxstyle ul.tag_options li.open_hover{ }
+#uboxstyle ul.tag_options li.open_selected{ }
+ 

@@ -1,0 +1,73 @@
+@charset "utf-8";
+body { font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #333333; padding:0px; margin:0px;}
+div,span,ul,li,p,h1,h2,h3,h4,h5,h6,img,p,dl,dd,dt{ margin:0px; padding:0px;}
+ul{ list-style-type: none; }
+.cl{ clear:both;}
+a{ color:#333333; text-decoration:none;}
+a:hover{ color:#FF6600; text-decoration:underline;}
+
+/** n01**/
+/*.pop_mo{margin:40px auto; width:484px;}
+
+.pop_1{width:484px; height:27px; background:url(../images/pop_1.jpg) no-repeat;line-height:27px; text-align:center; font-size:16px; font:"微软雅黑"; font-weight:bold; color:#fff;}
+.pop_1 .pp1{width:24px; height:23px; float:right; margin-right:10px; margin-top:4px;}
+.pop_2, .pop_3{width:480px; border:2px #d36f36 solid; border-top:none;}
+.p_1{border-bottom:1px #ccc dashed; padding:10px 0 6px 0; width:450px; margin:0 auto;}
+.p_1 h2{font-size:12px; color:#c04900; text-align:center; height:18px;}
+.p_1 li{margin:8px 0; height:27px;float:left}
+.p_1 span{width:112px; height:27px; float:left; line-height:27px; padding-left:28px;}
+.p_1 span a{ color:#813202; text-decoration:none;}
+.p_1 span a:hover{ color:#FF6600; text-decoration:underline;}
+.p_m{margin-right:10px;background:url(../images/pop.gif);}
+.p_m_1{background:url(../images/pop.gif);}
+.p_mf{margin-right:10px; background:url(../images/pop.gif) 0 -39px no-repeat;}
+.p_mf_1{background:url(../images/pop.gif) 0 -39px no-repeat;}
+.p_mr{margin-right:10px; background:url(../images/pop.gif) 0 -72px no-repeat;}
+.p_mr_1{background:url(../images/pop.gif) 0 -72px no-repeat;}*/
+.pop_mo{margin:0 auto; width:484px;}
+
+.p_title{ padding:13px 0 7px 0;}
+.p_title h2{text-align:center; color:#b44602; font-size:14px; width:243px; height:26px; background:url(../images/t_6.jpg); padding-top:7px; margin:0 auto;}
+.pop_1{width:484px; height:27px; background:url(../images/pop_1.jpg) no-repeat;line-height:27px; text-align:center; font-size:16px; font:"微软雅黑"; font-weight:bold; color:#fff;}
+.pop_1 .pp1{width:24px; height:23px; float:right; margin-right:10px; margin-top:4px;}
+.pop_2, .pop_3{width:480px; border:2px #d36f36 solid; border-top:none;}
+.p_1{width:450px; margin-left:19px;}
+.p_1 h2{font-size:12px; color:#c04900; height:26px; background:#fbf8e8; line-height:26px; padding-left:7px; width:433px;}
+.p_1 li{margin:8px 0; height:27px;}
+#HotSvrs li{height:auto;}
+#HotSvrs li p{margin-bottom:8px;}
+.p_1 p{width:140px; height:27px; float:left; line-height:27px; background:url(../images/pop.gif) no-repeat 0 -148px;}
+.p_1 p a, .p_second a{ color:#813202; text-decoration:none;}
+.p_1 p a:hover, .p_second a:hover{ color:#FF6600; text-decoration:underline;}
+.p_m{margin-right:10px;}
+.p_1 span{display:block; padding-left:28px;}
+.p_pic1{background:url(../images/pop.gif) no-repeat -4px -296px;}
+.p_pic2{background:url(../images/pop.gif) no-repeat 1px -193px;}
+.p_pic3{background:url(../images/pop.gif) no-repeat -2px -263px;}
+.p_pic4{background:url(../images/pop.gif) no-repeat 1px -230px;}
+.p_pic5{background:url(../images/pop.gif) no-repeat -7px -328px;}
+.p_second{height:40px; margin:13px 0 2px 20px; width:450px; line-height:26px;}
+.p_second span{display:block; float:left; margin-right:18px; padding-left:25px;}
+
+/** n02**/
+.p_2{width:460px; border:2px #d36f36 solid; padding:10px;background:white}
+.p_2 h2{height:24px; line-height:24px; color:#c04900; font-size:14px;}
+.p_2 span{width:24px; display:block; float:right;}
+.p_2 p{line-height:30px; color:#6f6f6f;font-size:14px}
+.p_2 a{ color:#FF6600; text-decoration:underline;}
+.p_2 a:hover{ color:#FF6600; text-decoration:underline;}
+
+/** n03**/
+.p_3{width:466px; height:123px; background:url(../images/pop_2.jpg); margin:0 auto;color:#484747;}
+.p_3 h2{padding-left:175px; padding-top:25px; padding-bottom:10px; font-size:14px;}
+.p_3 p{height:22px; line-height:22px; padding-left:175px;}
+.p_3 span, .p_4 span{color:#eb5a00;}
+.p_3 p span a{color:#eb5a00; text-decoration:underline;}
+.p_3 p span a:hover{ color:#FF6600; text-decoration:underline;}
+.p_4{ padding-top:15px;}
+.p_4 ul{margin:0 auto; width:426px;}
+.p_4 li{width:189px; margin:0 7px; float:left;}
+.p_4 p{height:30px; border-top:1px #fcccae solid; line-height:30px; background:#fef1e8 url(../images/pop.gif) 10px -109px no-repeat; margin-top:25px; padding-left:40px; width:440px;}
+.pay-way-cen tr td.txt-r{ text-align:right;}
+.user-czList .u-info .u-info-con td.txt-r{ text-align:right; font-weight:bold; padding-right:10px;}
+

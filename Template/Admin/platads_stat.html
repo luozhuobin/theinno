@@ -1,0 +1,147 @@
+<!-- $ $ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>统计信息</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="./Template/Admin/Css/General.css" rel="stylesheet" type="text/css" />
+    <link href="./Template/Admin/Css/Main.css" rel="stylesheet" type="text/css" />
+    <link href="./Template/Admin/Js/thickbox/thickbox.css" rel="stylesheet" type="text/css" />
+
+    <script src='./Template/Admin/Js/jquery.js'></script>
+    <script language=javascript src="./Template/Admin/Js/thickbox/thickbox.js"></script>
+    <script language=javascript src="./Template/Admin/Js/list.js"></script>
+    <script language="javascript" type="text/javascript" src="./Template/Admin/Js/My97DatePicker/WdatePicker.js"></script>
+    <link href="./Template/Admin/Js/facebox/facebox.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+    var chkboxlen = <?=count($webadslist)?>;
+    var flag = new Array();
+    $(function(){
+        $(window).load(chk_all);
+        $("#chk_all").click(function(){
+            var status = $(this).attr('checked');
+            $("input[id^=webads_]").attr('checked', status);
+        });
+        $("input[id^=webads_]").click(chk_all);
+        $("a[rel=setprice]").click(function (){
+            var id = $(this).attr('id');
+            if(flag[id] == 1 ){
+                $("#span_"+id).show();
+                $("#spanipt_"+id).hide();
+                setprice(id);
+                flag[id] = 0;
+            }else{
+                var span_value = $("#span_"+id).text();
+                $("#price_"+id).val(span_value);
+                $("#span_"+id).hide();
+                $("#spanipt_"+id).show();
+                flag[id] = 1;
+            }
+            return false;
+        });
+        
+        $("tr[id^=h_]").click(function(){
+            var trid = $(this).attr('id');
+            var disstatus = $("#s"+trid).css('display');
+            if(disstatus != 'none'){
+                $("#s"+trid).css('display','none');
+            }else{
+                $("#s"+trid).css('display','');
+            }
+        });
+        
+         $("#searchea_form").click(function(){
+               $("#search_form").attr('action',$(this).attr('form_action'));
+               $("#search_form").submit();
+         });
+         $("#downloadstat").click(function(){
+               $("#search_form").attr('action',$(this).attr('form_action'));
+               $("#search_form").submit();
+         });
+    });
+    
+    function chk_all(){
+        var chklen = $("input[id^=webads_]:checked").length;
+        if(chklen >= chkboxlen){
+            $("#chk_all").attr('checked', true);
+        }else{
+            $("#chk_all").attr('checked', false);
+        }
+    }
+    
+    
+    </script>
+</head>
+
+<body>
+<style>
+    #x{
+        font-size:14pt;
+        color:red;
+        padding-left:5px;
+    }
+</style>
+<? $typename = array('cpm'=>'弹窗', 'rm'=>'富媒体', 'media'=>'媒体', 'fixed'=>'硬'); ?>
+<? if($adstype == 'cpm') $nextadstype = 'rm'; else $nextadstype = 'cpm';?>
+<h1>
+    <span class="action-span1"><?=$typename[$adstype]?>平台广告位数据统计</span>
+    <div style="clear:both"></div>
+</h1>
+
+<form action='' method="post" id="search_form">
+<div class="list-div" style='clear:both;' id=listdiv>
+<table cellspacing='1' cellpadding='3' id="table1" width="100%">
+<tr>
+<td>
+
+日期:<input type="text" name="date1" value="<?=$date1?>" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"> - <input type="text" name="date2" value="<?=$date2?>" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})">
+    
+<input type="submit" name="Submit" id="searchea_form" value="搜索" />
+</td>
+</tr>
+</table>
+</div>
+
+</form> 
+<div class="list-div" style='clear:both;' id=listdiv>
+<form action='' method=post enctype="multipart/form-data">
+<table cellspacing='1' cellpadding='3' id="table1" width="50%">
+<tr>
+<th width="15%">时间段</th>
+<th>广告标识</th>
+<th>广告名称</th>
+<th>广告素材</th>
+<th width="10%">PV数</th>
+<th width="10%">点击数</th>
+</tr>
+<?PHP foreach((array)$list as $date=>$arr){?>
+       <?PHP foreach((array)$arr as $arr=>$v){?>
+          <tr>
+          <td align="center"><?=$date;?></td>
+          <td align="center"><?=$v['ads_mark'];?></td>
+          <td align="center"><?=$v['title'];?></td>
+          <td align="center"><a href="http://<?=$imagehost?>/<?=$v['imageurl']?>" class="thickbox" target="_blank"><?=basename($v['imageurl']);?></a></td>
+          <td align="center"><?PHP echo $v['pv_num'];?></td> <!-- PV -->
+          <td align="center"><?PHP echo $v['click_num'];?></td>  
+          </tr>
+        <? }?>  
+    
+    <tr>
+      <td align="center" style="background: #FFCC66"><?=$date;?>总计</td>
+      <td align="center" colspan="3" style="background: #FFCC66">&nbsp;</td>
+      <td align="center" style="background: #FFCC66"><?=$subtotal[$date]['pv_num'];?></td> <!-- PV -->
+      <td align="center" style="background: #FFCC66"><?=$subtotal[$date]['click_num'];?></td>  
+   </tr>
+   <? } ?>
+    <tr>
+      <td align="center" style="background: #FFCC66">总计</td>
+      <td align="center" colspan="3" style="background: #FFCC66">&nbsp;</td>
+      <td align="center" style="background: #FFCC66"><?=$total['pv_num'];?></td> <!-- PV -->
+      <td align="center" style="background: #FFCC66"><?=$total['click_num'];?></td>  
+   </tr>
+  </table>
+</form>
+</div>
+<br />
+<br />

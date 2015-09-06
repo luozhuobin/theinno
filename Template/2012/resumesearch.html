@@ -1,0 +1,97 @@
+<?php $this->getModel("header")->init();?>
+<link rel="stylesheet" href="./Template/2012/css/jobs.css" type="text/css" >
+<div id="body-container">
+	<div class="center clearfix">	
+		
+		<div class="col_1_alt">
+			<h2>简历搜索</h2>
+			
+			<div id="advanced_search">
+				<form method="get" action="">
+					<ul>
+						<li>
+							<label for="search_keywords">职位名称</label>
+							<input name="j" id="search_keywords" title="Job Title" type="text" value="<?php echo $j;?>"/>
+						</li>
+	
+						<li>							
+							<label for="city_select">残疾类型</label>
+							<select name="dType" id="city_select" title="Location" style="width:270px;">
+								<option value="">选择类型</option>
+								<?php
+									foreach($displayType as $key=>$value){
+										if($key == $dtype){
+											$select = "selected='selected'";
+										}
+										echo '<option value="'.$key.'" '.$select.'>'.$value.'</option>';
+									}
+								?>
+							</select>
+						</li>
+						
+						<li>							
+							<label for="city_select">地区</label>
+							<input name="area" id="city_select" type="text" value="<?php echo $area;?>"/>
+						</li>
+							<input type="hidden" value="resume" name="m" />
+							<input name="submit" value="搜索" type="submit">
+						</li>
+					</ul>
+				</form>
+			</div>
+		</div>
+		
+		<div class="col_2_alt">
+
+			<ul id="jobs_list">
+						<?php
+								foreach($resumes as $item){
+						?>
+						<li>
+							<div class="job_desc">
+								<h3>
+									<a href="?m=resume&action=view&p=<?php echo $item['p'];?>" target="_blank"><?php echo $item["name"] ?></a>									
+										</h3>
+								<div class="summary">
+									<div style="float:left;width:70%">
+									求职意向：<?php echo $item["job"] ?><br/>
+									自我介绍：<?php echo $item["intro"] ?>
+									<br/>
+									</div>
+									<img style="border:2px solid #ccc;float:right;width:100px;" src="<?php echo empty($item['avator'])?'/Template/2012/images/default.jpg':$item['avatar'];?>"/>
+									<div style="clear:both;"></div>
+								</div>
+								
+								<table summary="This table shows a list of all the companies matching the search" class="job_details" cellpadding="0" cellspacing="0">
+									<tbody><tr>
+										<th id="company_name_0">残疾类型：</th>
+										<td headers="company_name_0"><?php echo $item["type"] ?></td>
+										<th id="location_0">残疾级别：</th>
+										<td headers="location_0"><?php echo $item["disableRate"] ?></td>
+									</tr>
+									<tr>
+										<th id="location_0">现居住于：</th>
+										<td headers="location_0"><?php echo $item["address"] ?></td>
+										<th id="salary_0">要求月薪：</th>
+										<td headers="salary_0"><?php echo $item["salary"] ?></td>
+									</tr>
+									<tr>
+										<th id="contract_0">简历更新：</th>
+										<td headers="contract_0"><?php echo $item["uTime"] ?></td>
+									</tr>
+								</tbody></table>
+
+							</div>
+						</li>
+						
+						<?php
+							}
+						?>
+						
+						<?php echo $subPageCss1 ?>
+					
+							</ul>
+		</div>
+	</div>
+</div>	
+<?php $this->getModel("header")->getFooter();?>

@@ -1,0 +1,71 @@
+<?php $this->getModel("header")->init();?>
+<body>
+<!-- 顶部菜单 -->
+<?php $this->getModel("header")->headerMenu();?>
+
+<div class="wapper usercontent">
+	<?php $this->getModel("personal")->leftMenu();?>
+    <div class="wright">
+        <div class="com padleft hrtitle">
+        	面试邀请
+        </div>
+        <div class="com padleft hrlist">
+        	<table width="100%">
+        		<tbody>
+            	<tr>
+                	<td>
+                    	职位
+                    </td>
+                    <td>
+                    	公司名
+                    </td>
+                    <td>
+                    	面试时间
+                    </td>
+                    <td>
+                    	面试地点
+                    </td>
+                    <td>
+                    	注意事项
+                    </td>
+                    <td>
+                    	邀请时间
+                    </td>
+                </tr>
+                <?php
+                	foreach($list as $key=>$value){
+						echo '<tr>
+                				<td>
+                    				'.$value["jobName"].'
+                    			</td>	
+                    			<td>
+                    				'.$value["companyName"].'
+                    			</td>
+								<td>
+                    				'.$value["time"].'
+                    			</td>
+								<td>
+                    				'.$value["address"].'
+                    			</td>
+								<td>
+                    				'.$value["desc"].'
+                    			</td>
+                    			<td class="hrtime">
+                    				'.$value["createTime"].'
+                    			</td>
+                			</tr>';
+					}
+                ?>	
+                </tbody>
+            </table>
+            <div class="com">
+                    <div class="fanye">
+                    	<?php echo $subPageCss2;?>
+                    </div>
+        	</div>
+        </div>
+    </div>
+</div> 
+ 
+</body>
+</html>

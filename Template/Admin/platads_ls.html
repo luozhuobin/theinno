@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="./Template/Admin/Css/General.css" rel="stylesheet" type="text/css" />
+    <link href="./Template/Admin/Css/Main.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="Template/Admin/Js/thickbox/thickbox.css" type="text/css" media="screen" />
+	<script src='/Template/Admin/Js/jquery.js'></script>
+	<script language=javascript src='Template/Admin/Js/thickbox/thickbox.js'></script>
+    <style type="text/css">
+    .notice_ex{ margin: 10px 20px; color:red; font-size: 14px; line-height:150%;}
+    .notice_ex span{margin-left: 30px;}
+    table.tables tr td {
+    	text-align:center;
+    }
+    </style>
+   
+</head>
+<body>
+<h1>
+    <span class="action-span"></span>
+    <span class="action-span1">Manage - 平台广告管理</span>
+    <div style="clear:both"></div>
+</h1>
+
+<div>
+    　</div>
+
+<div class=alt_descript>平台广告列表</div>
+<div class="list-div" >
+<form action='' method=post>
+	<input name="id" type="hidden" value="<?php echo $data['album_id']?>"/>
+	<table cellspacing='1' cellpadding='3' id="table1" width="100%" class="tables">
+  		<tr>
+            <th width=8%>广告标识</th>
+            <th width=8%>广告名称</th>
+  			<th width=8%>素材文件</th>
+  			<th width=25%>跳转链接</th>
+  			<th width=5%>跳转方式</th>
+  			<th width=18%>最后更新时间</th>
+  			<th width=3%>状态</th>
+  			<th>操作</th>
+  		</tr>
+  		<?php foreach ($list as $value){?>
+  		<tr>
+            <td><?php echo $value['mark'];?></td>
+            <td><?php echo $value['title'];?></td>
+  			<td><a href="<?=$value['ads_url']?>" target="_blank">预览</a></td>
+  			<td><?php echo $value['target_url'];?>(<a href="<?php echo $value['target_url'];?>" style="color: blue;" target="_blank">点击查看</a>)</td>
+  			<td><?php echo $value['target_way']==1?'新窗口':'本窗口';?></td>
+  			<td><?php echo date("Y-m-d H:i:s",$value['updatetime']);?></td>
+  			<td><?php echo $value['status']==1?'正常':'<span style="color:red">关闭</span>';?></td>
+  			<td>
+	  			<!--<a href="./?c=admin&m=platads&action=del&id=<?php echo $value['ads_id'];?>">删除</a> | -->
+	  			<a href="./?c=admin&m=platads&action=edit&id=<?php echo $value['ads_id'];?>">编缉</a> |
+                  <a href="./?c=admin&m=platads&action=op&op=switch&id=<?php echo $value['ads_id'];?>"><?php echo $value['status']==1?'屏蔽':'显示';?></a> | 
+  			</td>
+  		</tr>
+  		<?php }?>
+	</table>
+  </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<?php $this->getModel("header")->init();?>
+<div id="body-container">
+<div class="center clearfix">
+			<div class="col_2">
+				<p style="font-size:14px;">为保证电子邮箱的准确性，请先验证邮箱，才能够进行注册。 </p>
+			<form id="employer_register" action="" method="post" class="basic-form">	
+			<div class="form-section">
+				<ul>
+					<li class="">
+						<label for="email">电子邮箱： <span class="required-field">(必填)</span></label>
+						<input name="email" id="reg_email" class="form_field" type="text" onblur="emailVerify('reg_email','noticeInfo');"/>
+						<span id="noticeInfo" class="required-field"></span>
+						<br />
+						<span style="color:#999999;font-size:13px;">（该电子邮箱是作为您的登录账号。）</span>
+					</li>
+				</ul>
+			</div>
+			<div class="form-action">
+				<input name="submit" id="submit" value="马上注册" type="button" onclick="emailIsExist('company');" />
+				<span id="submitInfo" style="color:#999999;font-size:13px;"></span>
+			</div>
+		</form>
+	</div>
+<?php $this->getModel("header")->getLoginForm();?>
+	</div>
+	</div>
+<?php $this->getModel("header")->getFooter();?>

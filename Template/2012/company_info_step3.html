@@ -1,0 +1,279 @@
+<?php $this->getModel("header")->init();?>
+<script type="text/javascript">
+//公司名称验证
+/**
+ * 审核通过的企业名称不能再修改，没有审核通过，修改的时候都必须先判断是否存在
+ */
+var isNameExist = '<?php echo !empty($info["name"])?true:false;?>';//由于ajax是异步执行，所以定义一变量用来记录验证的结果，必须要isNameExist为true时，才认为验证通过
+function nameCheck(){
+	var name = jQuery("#name").val();
+	if(name == ''){
+		ShowMsg('nameInfo',0,'请输入你的公司名称。');
+		return false;
+	}else{
+		var reg = /^[\u4e00-\u9fa5]+$/i; 
+		if(!reg.test(name)){
+			ShowMsg('nameInfo',0,'请输入中文。');
+			return false;
+		}else{
+			$.ajax({
+				   type: "POST",
+				   url: "?m=company&action=isNameExist",
+				   data: "name="+name,
+				   dataType:"json",
+				   success: function(data){
+				    	switch(data['result']){
+				    		case '-1':
+				    			ShowMsg('nameInfo',0,data['msg']);
+				    			isNameExist = '2';
+								return false;
+					    		break;
+				    		case '1':
+					    		isNameExist = '1';
+					    		ShowMsg('nameInfo',1,'');
+								return true;
+					    		break;
+				    	}
+				   }
+			});
+		}
+	}
+}
+//营业执照验证
+var isCodeExist = "<?php echo !empty($info['code'])?true:false;?>";
+//var isCodeExist = false;//由于ajax是异步执行，所以定义一变量用来记录验证的结果，必须要isNameExist为true时，才认为验证通过
+function codeCheck(){
+	var busCode = jQuery("#code").val();
+	  if(busCode == ''){
+		  ShowMsg('codeInfo',0,'请输入你的营业执照号码。');
+		  return false;
+	  }else{
+		  if(busCode.length==15){
+			    var sum=0;
+                var s=[];
+                var p=[];
+                var a=[];
+                var m=10;
+                p[0]=m;
+			    for(var i=0;i<busCode.length;i++){
+			       a[i]=parseInt(busCode.substring(i,i+1),m);
+	                       s[i]=(p[i]%(m+1))+a[i];
+	                       if(0==s[i]%m){
+	                         p[i+1]=10*2;
+	                       }else{
+	                         p[i+1]=(s[i]%m)*2;
+	                        }    
+			    }                                       
+			    if(1==(s[14]%m)){
+			       //营业执照编号正确!
+			    	$.ajax({
+			 			   type: "POST",
+			 			   url: "?m=company&action=isCodeExist",
+			 			   data: "code="+busCode,
+			 			   dataType:"json",
+			 			   success: function(data){
+			 			    	switch(data['result']){
+			 			    		case '-1':
+			 			    			isCodeExist = '2';
+			 			    			ShowMsg('codeInfo',0,data['msg']);
+			 							return false;
+			 				    		break;
+			 			    		case '1':
+			 			    			isCodeExist = '1';
+			 				    		ShowMsg('codeInfo',1,'');
+			 							return true;
+			 				    		break;
+			 			    	}
+			 			   }
+			 		});
+			        ret=true;
+			    }else{
+			    	ShowMsg('codeInfo',0,'无效的营业执照号码。');
+					return false;
+	             }
+			  }else{
+				  ShowMsg('codeInfo',0,'无效的营业执照号码。');
+					return false;
+			  }
+	  }
+}
+//所在城市验证
+function cityCheck(){
+	var city = jQuery("#city").val();
+	if(city == ''){
+		ShowMsg('cityInfo',0,'请输入你所在城市。');
+		return false;
+	}else{
+		ShowMsg('cityInfo',1,'');
+		return true;
+	}
+}
+//详细地址
+function addressCheck(){
+	var address = jQuery("#address").val();
+	if(address == ''){
+		ShowMsg('addressInfo',0,'请输入你所在的详细地址。');
+		return false;
+	}else{
+		ShowMsg('addressInfo',1,'');
+		return true;
+	}
+}
+//联系电话验证
+function phoneCheck(){
+	var phone = jQuery("#phone").val();
+	if(phone == ''){
+		ShowMsg('phoneInfo',0,'请输入你的联系电话。');
+		return false;
+	}else{
+		var ab=/^(13[0-9]|15[0|1|3|6|7|8|9]|18[8|9])\d{8}$/;
+		var re=/^((0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;
+		if(!ab.test(phone)&&!re.test(phone)){
+			ShowMsg('phoneInfo',0,'无效的联系电话。');
+			return true;
+		}else{
+			ShowMsg('phoneInfo',1,'');
+			return true;
+		}
+	}
+}
+//企业标志验证
+function logoCheck(img){
+}
+function submitCheck(){
+	var name = jQuery("#name").val();
+	if(name == ''){
+		ShowMsg('nameInfo',0,'请输入你的公司名称。');
+		return false;
+	}else{
+		if(isNameExist == ''){
+			ShowMsg('nameInfo',0,'公司名称还在验证请稍候。');
+			return false;
+		}else if(isNameExist == '2'){
+			ShowMsg('nameInfo',0,'公司名称已被注册，请重新输入。');
+			return false;
+		}
+	}
+	var busCode = jQuery("#code").val();
+	if(busCode == ''){
+		ShowMsg('codeInfo',0,'请输入你的营业执照。');
+		return false;
+	}else{
+		if(busCode.length==15){
+		    var sum=0;
+            var s=[];
+            var p=[];
+            var a=[];
+            var m=10;
+            p[0]=m;
+		    for(var i=0;i<busCode.length;i++){
+		       a[i]=parseInt(busCode.substring(i,i+1),m);
+                       s[i]=(p[i]%(m+1))+a[i];
+                       if(0==s[i]%m){
+                         p[i+1]=10*2;
+                       }else{
+                         p[i+1]=(s[i]%m)*2;
+                        }    
+		    }                                       
+		    if(1==(s[14]%m)){
+		       ShowMsg('codeInfo',1,'');
+		       return true;
+		    }else{
+		    	ShowMsg('codeInfo',0,'无效的营业执照号码。');
+				return false;
+             }
+		  }else{
+			  ShowMsg('codeInfo',0,'无效的营业执照号码。');
+				return false;
+		  }
+		if(isCodeExist == ''){
+			ShowMsg('codeInfo',0,'营业执照还在验证请稍候。');
+			return false;
+		}else if(isCodeExist == '2'){
+			ShowMsg('codeInfo',0,'营业执照已被注册，请重新输入。');
+			return false;
+		}
+	}
+	//var isNameOK = nameCheck();
+	//var isCodeOK = codeCheck();
+	var isCityOK = cityCheck();
+	var isAddressOK = addressCheck();
+	var isPhoneOK = phoneCheck();
+	if(isNameExist=='1'&&isCodeExist=='1'&&isCityOK&&isAddressOK&&isPhoneOK){
+		return true;
+	}else{
+		return false;
+	}
+}
+</script>
+<div id="body-container">
+	<div class="center clearfix">
+		<div class="col_2 products">
+			<p>完善您的企业信息，让求职者更好的了解贵公司。</p>
+			<form id="edit_profile" class="basic-form" onsubmit="return submitCheck();" action="" method="post" enctype="multipart/form-data">	
+				<h3>公司信息</h3>
+				<div class="form-section">
+					<ul class="clearfix">
+						<li class="half-field ">
+							<label for="name">公司名称： <span class="required-field">（必填）</span></label>
+							<input name="name" id="name" class="form_field" value="<?php echo $info['name'];?>" type="text" onblur="nameCheck();" <?php echo $info['status']==1?'disabled="disabled"':'';?>/>
+							<span id = "nameInfo"></span>
+						</li>
+						
+						<li class="half-field ">
+							<label for="code">营业执照： <span class="required-field">（必填）</span></label>
+							<input name="code" id="code" class="form_field" value="<?php echo $info['code'];?>" type="text" onblur="codeCheck();" <?php echo $info['status']==1?'disabled="disabled"':'';?>/>
+							<span id = "codeInfo"></span>
+						</li>
+						<li class="half-field ">
+							<label for="city">所在城市： <span class="required-field">（必填）</span></label>
+							<input name="city" id="city" class="form_field" value="<?php echo $info['city'];?>" type="text" onblur="cityCheck();"/>
+							<span id = "cityInfo"></span>
+						</li>
+						<li class="half-field ">
+							<label for="address">详细地址： <span class="required-field">（必填）</span></label>
+							<input name="address" id="address" class="form_field" value="<?php echo $info['address'];?>" type="text" onblur="addressCheck();"/>
+							<span id = "addressInfo"></span>
+						</li>
+						<!-- <li class="">
+							<label for="email">电子邮箱： <span class="required-field">（必填）</span></label>
+							<input name="email" id="email" class="form_field" value="" type="text" onblur="emailCheck();"/>
+						</li> -->
+
+						<li class="half-field ">
+							<label for="phone">联系电话：<span class="required-field">（必填）</span></label>
+							<input name="phone" id="phone" class="form_field" value="<?php echo $info['phone'];?>" type="text" onblur="phoneCheck();"/>
+							<span id = "phoneInfo"></span>
+						</li>	
+					</ul>
+				</div>
+				<h3><label for="desc">公司描述：</label></h3>
+				<div class="form-section ">					
+					<textarea name="desc" id="desc" rows="8" cols="88" class="form_field editor-field"><?php echo $info['desc'];?></textarea>
+				</div>
+
+				<h3><label for="logo">公司标志：</label></h3>
+				<div class="form-section ">
+					<?php echo !empty($info['avatar'])?'<img src="'.$info['avatar'].'" style="width:100px;height:100px;"/>':'';?>
+					<input name="avatar" id="avatar" type="file"/>
+					<!-- <div class="field-hint icon">
+						请上传<strong>JPG</strong>或者<strong>PNG</strong>格式的图片，图片的大小不能超过<strong>3M</strong>
+					</div> -->
+				</div>
+				<h3><label for="logo">营业执照：</label></h3>
+				<div class="form-section ">
+					<?php echo !empty($info['license'])?'<img src="'.$info['license'].'" style="width:100px;height:100px;"/>':'';?>
+					<input name="license" id="license" type="file" />
+					<!-- <div class="field-hint icon">
+						请上传<strong>JPG</strong>或者<strong>PNG</strong>格式的图片，图片的大小不能超过<strong>3M</strong>
+					</div> -->
+				</div>
+				<input type="hidden" name="m" value="company"/>
+				<input type="hidden" name="action" value="infofinish"/>
+				<p><input name="submit" id="submit" value="保  存 " type="submit"></p>
+			</form>
+		</div>
+<?php $this->getModel("header")->companyRight();?>
+	</div>
+</div>
+<?php $this->getModel("header")->getFooter();?>

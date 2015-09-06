@@ -1,0 +1,393 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>残疾人招聘，残疾人找工作，残疾人就业，专为残疾人打造的求职平台--残疾人就业热线</title>
+<meta name="description" content="残疾人招聘，残疾人找工作，残疾人就业，专为残疾人打造的求职平台--残疾人就业热线">
+<meta name="keywords" content="残疾人招聘，残疾人找工作，残疾人就业，专为残疾人打造的求职平台--残疾人就业热线">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="./Template/2012/images/favicon.ico.png">
+<link rel="stylesheet" href="./Template/2012/css/reset.css" type="text/css" media="screen">
+<link rel="stylesheet" href="./Template/2012/css/main.css" type="text/css" media="screen">
+<link rel="stylesheet" href="./Template/2012/css/notifications.css" type="text/css" media="screen">
+<link rel="stylesheet" href="./Template/2012/css/form.css" type="text/css" media="screen">
+<link rel="stylesheet" href="./Template/2012/css/print.css" type="text/css" media="print">
+<link type="text/css" rel="stylesheet" href="./Template/2012/css/employers.css">	
+<link type="text/css" rel="stylesheet" href="./Template/2012/css/index.css">
+<!--[if IE 6]>
+<script type="text/javascript">
+	document.execCommand("BackgroundImageCache", false, true);
+</script>
+<![endif]-->
+<link href="http://css.baicai.cn/template_2/styles/base/reset.css,funct.css--template_2/styles/common/header/header.css--template_2/styles/common/footer/footer.css----template_2/styles/common/common.css--template_2/styles/common/site/common.css--template_2/styles/plugin/qsAttention.css--v131.4.css" media="all" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div id="header-container">
+		<div id="header" class="center">
+			<h1>
+				<a accesskey="1" href="?m=index">
+					<img src="./Template/2012/images/logo.png" alt="残疾人招聘热线" />
+				</a>
+				<a accesskey="1" href="?m=index" style="margin-left:40px;display:inline;padding-bottom:10px;">
+					<img src="./Template/2012/images/banner.gif" alt="残疾人招聘热线" style="margin-bottom:10px;width:540px;height:73px;"/>
+				</a>
+			</h1>
+			<?php 
+				$this->getModel("header")->getLoginInfo();
+			?>
+		</div>
+	</div>
+<div id="main-navigation-container">
+	<div id="main-navigation" class="center">
+		<ul class="clearfix">
+			<li><a href="?m=index" <?php echo empty($_GET['m'])||$_GET['m']=='index'?'class="main-active"':'';?>>首页</a></li>
+			<li><a href="?m=news" <?php echo $_GET['m']=='news'?'class="main-active"':'';?>>新闻中心</a></li>
+			<li><a href="?m=job" <?php echo $_GET['m']=='job'?'class="main-active"':'';?>>找工作</a></li>
+			<li><a href="?m=resume" <?php echo $_GET['m']=='resume'?'class="main-active"':'';?>>找人才</a></li>
+			<li><a href="?m=project" <?php echo $_GET['m']=='project'?'class="main-active"':'';?>>项目展示</a></li>
+			<li><a href="?m=about" <?php echo $_GET['m']=='about'?'class="main-active"':'';?>>关于我们</a></li>
+		</ul>
+	</div>
+</div>
+<script type="text/javascript" src="./Template/2012/js/index.js"></script>
+<div id="body-container">
+		<div class="center clearfix" style="height:260px;">
+			<div class="wrapper" id="wrapper">
+	<div class="grid left_side">
+	   	<div class="actives">
+			<div id="tab" class="tab">
+				<?php
+					foreach($tabList as $key=>$value){
+					if($key == 1){
+						$class = "show";
+					}else{
+						$class = "hide";	
+					}
+				?>
+				<div id="tab<?php echo $key;?>" class="<?php echo $class;?>">
+					<a title=" "  href="?m=news&action=info&nId=<? echo $value['id'];?>" sizcache="22" target="_blank">
+						<img style="" loop="1" src="<?php echo $value['index_img'];?>" start="fileopen" height="200" width="600">
+					</a> 
+					<div class="tab2_box">
+						<a title="<?php echo $value['title'];?>"  style="color:#ffffff" href="?m=news&action=info&nId=<? echo $value['id'];?>" target="_blank"><?php echo $value['title'];?></a>
+					</div>
+				</div>
+				<?php
+					}
+				?>
+		</div>
+			<div id="tab_btns" class="tab_btns">
+				<a class="" href="#">1</a>
+				<a class="on" href="#">2</a>
+				<a class="" href="#">3</a>
+				<a class="" href="#">4</a> 
+			</div>
+	</div> 
+	</div>
+</div>
+<?php $this->getModel("header")->getLoginForm();?>
+</div>		
+		<div class="center clearfix">
+			<div id="content-area" class="content-area column" role="main">          
+          
+  <div class="panel-display panel-2col clearfix">
+  <div class="panel-panel panel-col-first">
+    <div class="inside"><div class="panel-pane pane-block pane-views-employee-block">
+  
+        <h2 class="pane-title">最新求职者</h2>
+    
+  
+  <div class="pane-content">
+    <div class="view">
+        
+	      <div class="view-content">
+  
+  		<?php
+  			foreach($newResume as $item){
+  		?>
+	        <div class="views-row">
+			  <div class="views-field views-field-picture">
+						<div class="field-content">
+							<img src="<?php echo $item['avatar'];?>" style="width:100px;height:100px;"/>
+						</div>  
+			  </div>  
+			  <div class="views-field views-field-name">
+					<span class="field-content">
+						<a href="<?php echo WEBDOMAIN;?>?m=resume&action=view&p=<?php echo $item['pId'];?>" target="_blank">
+							<?php echo $item["name"] ?>
+						</a>
+					</span>
+			 </div>  
+			  <div class="views-field views-field-field-location">    
+			  	<span class="views-label views-label-field-location">居住地点: </span>
+				<span class="field-content"><?php echo $item["city"] ?></span>
+			  </div>  
+			  <div class="views-field views-field-field-personal-description">
+			  	<?php echo $item["intro"] ?>
+			  </div> 
+			</div>
+		<?php
+			}
+		?>	
+
+    </div>
+<div class="more-link">
+  <a href="<?php echo WEBDOMAIN."?m=resume";?>" target="_blank">
+    查看更多应聘者  </a>
+</div>
+</div>  </div>
+  </div>
+</div>
+  </div>
+  <div class="panel-panel panel-col-last">
+    <div class="inside"><div class="panel-pane pane-block pane-views-job-application-block">
+        <h2 class="pane-title">最新招聘职位</h2>
+  <div class="pane-content">
+    <div class="view view-job-application view-id-job_application view-display-id-block view-dom-id-94fa3bfd210c48559f474e3826e519c5">
+  			<div class="view-content">
+		<?php
+  			foreach($newJob as $item){
+  		?>
+			<div class="views-row">
+			  <div class="views-field views-field-title">
+			  	<span class="field-content">
+			  		<a href="<?php echo WEBDOMAIN;?>?m=job&action=info&jobId=<?php echo $item['jobId'];?>" target="_blank">
+			  			<?php echo $item["jname"] ?>
+			  		</a>
+			  	</span>
+			  </div>  
+			  <div class="views-field views-field-field-company">
+			  	<span class="views-label views-label-field-company">公司名称: </span>
+			  	<span class="field-content">
+			  		<a href="<?php echo WEBDOMAIN;?>?m=Companyinfo&comId=<?php echo $item['comId'];?>" target="_blank">
+			  			<?php echo $item["cname"] ?>
+			  		</a>
+			  	</span>
+			  </div>  
+			  <div class="views-field views-field-field-location">
+			  	<span class="views-label views-label-field-location">公司所在地: </span>
+			  	<span class="field-content"><?php echo $item["jcity"] ?></span>
+			  </div>  
+			  <div class="views-field views-field-body">
+			  	<span class="field-content">
+			  		<?php echo $item["jinfo"] ?>
+			  	</span>
+			 </div>
+			</div>  
+		<?php
+			}
+		?>
+			</div>
+<div class="more-link">
+  <a href="<?php echo WEBDOMAIN."?m=job";?>" target="_blank">
+    查看更多招聘职位  </a>
+</div>
+</div>  </div>
+  </div>
+</div>
+  </div>
+</div>
+<!-- block__no_wrapper -->
+<!-- region__no_wrapper -->
+                  </div>
+		</div>
+<div class="center clearfix">
+	<div class="partner">
+    <div class="partner_top"></div>
+    <div class="partner_mid">
+      <ul>
+        <li> 
+        	<?php
+        		foreach($link as $key=>$value){
+					echo '<span><a target="_blank" href="'.$value['link'].'" title="'.$value['name'].'">'.$value['name'].'</a> </span>';
+				}
+        	?>
+        </li>
+		</ul>
+    </div>
+    <div class="partner_bot"></div>
+  </div>
+	</div>	
+</div>
+<div id="footer">
+    <div id="footer-v0">
+        <div class="footer-container">
+            <div class="ali-pages">
+                <p id="copyright">残疾就业热线版权所有 1999-2012</p>
+                <!-- <ul>
+                    <li><a title="著作权与商标声明" target="_self" href="javascript:;" rel="nofollow">著作权与商标声明</a> |</li>
+                    <li><a title="法律声明" target="_self" href="javascript:;" rel="nofollow">法律声明</a> |</li>
+                    <li><a title="服务条款" target="_self" href="javascript:;" rel="nofollow">服务条款</a> |</li>
+                    <li><a title="隐私声明" target="_self" href="javascript:;" rel="nofollow">隐私声明</a> |</li>
+                    <li><a title="关于残疾就业热线" target="_self" href="javascript:;" rel="nofollow">关于残疾就业热线</a> |</li>
+                    <li><a title="联系我们" target="_self" href="javascript:;" rel="nofollow">联系我们</a> |</li>
+                    <li><a title="网站导航" target="_self" href="javascript:;">网站导航</a></li>
+                </ul> -->
+            </div>
+            <!-- <div class="ali-group">
+                <dl>
+                    <dt>
+                        <a title="阿里巴巴集团" target="_self" href="http://page.china.alibaba.com/shtml/about/ali_group1.shtml" rel="nofollow">阿里巴巴集团</a>:
+                    </dt>
+                    <dd>
+                        阿里巴巴网络 -<a title="国际站" target="_blank" href="http://www.alibaba.com/">国际站</a>
+                        <a title="中国站" target="_self" href="http://china.alibaba.com/">中国站</a>
+                        <a title="全球速卖通" target="_blank" href="http://www.aliexpress.com/">全球速卖通</a>
+                        |
+                    </dd>
+                    <dd>
+                        <a title="淘宝网" target="_blank" href="http://www.taobao.com/" rel="nofollow">淘宝网</a>
+                        |
+                    </dd>
+                    <dd>
+                        <a title="天猫" target="_blank" href="http://www.tmall.com/" rel="nofollow">天猫</a>
+                        |
+                    </dd>
+                    <dd>
+                        <a title="一淘" target="_blank" href="http://www.etao.com/" rel="nofollow">一淘</a>
+                        |
+                    </dd>
+                    <dd>
+                        <a title="聚划算" target="_blank" href="http://ju.taobao.com/" rel="nofollow">聚划算</a>
+                        |
+                    </dd>
+                    <dd>
+                        <a title="阿里云" target="_blank" href="http://www.aliyun.com/" rel="nofollow">阿里云</a>
+                        |
+                    </dd>
+                    <dd>
+                        <a title="中国雅虎" target="_blank" href="http://www.yahoo.com.cn/" rel="nofollow">中国雅虎</a>
+                        |
+                    </dd>
+                    <dd>
+                        <a title="支付宝" target="_blank" href="http://www.alipay.com/" rel="nofollow">支付宝</a>
+                    </dd>
+                </dl>
+            </div> -->
+        </div>
+    </div>
+</div>
+<style type="text/css">
+.PI-imgBox {
+    height: 94px;
+    left: 25px;
+    overflow: hidden;
+    position: absolute;
+    top: 30px;
+    width: 74px;
+}
+.PI-imgBox img {
+    border: 1px solid #CCCCCC;
+    width: 72px;
+}
+.PI-imgBox-Oper {
+    bottom: 10px;
+    color: #999999;
+    display: none;
+    left: 6px;
+    position: absolute;
+    text-decoration: underline;
+}
+</style>
+<?php if(!$isLogin){?>
+<div class="col_1">
+		<div class="employer_login">
+		  <form>
+			<ul>
+				<li class="">
+					<label for="login_email">电子邮箱：<span class="required-field" id="login_email_info">(必填)</span></label>
+					<input type="text" class="form_field" id="login_email" name="login_email" onblur="emailVerify('login_email','login_email_info');"/>
+				</li>
+				<li class="">
+					<label for="login_password">密码： <span class="required-field" id="login_password_info">(必填)</span></label>
+					<input type="password" id="login_password" class="form_field" name="login_password" onblur="passwordVerify('login_password','login_password_info');"/>
+				</li>
+				<li class="">
+				    <input type="radio" name="identity" value="personal"/>雇员
+				    &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+				    <input type="radio" name="identity" value="company"/>雇主
+				    <span id="identity_info"></span>
+				</li>
+				<li>
+					 <input type="button" value="登录" name="sign-in" id="sign-in" class="loginBtn" onclick="doLogin('login_email','login_password','identity');"/>
+				</li>
+			</ul>
+		</form>
+		<div>
+			<a href="<?php echo WEBDOMAIN;?>?m=personal&action=register" target="_blank" style="margin-left:50px;color:#9A1616">用户注册</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="<?php echo WEBDOMAIN;?>?m=personal&action=forgetpwd" target="_blank" style="color:#9A1616">忘记密码？</a>
+		</div>
+	</div>
+</div>
+<?php }else if($header_identity == 'personal'){ ?>
+<div class="col_1">
+		<div class="employer_login">
+		  <form>
+			<ul>
+				<li class="">
+					<label>
+						<img src="<?php echo empty($header_info['avatar'])?'/Template/2012/images/default.jpg':$header_info['avatar'];?>" style="width:110px;height:110px;"/>
+						<strong><?php echo empty($header_info['name'])?$header_info['email']:$header_info['name'];?></strong>
+					</label>
+				</li>
+				<li class="">
+					<label >
+						<a href="?m=resume&action=view&p=<?php echo base64_encode($header_info['id']);?>" target="_blank" style="color:#212121;font-size:14px;">预览个人简历</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="?m=personal&action=editinfo" target="_blank" style="font-size:14px;">修改个人简历</a>  
+					</label>
+				</li>
+				<li class="">
+					<label>
+						<a href="?m=personal&action=applyList" target="_blank" style="font-size:14px;">职位申请记录</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="?m=personal&action=interviewList" target="_blank" style="font-size:14px;">企业来信</a>  
+					</label>
+				</li>
+				<li class="">
+					<label>
+						<a href="?m=personal&action=logout" style="font-size:14px;">退出</a>
+					</label>
+				</li>
+			</ul>
+		</form>
+	</div>
+</div>
+<?php  } else if ($header_identity == 'company'){ ?>
+<div class="col_1">
+		<div class="employer_login">
+		  <form>
+			<ul>
+				<li class="">
+					<label>
+						<img src="<?php echo empty($header_info['avatar'])?'/Template/2012/images/default.jpg':$header_info['avatar'];?>" style="width:110px;height:110px;"/>
+						<strong><?php echo empty($header_info['name'])?$header_info['email']:$header_info['name'];?></strong>
+					</label>
+				</li>
+				<li class="">
+					<label>
+						<a href="?m=company&action=editinfo" target="_blank" style="font-size:14px;">修改公司信息</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="?m=company&action=publishJob" target="_blank" style="font-size:14px;">发布职位</a>  
+					</label>
+				</li>
+				<li class="">
+					<label>
+						<a href="?m=company&action=joblist" target="_blank" style="font-size:14px;">已发布职位</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="?m=company&action=messageList" target="_blank" style="font-size:14px;">职位申请记录</a>  
+					</label>
+				</li>
+				<li class="">
+					<label>
+						<a href="?m=company&action=logout" style="font-size:14px;">退出</a>
+					</label>
+				</li>
+			</ul>
+		</form>
+	</div>
+</div>
+<?php } ?>
+	<script type="text/javascript" charset="utf-8" src="http://js.baicai.cn/template_2/js/common/jquery/jquery-1.6.2.min.js--js/plugin/centerservice_plugin.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<div class="wleft">
+    	<div class="com">
+        	<ul class="com leftcate">
+            	<li class="com">
+                	<a href="?m=Companyinfo&comId=<?php echo $company["companyId"];?>" <?php echo $_GET['m'] == "Companyinfo" && empty($_GET['action']) ? 'class="on"' :'';?>>企业介绍</a>
+                </li>
+                <li class="com">
+                	<a href="default.php?m=job&cid=<?php echo $company["companyId"];?>">职位列表</a>
+                </li>                
+            </ul>
+        </div>
+    </div>

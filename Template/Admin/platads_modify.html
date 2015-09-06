@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="./Template/Admin/css/General.css" rel="stylesheet" type="text/css" />
+    <link href="./Template/Admin/css/Main.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+    .notice_ex{ margin: 10px 20px; color:red; font-size: 14px; line-height:150%;}
+    .notice_ex span{margin-left: 30px;}
+    .list-div td span { margin-right: 10px;}
+    </style>
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="?c=admin&m=platads&action=ls">平台广告管理</a></span>
+    <span class="action-span1">Manage - 平台广告设置</span>
+    <div style="clear:both"></div>
+</h1>
+
+<div>
+    　</div>
+   
+<div class=alt_descript>广告编辑</div>
+<div class="list-div" >
+<form action='' method=post enctype="multipart/form-data">
+    <input name="id" type="hidden" value="<?=$data['ads_id']?>"/>
+    <input name="mark" type="hidden" value="<?=$data['mark']?>"/>
+	<table cellspacing='1' cellpadding='3' id="table1" width="100%">
+  		<tr>
+  			<th width=15%>项目</th>
+  			<th>内容</th>
+  		</tr>
+  	
+  		<tr>
+  			<td align="right">标题</td>
+  			<td><?php echo $data['title']?></td>
+  		</tr>
+  		<tr>
+  			<td align="right">JS调用标识</td>
+  			<td><?php echo $data['mark']?></td>
+  		</tr>
+  		<tr>
+  			<td align="right">跳转地址</td>
+  			<td><input type="text" name="target_url" value="<?=$data['target_url']?>"></td>
+  		</tr>
+  		<tr>
+  			<td align="right">打开方式</td>
+  			<td>
+	  			<span><input type="radio" name="target_way" value="1" <?php echo (empty($data['target_way'])||$data['target_way']==1)?'checked':''?>>新窗口打开</span>
+	  			<span><input type="radio" name="target_way" value="2" <?php echo (!empty($data['target_way'])&&$data['target_way']==2)?'checked':''?>>原窗口打开</span>
+  			</td>
+  		</tr>
+  		<tr>
+  			<td align="right">广告状态</td>
+  			<td>
+	  			<span><input type="radio" name="status" value="1" <?php echo (!empty($data['status'])&&$data['status']==1)?'checked':''?>>正常</span>
+	  			<span><input type="radio" name="status" value="0"  <?php echo (empty($data['status'])||$data['status']!=1)?'checked':''?>>屏蔽</span>
+  			</td>
+  		</tr>
+  		<tr>
+  			<td align="right">文件上传</td>
+  			<td>
+  				<input type="file" name="file" value="<?php echo $data['ads_url']?>">
+  			</td>
+  		</tr>
+  		<tr>
+  			<td align="right"></td>
+  			<td><input type="submit" name="submit" value="提交"></td>
+  		</tr>
+	</table>
+  </form>
+</div>
+</body>
+</html>

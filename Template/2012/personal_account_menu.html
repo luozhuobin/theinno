@@ -1,0 +1,18 @@
+<div class="account-menu" style="margin-bottom:10px;">
+	<ul>
+		<li><a href="?m=personal&action=editinfo" target="_blank">修改简历</a></li>
+		<li><a href="?m=resume&action=view&p=<?php echo $p;?>" target="_blank">预览简历</a></li>			
+		<li><a href="?m=personal&action=applyList" target="_blank">职位申请记录</a></li>
+		<li><a href="?m=job" target="_blank">找工作</a></li>
+		<li><a href="?m=personal&action=interviewList" target="_blank">收到的面试通知</a></li>				
+	</ul>
+</div>
+<h2>最新招聘职位</h2>
+<div class="faa PI-body" style="height:100px;">
+<ul>
+	<?php
+		foreach($latestJob as $key=>$value){
+			echo "<li style='float:left;width:100px;display:block;'><a href='?m=job&action=info&jobId={$value['jobId']}' target=\"_blank\" title='{$value['name']}'>".mb_substr($value['name'],0,7,'UTF-8')."</a></li>";
+		}
+	?>
+</ul>

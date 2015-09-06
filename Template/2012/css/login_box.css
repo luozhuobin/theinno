@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* 登录框*/
+.twin_log{ margin:0 auto; width:432px; background:transparent;}
+.twin_log_box{ width:376px;border:10px solid #F98D00; color:#797A7F; font-size:12px; padding:15px 0; position:relative;}
+.twin_log_close{ width:36px; height:46px; position:absolute; right:-36px; top:0;}
+.twin_log_box .twin_logItem{ height:28px; margin:10px 0; overflow:hidden; line-height:28px; padding-left:55px;}
+.twin_log_box .twin_logItem label{ width:60px; display:block; float:left; font-weight:bold; text-align:right; height:28px; line-height:28px;font-size:14px; color:#5D5D5D;}
+.twin_log_box .twin_logItem input{ background-color:#fff; border:1px #C9C9C9 solid; color:#000; float:left; margin-right:3px;height:20px; line-height:18px; width:176px; padding:2px 3px; vertical-align:middle;}
+.twin_log_box .check{ margin-left:113px;}
+.twin_log_box .check input{float:left; margin-right:5px; width:20px; height:20px;margin-top:-1px;}
+.twin_log_box .check span{ margin:0 10px;}
+.twin_log_box .check a{ font-weight:bold; color:#797A7F; text-decoration:none;}
+.twin_log_box .check a:hover{ text-decoration:underline;}
+.twin_log_box .twin_log_btn{ margin:10px 0; padding-left:55px;}
+.twin_log_box .twin_log_btn input{ background:url(../images/twin_log_btn.jpg) no-repeat; width:241px; height:44px; border:none;}
+.twin_log_box .twin_log_btn input:hover{ background:url(../images/twin_log_btn.jpg) 0 -44px no-repeat;}
+.twin_log_box p{ text-align:center;}
+.twin_log_box p a{ color:#F97500; text-decoration:underline;}
+.twin_log_box p a:hover{ color:red;}
+.twin_log_error{ border:#FF8080 1px solid; background:#FFF2F2 url(../images/twin_log_jz.gif) 2px center no-repeat; width:230px; height:22px; line-height:22px; padding-left:20px; margin-left:55px;}

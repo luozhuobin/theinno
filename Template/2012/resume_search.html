@@ -1,0 +1,328 @@
+<?php $this->getModel("header")->init();?>
+<body>
+<!-- 顶部菜单 -->
+<?php $this->getModel("header")->headerMenu();?>
+<div class="wapper" style="overflow:visible">
+	<?php $this->getModel("header")->searchForm();?>
+    <div class="joblist">
+    	
+        <div class="leftLoop">
+						<a class="next"></a>	
+						<div class="bd">
+							<ul class="picList">
+								<?php
+									foreach($topResume as $key=>$value){
+										echo '<li>
+												<div class="pic"><a href="?m=Resume&action=view&p='.$value["pId"].'"><img src="'.$value["avatar"].'" /></a></div>
+                                    			<div class="com">
+                                    				<p>姓名：<a href="?m=Resume&action=view&p='.$value["pId"].'">'.$value['name'].'</a></p>
+                                        			<p>应聘职位：'.$value['job'].'</p>
+                                        			<p>工作年限：'.$value['workLength'].'</p>
+                                    			</div>	
+											</li>';
+									}
+								?>
+							</ul>
+						</div>
+                        <a class="prev"></a>
+					</div>
+					<script type="text/javascript">jQuery(".leftLoop").slide({ mainCell:".bd ul",effect:"leftLoop",vis:4,scroll:4,autoPlay:false});</script>
+    </div> 
+</div> 
+
+<div class="wapper jobslist">
+	<?php $this->getModel("header")->searchCondition();?>
+    <div class="wright">
+    	<table width="100%" class="viewjob">
+        	<tr class="ftr">
+                <td class="midtd">
+                	名字
+                </td>
+                <td class="midtd">
+                	职位名称
+                </td>
+                <td class="midtd">
+                	工作年限
+                </td>
+                <td class="midtd">
+                	残疾类型
+                </td>
+                <td class="midtd">
+                	更新时间
+                </td>
+                <td class="midtd">
+                	发出邀请
+                </td>
+                <td class="midtd">
+                	查看简历
+                </td>
+                
+            </tr>
+            <?php
+            	foreach($resumes as $key=>$value){
+					echo '<tr>
+							<td class="midtd">
+                				<a href="?m=Resume&action=view&p='.$value["pId"].'">'.$value["name"].'</a>
+                			</td>
+            				<td class="midtd">
+                				'.$value["job"].'
+                			</td>
+               				<td class="midtd">
+                				'.$value["workLength"].'
+                			</td>
+                			<td class="midtd">
+                				'.$value["type"].'
+                			</td>
+                			<td class="midtd">
+                				'.$value["lastUpdateTime"].'
+                			</td>
+                			<td class="midtd">
+                				<a href="javascript:void(0);" class="send" onclick="sendInvitation('.$value["id"].')">发出邀请</a>
+                			</td>
+                			<td class="midtd">
+                				<a href="javascript:void(0);" class="view" onclick="getResumeDetail('.$value["id"].')">查看简历</a>
+                			</td>
+            			</tr>';
+				}
+            ?>
+            <tr>
+            	<td colspan="7" style="text-align:center;"><?php echo $subPageCss1;?></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="showbox" id="showbox" >
+	
+</div>
+<div class="mask"></div>
+<script type="text/javascript">
+function getResumeDetail(resumeId){
+	$.ajax({
+		   type: "POST",
+		   url: "?m=resume&action=getResumeDetail",
+		   data: "resumeId="+resumeId,
+		   success: function(val){
+		   			if(val.code == "-1"){
+		   				CT_pop('user_login');
+			   		}else{
+			   			var content = '<div class="com showbox_close">'+
+						'<a href="javascript:void(0);" id="mp_close">'+
+							'<img src="./Template/2012/images/close.png" />'+
+						'</a>'+
+						'</div>'+
+						'<div class="viewbox">'+
+						'<div class="com"  id="view_person_info">'+
+							'<div class="view_person">'+
+						    	'<img src="'+val.data.avatar+'" />'+
+						   '</div>'+
+						    '<div class="view_person_info">'+
+						    	'<table width="100%">'+
+						        	'<tr>'+
+						            	'<td width="41%">姓名：'+val.data.name+'</td>'+
+						                '<td width="59%">所在城市：'+val.data.city+'</td>'+
+						           '</tr>'+
+						            '<tr>'+
+						            	'<td>应聘职位：'+val.data.job+'</td>'+
+						                '<td>'+
+						                	'联系方式：'+val.data.phone+
+						                '</td>'+
+						            '</tr>'+
+						            '<tr>'+
+						            	'<td>工作年限：'+val.data.workLength+'</td>'+
+						                '<td>邮箱：'+val.data.email+'</td>'+
+						            '</tr>'+
+						        '</table>'+
+						    '</div>'+
+						'</div>'+
+						'<div class="com" id="vlist">'+
+							'<ul class="com vlist">'+
+						    	'<li class="com">'+
+						        	'<div class="vtitle">'+
+						            	'自我介绍'+
+						            '</div>'+
+						            '<div class="vcontent">'+
+						            	val.data.intro + 
+						            '</div>'+
+						        '</li>'+
+						        '<li class="com">'+
+						        	'<div class="vtitle">'+
+						            	'工作经历'+
+						            '</div>'+
+						            '<div class="vcontent">'+
+						            val.data.workExp + 
+						           '</div>'+
+						        '</li>'+
+						        '<li class="com">'+
+						        	'<div class="vtitle">'+
+						            	'教育经历'+
+						            '</div>'+
+						            '<div class="vcontent">'+
+						            	val.data.eduExp +
+						            '</div>'+
+						        '</li>'+
+						    '</ul>'+
+						'</div>'+
+						'<div class="com" style="text-align:center; font-size:14px;">'+
+							'<a href="javascript:;" class="send" onclick="sendInvitation('+resumeId+')">发出邀请</a>'+
+						'</div>'+
+						'</div>';
+					$("#showbox").html(content);
+					showDiv1($(".showbox"));
+					$("#mp_close").click(function() {
+			            $(".showbox").hide();
+			            $(".mask").hide();
+			        });
+				   	}
+			}
+		});
+}
+
+function checkSearch(){
+	var job = $("#job").val();
+	var area = $("#c_input").val();
+	if(job == "请输入职位"){
+		$("#job").val("");
+	}
+	if(area == "选择地区"){
+		$("#c_input").val("");
+	}
+	return true;
+}
+
+function sendInvitation(resumeId){
+	$.ajax({
+		   type: "POST",
+		   url: "?m=company&action=getResumeCompany",
+		   data: "resumeId="+resumeId,
+		   success: function(val){
+					if(val.code == "-1"){
+						CT_pop('user_login');
+					}else{
+						var jobList = '<select name="jobId" id="jobId" style="width:80px;height:37px;"><option value="">请选择</option>';
+			   			var arr = val.data.jobList;
+			   			$.each(arr,function(k,v){
+							jobList += '<option value="'+v.id+'">'+v.name+'</option>';
+				   		})
+				   		jobList += '</select>';
+			   			var content = '<div class="com showbox_close">'+
+							'<a href="javascript:void(0);" id="mp_close">'+
+								'<img src="./Template/2012/images/close.png" />'+
+							'</a>'+
+							'</div>'+
+							'<div class="viewbox">'+
+							'<div class="com"  id="view_person_info">'+
+								'<div class="view_person">'+
+							    	'<img src="'+val.data.avatar+'" />'+
+							   '</div>'+
+							    '<div class="view_person_info">'+
+							    	'<table width="100%">'+
+							        	'<tr>'+
+							            	'<td width="41%">姓名：'+val.data.name+'</td>'+
+							                '<td width="59%">所在城市：'+val.data.city+'</td>'+
+							           '</tr>'+
+							            '<tr>'+
+							            	'<td>应聘职位：'+val.data.job+'</td>'+
+							                '<td>'+
+							                	'联系方式：'+val.data.phone+
+							                '</td>'+
+							            '</tr>'+
+							            '<tr>'+
+							            	'<td>工作年限：'+val.data.workLength+'</td>'+
+							                '<td>邮箱：'+val.data.email+'</td>'+
+							            '</tr>'+
+							        '</table>'+
+							    '</div>'+
+							'</div>'+
+							'<div class="com" id="vlist">'+
+									'<p style="margin:10px 130px;font-size:16px;">请填写以下邀请内容：</p><br />'+
+									'<ul class="com myinfo" style="margin-left:130px;">'+
+									'<form name="" id="invitationForm" action="">'+
+					                '<li class="myinfo_content">'+
+					                	'<dl>'+
+					                    	'<dd>'+
+					                        	'<span>'+
+					                            	'面试职位'+
+					                            '</span>'+
+					                            '<div>'+
+					                            jobList+
+					                            '</div>'+
+					                        '</dd>'+
+					                        '<dd>'+
+					                        	'<span>'+
+					                            	'面试地点'+
+					                            '</span>'+
+					                            '<div>'+
+					                            	'<input type="text" value="" id="area" name="address">'+
+					                            '</div>'+
+					                        '</dd>'+
+					                    '</dl>'+
+					                '</li>'+
+					                '<li class="myinfo_contact">'+
+					                	
+					                    '<dl>'+
+					                    	'<dd>'+
+					                        	'<span>'+
+					                            	'面试时间'+
+					                            '</span>'+
+					                            '<div>'+
+					                            	'<input type="text" value="" id="time" name="time" />'+
+					                            '</div>'+
+					                        '</dd>'+
+					                        '<dd style="padding-bottom:0px;">'+
+					                        	'<span>'+
+					                            	'注意事项'+
+					                            '</span>'+
+					                            '<div class="longdiv">'+
+					                            	'<input type="text" value="" id="attention" name="desc" />'+
+					                            '</div>'+
+					                        '</dd>'+
+					                    '</dl>'+
+					                '</li>'+
+					                '<input type="hidden" value="'+resumeId+'" id="pId" name="pId" />'+
+					                '</form>'+
+					            '</ul>'+
+							'</div>'+
+							'<div class="com" style="text-align:center; font-size:14px;">'+
+								'<a href="javascript:;" class="send" onclick="submitInvitation(\'invitationForm\');">发出邀请</a><br />'+
+								'<span id="resultInfo"></span>'+
+							'</div>'+
+							'</div>';
+						$("#showbox").html(content);
+						showDiv1($(".showbox"));
+						$("#mp_close").click(function() {
+				            $(".showbox").hide();
+				            $(".mask").hide();
+				        });
+					}
+				}
+		});
+}
+
+function submitInvitation(formid){
+	var formdata =  $("#"+formid).serialize();
+	$.ajax({
+		   type: "POST",
+		   url: "?m=company&action=sendInterview",
+		   data: formdata,
+		   success: function(val){
+		    	switch(val.code){
+		    		case '1':
+		    			$("#resultInfo").attr("style",'color:green;');
+						$("#resultInfo").html(val.msg);
+			    		//$(".showbox").hide(slow);
+				        //$(".mask").hide(slow);
+			    	break;
+			    	default:
+			    		$("#resultInfo").attr("style",'color:red;');
+		    			$("#resultInfo").html(val.msg);
+				    	break;
+		    	}
+		   }
+		});
+}
+</script>
+<?php $this->getModel("header")->getLoginBox();?>
+<script language="javascript" src="/Template/2012/js/My97DatePicker/WdatePicker.js"></script>
+</body>
+</html>

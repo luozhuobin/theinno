@@ -1,0 +1,64 @@
+<?php $this->getModel("header")->init();?>
+<body>
+<!-- 顶部菜单 -->
+<?php $this->getModel("header")->headerMenu();?>
+
+<div class="wapper usercontent">
+	<?php $this->getModel("personal")->leftMenu();?>
+    <div class="wright">
+    	<div class="com">
+        	<div class="person">
+                <img src="<?php echo $info['avatar'];?>" />
+            </div>
+            <div class="person_update">
+            	<a href="?m=personal&action=editinfo#avatar" class="imgupload">修改头像</a> 
+            </div>
+        </div>
+        <div class="com padleft">
+        	姓名　　<?php echo $info["name"];?>
+        </div>
+        <div class="com padleft hrtitle">
+        	已投递的公司
+        </div>
+        <div class="com padleft hrlist">
+        	<table width="100%">
+        		<tbody>
+            	<tr>
+                	<td width="25%">
+                    	职位
+                    </td>
+                    <td width="42%">
+                    	公司名
+                    </td>
+                    <td width="33%">
+                    	投递时间
+                    </td>
+                </tr>
+                <?php
+                	foreach($jobList as $key=>$value){
+						echo '<tr>
+                				<td>
+                    				'.$value["jname"].'
+                    			</td>	
+                    			<td>
+                    				'.$value["cname"].'
+                    			</td>
+                    			<td class="hrtime">
+                    				'.$value["applyTime"].'
+                    			</td>
+                			</tr>';
+					}
+                ?>	
+                </tbody>
+            </table>
+            <div class="com">
+                    <div class="fanye">
+                    	<?php echo $subPageCss2;?>
+                    </div>
+        	</div>
+        </div>
+    </div>
+</div> 
+ 
+</body>
+</html>

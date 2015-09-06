@@ -1,0 +1,140 @@
+<!-- $ $ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>统计信息</title>
+	<meta name="robots" content="noindex, nofollow">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="./Template/Admin/css/General.css" rel="stylesheet" type="text/css" />
+	<link href="./Template/Admin/css/Main.css" rel="stylesheet" type="text/css" />
+
+	<script src='./Template/Admin/js/jquery-1.8.1.min.js'></script>
+	<script language=javascript src="./Template/Admin/js/facebox/facebox.js"></script>
+	<link href="./Template/Admin/js/facebox/facebox.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<style>
+	#x{
+		font-size:14pt;
+		color:red;
+		padding-left:5px;
+	}
+</style>
+<h1>
+	<span class="action-span"><a href='?c=admin&m=list&action=add' >添加内容</a></span>
+	<span class="action-span1">内容列表</span>
+	<div style="clear:both"></div>
+</h1>
+
+<form action='' method="post">
+<div class="list-div" style='clear:both;' id=listdiv>
+<table cellspacing='1' cellpadding='3' id="table1" width="100%">
+<tr>
+<td>
+搜索
+&nbsp;&nbsp;
+<select name="type">
+<option value="">请选择类型</option>
+<option value="1" <?php echo $info['type']=='1'?'selected="selected"':'';?>>活动培训</option>
+<option value="2" <?php echo $info['type']=='2'?'selected="selected"':'';?>>残就新闻</option>
+<option value="3" <?php echo $info['type']=='3'?'selected="selected"':'';?>>名企招聘</option>
+<!-- <option value="关于我们" <?php echo $_REQUEST['type']=='关于我们'?'selected="selected"':'';?>>关于我们</option> -->
+</select>
+&nbsp;&nbsp;标题:&nbsp;&nbsp;<input type="text" name="title" value="<?PHP echo !empty($_REQUEST['title'])?$_REQUEST['title']:'';?>" />
+<input type="hidden" value="admin" name="c"/>
+<input type="hidden" value="list" name="m" />
+<input type="submit" name="Submit" value="搜索" />
+</td>
+</tr>
+</table>
+</div>
+</form>
+<br />
+<div class="list-div" style='clear:both;' id=listdiv>
+<form action='' method=post enctype="multipart/form-data">
+<table cellspacing='1' cellpadding='3' id="table1" width="100%">
+<tr>
+<th>ID</th>
+<th>标题</th>
+<th>类别</th>
+<th>作者</th>
+<th>创建时间</th>
+<th>状态</th>
+<th>操作</th>
+</tr>
+<?PHP foreach($list as $id=>$arr){?>
+  <tr>
+    <td align="center"><?PHP echo $arr['id'];?></td>
+	<td align="left"><a href="<?php echo $arr['url'];?>" target="_blank"><?PHP echo $arr['title'];?></a></td>
+	<td align="center"><?PHP echo $arr['type'];?></td>
+	<td align="center"><?PHP echo $arr['author'];?></td>
+	<td align='center'><?PHP echo date('Y-m-d H点',$arr['publish_time']);?></td>
+	<td align="center" id="status<?php echo $arr['id'];?>"><?PHP echo $arr['status_show'];?></td>
+	<td align="center">
+		<?php
+			if($arr['status'] == 1){
+				echo '<a href="javascript:;" onclick="changeStatus('.$arr['id'].',2,this);">屏蔽</a>&nbsp;&nbsp;';
+			}else{
+				echo '<a href="javascript:;" onclick="changeStatus('.$arr['id'].',1,this);">解屛</a>&nbsp;&nbsp;';
+			}
+		?>
+		<a href="?c=admin&m=list&action=add&id=<?php echo $arr['id'];?>" target="_blank">编辑</a>	
+		<a href="javascript:;" onclick="changeStatus('<?php echo $arr['id'];?>',3,this);">删除</a>	
+	</td>
+    </tr>
+<?PHP };?>
+  <tr>
+    <td align="left" colspan="8" class="pageCont">
+    	<a href="javascript:;">共<?php echo $total;?>条</a>
+    	<a href="javascript:;">共<?php echo $page_total;?>页</a>
+    	<?PHP echo $subPageCss2;?>
+    </td>
+  </tr>
+  </table>
+</form>
+</div>
+<script type="text/javascript">
+function changeStatus(id,status,obj){
+	$.ajax({
+		   type: "POST",
+		   url: "?c=admin&m=list&action=changeStatus",
+		   data: "id="+id+"&status="+status,
+		   dataType:"json",
+		   success: function(data){
+		     if(status == '3'){
+				jQuery("#status"+id).parents("tr").hide();
+			 }else{
+				jQuery("#status"+id).html(data['msg']);
+				if(status == 1){
+					jQuery(obj).html('屏蔽');
+					jQuery(obj).attr('onclick','changeStatus('+id+',2,this);');
+				 }else{
+					jQuery(obj).html('解屏');
+					jQuery(obj).attr('onclick','changeStatus('+id+',1,this);');
+			     }
+			 }
+		   }
+		});
+}
+function setSlideShow(id,status,obj){
+	$.ajax({
+		   type: "POST",
+		   url: "?c=admin&m=list&action=setSlideShow",
+		   data: "id="+id+"&status="+status,
+		   dataType:"json",
+		   success: function(data){
+		     jQuery("#slideShow"+id).html(data['msg']);
+		     if(status == 1){
+				jQuery(obj).html('取消幻灯片');
+				jQuery(obj).attr('onclick','setSlideShow('+id+',2,this);');
+			 }else{
+				jQuery(obj).html('设为幻灯片');
+				jQuery(obj).attr('onclick','setSlideShow('+id+',1,this);');
+		     }
+		   }
+		});
+}
+</script>
+<br />
+<br />

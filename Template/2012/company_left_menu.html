@@ -1,0 +1,24 @@
+<div class="wleft">
+    	<div class="com">
+        	<ul class="com leftcate">
+            	<li class="com">
+                	<a href="?m=company" <?php echo $_GET['m'] == "company" && empty($_GET['action']) ? 'class="on"' :'';?>>基本资料</a>
+                </li>
+                <li class="com">
+                	<a href="?m=company&action=editinfo" <?php echo $_GET['m'] == "company" && $_GET['action'] == "editinfo" ? 'class="on"' :'';?>>企业资料</a>
+                </li>
+                <li class="com">
+                	<a href="?m=company&action=publishJob" <?php echo $_GET['m'] == "company" && $_GET['action'] == "publishJob" ? 'class="on"' :'';?>>发布职位</a>
+                </li>
+                <li class="com">
+                	<a href="?m=company&action=joblist" <?php echo $_GET['m'] == "company" && $_GET['action'] == "joblist" ? 'class="on"' :'';?>>职位列表</a>
+                </li>
+                <li class="com">
+                	<a href="?m=company&action=changepwd" <?php echo $_GET['m'] == "company" && $_GET['action'] == "changepwd" ? 'class="on"' :'';?>>账号安全</a>
+                </li>
+                <li class="com">
+                	<a href="?m=company&action=jobApplyList" <?php echo $_GET['m'] == "company" && $_GET['action'] == "jobApplyList" ? 'class="on"' :'';?>>应聘简历</a>
+                </li>
+            </ul>
+        </div>
+    </div>

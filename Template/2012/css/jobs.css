@@ -1,0 +1,197 @@
+/** Jobs Page **/
+
+/** Jobs -- Job Listing **/
+#jobs_list {
+	margin: 20px 0 0 0;
+	list-style-type: none;
+	padding: 0;
+}
+
+.job_desc {
+	margin: 0 0 15px 0;
+	padding: 0 0 15px 0;
+}
+
+.job_desc h3 {
+	margin: 0;
+	/*background: none repeat scroll 0 0 #06478B;*/
+	border-bottom: 1px solid #1c2a31;
+	text-align: left;
+	padding: 10px 15px 6px 15px;
+}
+
+.job_desc h3 a {
+	text-decoration: none;
+	color: #00f;
+	/*text-shadow: 0 -1px 0 #293E47;*/
+}
+.job_desc h3 a:hover {
+	text-decoration: underline;
+	color: #00f;
+	/*text-shadow: 0 -1px 0 #293E47;*/
+}
+.summary {
+	line-height: 1.6;
+	padding: 10px 15px;
+	border: 1px solid #e6e6e6;
+	
+}
+
+.job_details {
+	font-size: 0.88em;
+	background: #f0f0f0;
+	border: 1px solid #e2e2e2;
+	padding: 10px;
+	width: 34%;
+	margin: 0 auto;
+}
+
+.job_details th {
+	text-align: left;
+	width: 13%;
+}
+
+.job_details th,
+.job_details td {
+	padding: 2px 0;
+}
+
+.no_results {
+	line-height: 1.6;
+}
+
+/** Jobs -- Advanced Search **/
+#advanced_search {
+	padding: 10px;
+	background: #efefef;
+	border: 1px solid #e2e2e2;
+}
+
+#advanced_search ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;	
+}
+
+#advanced_search ul label {
+	font-weight: bold;
+	display: block;
+	padding: 0 0 3px 0;
+}
+
+#advanced_search ul li {
+	margin-bottom: 15px;
+}
+
+#advanced_search ul li ul li {
+	margin-bottom: 2px;
+}
+
+#advanced_search ul li ul label {
+	font-weight: normal;
+	display: inline;
+	font-size: 0.88em;
+}
+
+#search_keywords,
+#search_company,
+#city_select {
+	padding: 6px;
+	width: 90%;
+}
+
+
+/** Jobs -- Job View **/
+.employer_description,
+#how_to_apply,
+#job_description {
+line-height: 1.6;	
+}
+
+#express_interest {
+	color: #172406;
+	background: #77b71d url(../images/template/express_your_interest.jpg) top left no-repeat;
+	height: 170px;
+	width: 575px;
+	padding: 15px;
+	font-weight: bold;
+	margin-top: 30px;
+	line-height:normal;
+}
+
+#express_interest h3 {
+	margin: 0;
+	color: #fff;
+	font-family: "ff-meta-web-pro-1","ff-meta-web-pro-2", arial, sans-serif;
+	font-size: 1.5em;
+	text-shadow: 0 -1px 0 #6BA01A;
+}
+
+#express_interest p {
+	margin-top: 15px;
+}
+
+#express_interest_button {
+	text-align: left;
+}
+.employer_description h4,
+.employer_info h4 {
+	margin-bottom: 5px;
+}
+
+.employer_image {
+	width: 305px;
+	margin-top: 90px;
+}
+
+.interest_expressed {
+	background: #1C2A31 url(../images/template/star.png) 5px 50% no-repeat;
+	color: #fff;
+	font-size: 0.88em;
+	padding: 5px 10px 5px 26px;
+	margin-left: 10px;
+}
+
+h2 .interest_expressed {
+	font-family: arial;
+	font-size: 14px;
+	vertical-align: 5px;
+}
+
+#job-options {
+	margin:30px 0 0 0;
+}
+
+#job-options ul {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+#job-options ul li {
+	background-color:#f0f0f0;
+	background-repeat:no-repeat;
+	background-position:10px 50%;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	margin:0 0 20px 0;
+	padding:20px 20px 20px 70px;
+}
+
+#job-options ul li.print {
+	background-image:url(../images/template/print_48.png);
+}
+
+#job-options ul li.profile {
+	background-image:url(../images/template/user4_48.png);
+}
+
+.job_details {
+    background: none repeat scroll 0 0 #F0F0F0;
+    border: 1px solid #E2E2E2;
+    font-size: 13px;
+    margin: 0 autox;
+    padding: 10px;
+    width: 68%;
+}

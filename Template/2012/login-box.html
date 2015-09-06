@@ -1,0 +1,47 @@
+<!-- 登录框 -->
+<script type="text/javascript" src="./Template/2012/js/CT_lightbox/CT_lightbox.js"></script>
+<link rel="stylesheet" href="./Template/2012/js/CT_lightbox/CT_lightbox.css" type="text/css" >
+<div class="CT_pop_window" id="CT_pop_window">
+	<div class="tipsWindow ac" id="user_login" style="display:none;">
+	<div class="logWrap">
+	<div class="logCon"> 
+        <div class="logTitle">        	
+            <div class="close"><a href="javascript:;" onclick="javascript:CT_close();"><img src="/Template/2012/images/reg1Close.gif" /></a></div>
+        </div>
+    	<div class="logItem" style="font-size:13px;">
+            <form>
+                	<div class="windowLogin">
+                		<div id="login_box_info"></div>
+                        <div class="regItem">
+                            <label for="login_box_username">帐号：</label>
+                            <input id="login_box_username" name="username" type="text" value="" onblur="emailVerify('login_box_username','login_box_username_info');"/>
+                            <span id="login_box_username_info">&nbsp;&nbsp;<a href="?m=personal&action=register" target="_blank">快速注册</a></span>
+                        </div>
+                        <div class="regItem">
+                            <label for="login_box_pwd">密码：</label>
+                            <input id="login_box_pwd" name="password" type="password" onblur="passwordVerify('login_box_pwd','login_box_pwd_info');"/>
+                            <span id="login_box_pwd_info">&nbsp;&nbsp;<a href="?m=personal&action=forgetpwd" target="_blank">忘记密码</a></span>
+                        </div>
+                        <div style="color:#646464;font-size:14px;">
+                        	<label>账号类型：</label>
+                            <input type="radio" value="personal" name="login_box_identity" />雇员          
+                            &nbsp;&nbsp;
+                            <input type="radio" value="company" name="login_box_identity" />雇主
+                            <span id="login_box_identity_info"></span> 
+                        </div>
+                     </div> 
+                     <!-- <div class="check">
+                        <input id="savelog" name="savelog" type="checkbox" value="" checked="checked" onclick="javascript:return savelog_info();"/>
+                        <span> 记住帐号</span>
+                    </div> -->
+                    <div class="reg_btn">
+                        <input type="button" value="立即登录" onclick="loginBoxLogin('login_box_username','login_box_pwd','login_box_identity')"/>
+                        <span id="loginInfo"></span>
+                    </div>  
+            </form>
+      	</div>
+    </div>   
+	</div>
+    </div>
+</div>
+<div class="CT_mask"></div>

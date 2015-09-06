@@ -1,0 +1,21 @@
+<div class="col_1">
+		<div class="account-menu" style="margin-bottom:10px;">
+			<ul>
+				<li><a href="?m=company&action=editinfo">修改资料</a></li>			
+				<li><a href="?m=company&action=joblist">职位列表</a></li>
+				<li><a href="?m=company&action=publishJob">发布职位</a></li>
+				<li><a href="?m=company&action=messageList">收到应聘简历</a></li>				
+			</ul>
+		</div>
+		<h2>最新求职简历</h2>
+		<div class="faa PI-body" style="height:100px;">
+		<ul>
+			<?php
+				foreach($latestResume as $key=>$value){
+					echo "<li style='float:left;width:100px;display:block;'><a href='?m=resume&action=view&p=".$value['p']."' target=\"_blank\" title='".$value['name']."'>".$value['name']."</a></li>";
+				}
+			?>
+           	<li></li>
+        </ul>
+	</div>
+</div>

@@ -1,0 +1,85 @@
+<!-- $ $ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title></title>
+	<meta name="robots" content="noindex, nofollow">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="./Template/Admin/css/General.css" rel="stylesheet" type="text/css" />
+	<link href="./Template/Admin/css/Main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>
+	<span class="action-span1">Manage - 代发职位</span>
+	<div style="clear:both"></div>
+</h1>
+<div class="list-div" id=listdiv>
+<table cellspacing='1' cellpadding='3' id="table1" width="100%">
+  <tr>
+    <th class="group-title" style="text-align: center;width:5%;">姓名：</th>
+    <td class="group-title" >
+		<?PHP echo $list['name'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >邮箱：</th>
+    <td class="group-title">
+		<?PHP echo $list['email'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >公司名称：</th>
+    <td class="group-title">
+		<?PHP echo $list['companyName'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >职位名称：</th>
+    <td class="group-title">
+		<?PHP echo $list['jobName'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >城市：</th>
+    <td class="group-title">
+		<?PHP echo $list['city'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >学历：</th>
+    <td class="group-title">
+		<?PHP echo nl2br($list['degree']);?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >招聘人数：</th>
+    <td class="group-title">
+    	<?php echo $list['num'];?>
+	</td>
+  </tr>
+    <tr>
+    <th class="group-title" style="text-align: center;" >公司介绍：</th>
+    <td class="group-title">
+		<?PHP echo $list['companyInfo'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >职位职责：</th>
+    <td class="group-title">
+		<?PHP echo $list['jobInfo'];?>
+	</td>
+  </tr>
+     <tr>
+    <th class="group-title" style="text-align: center;" >联系方式：</th>
+    <td class="group-title">
+		<?PHP echo $list['contact'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >发送时间：</th>
+    <td class="group-title">
+		<?PHP echo $list['createTime'];?>
+	</td>
+  </tr>
+  </table>
+</div>

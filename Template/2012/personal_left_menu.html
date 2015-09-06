@@ -1,0 +1,18 @@
+<div class="wleft">
+    	<div class="com">
+        	<ul class="com leftcate">
+            	<li class="com">
+                	<a href="?m=personal" <?php echo $_GET['m'] == "personal" && empty($_GET['action']) ? 'class="on"' :'';?>>基本资料</a>
+                </li>
+                <li class="com">
+                	<a href="?m=personal&action=editinfo" <?php echo $_GET['m'] == "personal" && $_GET['action'] == "editinfo" ? 'class="on"' :'';?>>我的简历</a>
+                </li>
+                <li class="com">
+                	<a href="?m=personal&action=changepwd" <?php echo $_GET['m'] == "personal" && $_GET['action'] == "changepwd" ? 'class="on"' :'';?>>账号安全</a>
+                </li>
+                <li class="com">
+                	<a href="?m=personal&action=interviewList" <?php echo $_GET['m'] == "personal" && $_GET['action'] == "interviewList" ? 'class="on"' :'';?>>面试邀请</a>
+                </li>
+            </ul>
+        </div>
+    </div>

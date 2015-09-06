@@ -1,0 +1,45 @@
+<?php $this->getModel("header")->init();?>
+<body>
+<!-- 顶部菜单 -->
+<?php $this->getModel("header")->headerMenu();?>
+<!-- banner广告位 -->
+<?php $this->getModel("header")->getBanner();?>
+
+<div class="wapper newcontent">
+	<!-- 左侧菜单 -->
+	<?php $this->getModel("header")->getLeftMenu();?>
+    <div class="wright">
+    	 <div class="newsinfo">
+         	<div class="com newsinfo_title">
+            	<?php echo $news["title"];?>
+            </div>
+            <div class="com newsinfo_time">
+            	<?php echo $news["publish_time"];?>
+            </div>
+            <div class="com newscontent">
+            	<?php 
+            		echo $news["desc"];
+            	?>
+            </div>
+            <div class="com next_prev">
+            	<?php
+            		if(!empty($preNews)){
+						echo '<div>
+                				<span><上一篇　</span><a href="?m=news&action=info&t='.$_GET["t"].'&nId='.$preNews["id"].'">'.$preNews["title"].'</a>
+                			  </div>';
+					}
+					if(!empty($nextNews)){
+						echo '<div class="prevdiv">
+                				<a href="?m=news&action=info&t='.$_GET["t"].'&nId='.$nextNews["id"].'">'.$nextNews["title"].'</a><span>下一篇></span>
+                			  </div>';
+					}
+            	?>
+            </div>
+         </div>
+          
+        
+    </div>
+</div> 
+ 
+</body>
+</html>

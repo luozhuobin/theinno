@@ -1,0 +1,70 @@
+﻿<!--浮动QQ客服代码开始 -->
+<DIV id=STATICMENU style="Z-INDEX: 999; FILTER:alpha(opacity=90); LEFT: 88%; VISIBILITY: visible; WIDTH: 109px; POSITION: absolute; TOP: 200px;">
+  <table width="106" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+      <td colspan="3"  >
+      <img src="./Template/2012/images/qq_top.gif" width="109" height="34" border="0" usemap="#MapForQQ"></td>
+      </tr>
+     
+      <tr>
+      <td width="6" background="./Template/2012/images/qq_life.gif" ></td>
+     
+      <td width="96" align="center" bgcolor="#FFFFFF"><TABLE cellSpacing=0 cellPadding=0 width=90 align=center border=0>
+        <TBODY>
+          <TR>
+            <TD height="39" align="center"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=00000001&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:00000001:41" alt="点击这里给我发消息" title="点击这里给我发消息"></a></TD>
+          </TR>
+          <TR>
+            <TD height="39" align="center"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=435721066&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:435721066:41" alt="点击这里给我发消息" title="点击这里给我发消息"></a></TD>
+          </TR>
+        </TBODY>
+      </TABLE></td>
+      <td width="7" background="./Template/2012/images/qq_right.gif">
+      </td>
+     </tr>
+    
+      <tr>
+      <td colspan="3">
+      <img src="./Template/2012/images/qq_logo.gif" width="109" height="17">
+      </td>
+    </tr>
+  </table>
+<script type="text/javascript">
+<!--
+var stmnGAP1 = 0;
+var stmnGAP2 = 250;
+/* stmnGAP2小时，距离顶部的距离在stmnGAP2与stmnGAP1之间，stmnGAP2为离相对顶部的最小距离，stmnGAP1离相对顶部最大距离，开始时为stmnGAP1，往下滚动，最后会变为stmnGAP2，stmnGAP2比stmnGAP1大时，stmnGAP1不起作用，stmnGAP2为距离相对顶部距离 */
+var stmnBASE = 0; //设定浮动块的初始位置,相对距离
+var stmnActivateSpeed = 200;//启动速度
+var stmnScrollSpeed = 10;//浮动速度
+var stmnTimer;//setTimeout句柄
+
+function RefreshStaticMenu()
+{
+var stmnStartPoint, stmnEndPoint, stmnRefreshTimer;
+stmnStartPoint = parseInt(STATICMENU.style.top, 10);
+stmnEndPoint = document.body.scrollTop + stmnGAP2;
+if (stmnEndPoint < stmnGAP1)
+stmnEndPoint = stmnGAP1;
+stmnRefreshTimer = stmnActivateSpeed;
+if ( stmnStartPoint != stmnEndPoint ) {
+                stmnScrollAmount = Math.ceil( Math.abs( stmnEndPoint - stmnStartPoint ) / 15 );
+                STATICMENU.style.top = parseInt(STATICMENU.style.top, 10) + ( ( stmnEndPoint<stmnStartPoint ) ? -stmnScrollAmount : stmnScrollAmount );
+                stmnRefreshTimer = stmnScrollSpeed;
+}
+stmnTimer = setTimeout ("RefreshStaticMenu();", stmnRefreshTimer);
+}
+STATICMENU.style.top = document.body.scrollTop + stmnBASE;
+            RefreshStaticMenu();
+//-->
+  </script>
+  <script type="text/javascript">
+    function  closeQQ(){
+        STATICMENU.style.display='none';
+    }
+  </script>
+</DIV>
+<map name="MapForQQ">
+  <area shape="circle" coords="89,17,11" href="javascript:closeQQ();">
+</map>
+<!--浮动QQ客服代码结束 -->

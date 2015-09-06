@@ -1,0 +1,185 @@
+#footer, #footer div, #footer p, #footer ul, #footer li, #footer dl, #footer dt, #footer dd {
+    margin: 0;
+    padding: 0;
+}
+#footer ul {
+    list-style: none outside none;
+}
+#footer a {
+    font: 12px/1.5 Tahoma,Arial,"宋体",sans-serif;
+    text-decoration: none;
+}
+#footer {
+    clear: both;
+    text-align: center;
+}
+#footer #footer-v0 {
+    color: #999999;
+    font: 12px/1.5 Tahoma,Arial,"宋体",sans-serif;
+    margin: 0 auto;
+    padding: 8px 4px 0;
+}
+#footer-v0 a:link, #footer-v0 a:visited {
+    color: #333333;
+}
+#footer-v0 a:hover, #footer-v0 a:active {
+    color: #FF7300 !important;
+    text-decoration: underline;
+}
+#footer-v0 .footer-container {
+    background-color: #FFFFFF;
+    border-top: 3px solid #06478B;
+    padding-bottom: 20px;
+}
+#footer-v0 p, #footer-v0 ul, #footer-v0 li, #footer-v0 dt, #footer-v0 dd {
+    display: inline;
+}
+#footer-v0 p {
+}
+#footer-v0 .ali-pages {
+    padding: 8px 0;
+}
+
+.faa {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 0 1px #CCCCCC;
+    margin-bottom: 10px;
+    position: relative;
+}
+.PI-body {
+    padding: 11px 0 11px 20px;
+    position: relative;
+	font-size:13px;
+}
+.PI-bodyName {
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 5px;
+    margin-left: 88px;
+    width: 140px;
+	overflow:hidden;
+}
+.PI-bodyList dt {
+    float: left;
+}
+.PI-bodyList dd {
+    margin-bottom: 10px;
+}
+.pgbar {
+    background-position: -106px -195px;
+    display: inline-block;
+    font-size: 0;
+    height: 12px;
+    line-height: 0;
+    margin-right: 10px;
+    padding: 2px;
+    position: relative;
+    vertical-align: middle;
+    width: 50px;
+}
+.pgbar-img {
+    background-position: -106px -223px;
+    float: left;
+    height: 12px;
+    width: 20%;
+}
+.pgbar-mun {
+    font-size: 12px;
+    left: 0;
+    line-height: 16px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    white-space: nowrap;
+    width: 50px;
+}
+.PI-imgBox {
+    height: 94px;
+    left: 25px;
+    overflow: hidden;
+    position: absolute;
+    top: 14px;
+    width: 74px;
+}
+.PI-imgBox img {
+    border: 1px solid #CCCCCC;
+    width: 72px;
+	height:80px;
+}
+.PI-imgBox-Oper {
+    bottom: 10px;
+    color: #999999;
+    display: none;
+    left: 6px;
+    position: absolute;
+    text-decoration: underline;
+}
+.PI-imgBox a:hover .PI-imgBox-Oper {
+    cursor: pointer;
+    display: block;
+}
+.PI-Depart {
+    margin-bottom: 20px;
+}
+.PI-job {
+    height: 68px;
+    margin-bottom: 10px;
+    margin-left: 88px;
+}
+.PI-ico dt {
+    padding-left: 20px;
+}
+.PI-Mes {
+    background-position: -429px -100px;
+}
+.PI-JC {
+    background-position: -429px -154px;
+}
+.PI-Sta {
+    background-position: -429px -73px;
+}
+.PI-Tel {
+    background-position: -429px -48px;
+}
+.PI-JP {
+    background-position: -429px -126px;
+}
+.PI-email {
+    float: left;
+    margin-right: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100px;
+}
+.PI-highList dd {
+    margin-bottom: 5px;
+}
+.PI-RHL {
+    background-position: -211px -160px;
+    color: #E14A15;
+    margin-right: 10px;
+}
+.PI-btnGroup {
+    overflow: auto;
+}
+.PI-btnGroup a {
+    background-position: 0 -96px;
+    color: #333333;
+    float: left;
+    height: 26px;
+    line-height: 26px;
+    margin-right: 25px;
+    text-align: center;
+    width: 72px;
+}
+.PI-btnGroup a:hover, .PI-btnGroup a:active {
+    color: #C5262A;
+    text-decoration: none;
+}
+.searchBox .SB-operate, .inCity .subBtn, .registerBtn, .PI-ico dt, .vfsuc, .angmore img, .PI-btnGroup a, .vtabs a:hover, .vtabs a.selected, .CI-operation a, .CI-enterBtn a {
+    background-image: url("../images/indexsprite.png");
+    background-repeat: no-repeat;
+}

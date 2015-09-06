@@ -1,0 +1,37 @@
+<?php $this->getModel("header")->init();?>
+<script language="javascript" type="text/javascript" src="./Template/2012/js/login_register.js"></script>
+<div id="body-container">
+	<div class="center clearfix">
+		<div class="col_2 products">
+			<h2>邮件激活成功</h2>
+			<p>接下来请创建你的登录密码</p>
+			<form id="edit_profile" class="basic-form"  method="post" enctype="multipart/form-data">	
+				<div class="form-section">
+					<!-- <p>If you would like to change your account password, please enter the new password into the space provided. Otherwise, please leave this field blank.</p> -->
+					<ul>
+						<li class="">
+							<label for="new_password">登录账号</label>
+							<p><?php echo $email;?></p>
+						</li>
+						<li class="">
+							<label for="password">密码：</label>
+							<input name="password" id="password" class="form_field" type="password" maxlength="16" onblur="passwordVerify('password','step2_password');"/>
+							<span id="step2_password"></span>
+						</li>
+						<li class="">
+							<label for="confirm_password">确认密码</label>
+							<input name="confirm_password" id="confirm_password" class="form_field" maxlength="16" type="password" onblur="confirmPasswordVerify('password','step2_password','confirm_password','step2_confirm_password');" />
+							<span id="step2_confirm_password"></span>
+						</li>
+					</ul>
+				</div>
+				<p>
+					<input type="hidden" value="<?php echo $code;?>" name="code" id="code"/>
+					<input name="submit" id="submit" value="确定" type="button" onclick="step2Submit('company');"/>
+					<span id="passwordSubmit"></span>
+				</p>
+			</form>
+		</div>
+	</div>
+</div>
+<?php $this->getModel("header")->getFooter();?>

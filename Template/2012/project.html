@@ -1,0 +1,28 @@
+<?php $this->getModel("header")->init();?>
+<div id="body-container">
+	<div class="center clearfix">
+		<div class="col_2">
+			<div id="articles">
+			
+			<?php
+				foreach($projects as $item){
+			?>
+			<div class="article">
+						<h3><a target="_blank" href="?m=project&action=info&pId=<?php echo $item["id"] ?>"><?php echo $item["title"] ?></a></h3>
+						<p><img src="<?php echo $item["image"] ?>" style="height:250px;width:500px;"/>
+						<p style="text-indent:2em"><?php echo $item["desc"] ?></p>
+						<p>发布时间:<?php echo $item["pdate"] ?></p>
+						<p class="read-link"><a target="_blank" href="?m=project&action=info&pId=<?php echo $item["id"] ?>">了解更多</a></p>
+			</div>
+			<?php
+				}
+			?>
+			
+				<?php echo $subPageCss1?>
+			</div>
+		</div>
+		
+<?php $this->getModel("header")->getLoginForm();?>
+	</div>
+</div>	
+<?php $this->getModel("header")->getFooter();?>

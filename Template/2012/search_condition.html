@@ -1,0 +1,46 @@
+<div class="wleft">
+  	<div class="com">
+      	<ul class="job_tiaojian">
+          	<li>
+              	<a href="javascript:void(0);">工作年限</a>
+                  <dl>
+                  	<?php
+                  		foreach($_worklength as $key=>$value){
+								$cur = '';
+								if(empty($_GET["worklength"]) && $key == 1){
+									$cur = "cur";
+								}else{
+									if($_GET['worklength'] == $key){
+										$cur = "cur";	
+									}
+								}
+								echo '<dd>
+                        				<a class="'.$cur.'" href="default.php?job='.$_GET["job"].'&area='.$_GET["area"].'&m='.$_GET["m"].'&salary='.$_GET["salary"].'&worklength='.$key.'">&gt '.$value.'</a>
+                        			 </dd>';
+							}
+                    	?>
+                  </dl>
+              </li>
+              <li>
+              	<a href="javascript:void(0);">月薪</a>
+                  <dl>
+                  	<?php
+                  		foreach($_salary as $key=>$value){
+								$cur = '';
+								if(empty($_GET["salary"]) && $key == 1){
+									$cur = "cur";
+								}else{
+									if($_GET['salary'] == $key){
+										$cur = "cur";	
+									}
+								}
+								echo '<dd>
+                        				<a class="'.$cur.'" href="default.php?job='.$_GET["job"].'&area='.$_GET["area"].'&m='.$_GET["m"].'&salary='.$key.'&worklength='.$_GET["worklength"].'">&gt '.$value.'</a>
+                        			 </dd>';
+							}
+                    	?>
+                  </dl>
+              </li>
+          </ul>
+      </div>
+  </div>

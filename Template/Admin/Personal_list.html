@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>求职者列表</title>
+	<meta name="robots" content="noindex, nofollow">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="./Template/Admin/css/General.css" rel="stylesheet" type="text/css" />
+	<link href="./Template/Admin/css/Main.css" rel="stylesheet" type="text/css" />
+	<script src='./Template/Admin/js/jquery-1.8.1.min.js'></script>
+	<script language=javascript src="./Template/Admin/js/facebox/facebox.js"></script>
+	<link href="./Template/Admin/js/facebox/facebox.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.logWrap{ width:450px; margin:0 auto; padding:5px; background:#fff;}
+.logCon{ background-color:#EEF8F9; border:#BBDDE5 1px solid; width:448px;}
+.logTitle{ background:url(../images/logTitle.gif) no-repeat; height:40px;}
+.logTitle h2{ text-align:right; line-height:39px; width:180px; font-size:14px; color:#fff; }
+.logCon .close{ width21px; height:21px; float:right; margin:9px 12px 0 0;}
+/*.logCon .logItem{ padding:20px 0 20px 35px;}*/
+.windowLogin .regItem{ height:40px; margin:10px 0; overflow:hidden; line-height:40px;}
+.windowLogin .regItem label{ width:70px; color:#646464; display:block; float:left; font-size:14px; text-align:right; height:40px; font-size:14px;}
+.windowLogin .regItem span{ color:#969696;}
+.windowLogin .regItem span a{ color:red; margin-right:3px;}
+.windowLogin .regItem input{ font-size:14px; background:#fff; border:#d2d2d2 1px solid; color:#333; float:left; margin-top:4px; margin-right:3px; width:180px; padding:6px 3px; vertical-align:middle;}
+.windowLogin .regItem select{ padding:3px;}
+.logItem .check{ margin-left:60px; font-size:14px;}
+.logItem .reg_btn{ margin-top:10px; margin-left:110px;}
+</style>
+</head>
+<script type="text/javascript">
+
+</script>
+<body>
+<style>
+	#x{
+		font-size:14pt;
+		color:red;
+		padding-left:5px;
+	}
+</style>
+<h1>
+	<span class="action-span1">求职者列表</span>
+	<div style="clear:both"></div>
+</h1>
+<form action='' method=post>
+<div class="list-div" style='clear:both;' id=listdiv>
+<table cellspacing='1' cellpadding='3' id="table1" width="100%">
+<tr>
+<td>
+搜索
+&nbsp;&nbsp;&nbsp;&nbsp;
+<select name="status">
+<option value="">请选择审核状态</option>
+<?php
+ foreach($auditStatus as $key=>$value){
+	$select = $status != ''&&$key==$status?'selected="selected"':'';
+	echo '<option value="'.$key.'" '.$select.'>'.$value.'</option>';
+ }
+?>
+</select>
+用户名：<input type="text" name="email" value="<?PHP echo !empty($_REQUEST['email'])?$_REQUEST['email']:'';?>" />
+&nbsp;&nbsp;
+姓名：<input type="text" name="name" value="<?PHP echo !empty($_REQUEST['name'])?$_REQUEST['name']:'';?>" />
+
+<input type="hidden" value="admin" name="c" />
+<input type="hidden" value="personal" name="m" />
+<input type="submit" name="Submit" value="搜索" />
+</td>
+</tr>
+</table>
+</div>
+</form>
+<br />
+<div class="list-div" style='clear:both;' id=listdiv>
+<form action='' method=post enctype="multipart/form-data">
+<table cellspacing='1' cellpadding='3' id="table1" width="100%">
+<tr>
+<th>ID</th>
+<th>用户名</th>
+<th>姓名</th>
+<th>性别</th>
+<th>出生年月</th>
+<th>电话号码</th>
+<th>居住城市</th>
+<th>残疾类型</th>
+<th>残疾人号码</th>
+<th>辅助工具</th>
+<th>身份证号码</th>
+<th>学历</th>
+<th>是否在职</th>
+<th>注册时间</th>
+<th>审核状态</th>
+<th>置顶状态</th>
+<th>浏览次数</th>
+<th>操作</th>
+</tr>
+<?PHP foreach($list as $id=>$arr){?>
+  <tr>
+    <td align="center"><?PHP echo $arr['personalId'];?></td>
+	<td align="left"><a href="/?m=resume&action=view&p=<?php echo base64_encode($arr['personalId']);?>" target="_blank"><?PHP echo $arr['email'];?></a></td>
+	<td align="center"><?PHP echo $arr['name'];?></td>
+	<td align="center"><?PHP echo $arr['sex'];?></td>
+	<td align="center"><?PHP echo $arr['birthday'];?></td>
+	<td align='center'><?PHP echo $arr['phone'];?></td>
+	<td align='center'><?PHP echo $arr['city'];?></td>
+	<td align='center'><?PHP echo $arr['type'];?></td>
+	<td align='center'><?PHP echo $arr['number'];?></td>
+	<td align='center'><?PHP echo $arr['addon'];?></td>
+	<td align='center'><?PHP echo $arr['idcard'];?></td>
+	<td align='center'><?PHP echo $arr['degree'];?></td>
+	<td align='center'><?PHP echo $arr['isWork'];?></td>
+	<td align='center'><?PHP echo $arr['createTime'];?></td>
+	<td align="center" id="status<?php echo $arr['personalId'];?>"><?php echo $arr['status'];?></td>
+	<td align="center" id="isTop<?php echo $arr['personalId'];?>">
+		<?php
+			if($arr["isTop"] == 1){
+				echo "<span style='color:red;'>已置顶</span>";
+			}
+		?>
+	</td>
+	<td align='center'><?PHP echo $arr['click'];?></td>
+	<td align="center">
+		<?php
+			if(!empty($arr['id'])){
+		?>
+			<input type="button" value="置顶" id="top<?php echo $arr['personalId'];?>" <?php echo $arr['isTop']==1?'disabled="disabled"':'';?> onclick="changeTopStatus('<?php echo $arr['personalId'];?>',1,this);"/>&nbsp;&nbsp;
+			<input type="button" value="取消置顶" id="untop<?php echo $arr['personalId'];?>" <?php echo $arr['isTop']==2?'disabled="disabled"':'';?> onclick="changeTopStatus('<?php echo $arr['personalId'];?>',0,this);"/>
+			<input type="button" value="通过" id="pass<?php echo $arr['personalId'];?>" <?php echo $arr['int_status']==1?'disabled="disabled"':'';?> onclick="changeStatus('<?php echo $arr['personalId'];?>',1,this);"/>&nbsp;&nbsp;
+			<input type="button" value="不通过" id="unpass<?php echo $arr['personalId'];?>" <?php echo $arr['int_status']==2?'disabled="disabled"':'';?> onclick="showSaveDiv('<?php echo $arr['personalId'];?>',2,this);"/>
+		<?php
+			}else{
+		?>
+			<span style="color:red">该求职者暂无添加数据。</span>
+		<?php
+			}
+		?>
+		
+	</td>
+    </tr>
+<?PHP };?>
+  <tr>
+    <td align="left" colspan="17" class="pageCont">
+    	<a href="javascript:;">共<?php echo $total;?>条</a>
+    	<a href="javascript:;">共<?php echo $page_total;?>页</a>
+    	<?php echo $subPageCss2;?>
+    </td>
+  </tr>
+  </table>
+</form>
+</div>
+<div id="saveDiv" style="position: absolute; left: 480px; top: 126px; z-index: 10;display:none;" class="logWrap">
+	<div class="logCon">         
+    	<div class="logItem">
+            <form id="save_user">
+                	<div class="windowLogin">
+                        <div style="height:100px;" class="regItem">
+                            <label for="exist_name">输入原因：</label>
+                             <textarea id="content" name="content" rows="7" cols="42"></textarea>
+                        </div>   
+                        <div style="display:none;color:#f00;" id="result_info">
+                        </div>                     
+                     </div>                      
+                    <div class="reg_btn">						
+                        <input width="109" type="button" height="26" value="确定" style="" id="submitBut">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input width="109" type="button" height="26" value="取消" id="cancleBut">
+                    </div>     
+            </form>
+      	</div>
+    </div>   
+</div>
+<script type="text/javascript">
+$("document").ready(function(){
+	$("#cancleBut").click(function(){
+		$("#saveDiv").hide();
+	});
+});
+function showSaveDiv(companyId,status,obj){
+	var height = $(obj).height();//按钮的高度
+    var top = $(obj).offset().top;//按钮的位置高度
+    var left = $(obj).offset().left;//按钮的位置左边距离
+    //设置div的top left
+    $("#saveDiv").css("left",left-380);
+    $("#saveDiv").css("top",height+top+10);
+    $("#saveDiv").css("z-index",10);
+    jQuery("#content").val('');
+    jQuery("#result_info").html('');
+    jQuery("#result_info").hide();
+    jQuery("#submitBut").attr('onclick','changeStatus('+companyId+','+status+',this)');
+    $("#saveDiv").show();
+}
+function changeStatus(personalId,status,obj){
+	var content = jQuery("#content").val();
+	if(status == 2&&content==''){
+		jQuery("#result_info").html('请输入原因');
+		jQuery("#result_info").show();
+		return false;
+	}
+	$.ajax({
+		   type: "POST",
+		   url: "?c=admin&m=personal&action=changeStatus",
+		   data: "personalId="+personalId+"&status="+status+"&content="+content,
+		   dataType:"json",
+		   success: function(data){
+				if(data['result']=='1'){
+   					if(status == 1){
+	    		 		jQuery("#pass"+personalId).attr("disabled","disabled");
+		    	 		jQuery("#unpass"+personalId).removeAttr("disabled");
+		     		}else{
+		    	 		jQuery("#unpass"+personalId).attr("disabled","disabled");
+		    	 		jQuery("#pass"+personalId).removeAttr("disabled");
+			 		}
+	   			}
+				jQuery("#status"+personalId).html(data['msg']);
+				$("#saveDiv").hide();
+		   }
+		});
+}
+function changeTopStatus(id,isTop,obj){
+	$.ajax({
+		   type: "POST",
+		   url: "?c=admin&m=personal&action=changeIsTop",
+		   data: "id="+id+"&isTop="+isTop,
+		   dataType:"json",
+		   success: function(data){
+		     if(data['result'] == '1'){
+		    	 if(isTop == 1){
+		    		 jQuery("#top"+id).attr("disabled","disabled");
+			    	 jQuery("#untop"+id).removeAttr("disabled");
+			    	 jQuery("#isTop"+id).html("<span style='color:red;'>已置顶</span>");
+			     }else{
+			    	 jQuery("#untop"+id).attr("disabled","disabled");
+			    	 jQuery("#top"+id).removeAttr("disabled");
+			    	 jQuery("#isTop"+id).html("");
+				 }
+			 }
+		   }
+		});
+	
+}
+</script>

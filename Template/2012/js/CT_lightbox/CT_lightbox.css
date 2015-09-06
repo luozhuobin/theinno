@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+label.error {color: red; margin-left: 5px; }
+	.CT_mask{width:100%; position:absolute; top:0; left:0; filter:Alpha(opacity=65); opacity: 0.65; background-color:black; z-index:30; display:none;}
+	.CT_pop_window{width:396px;left:300px; top:250px; position:fixed; background-color:#FFFFFF; z-index:9999;  display:none; _position:absolute; /* _下划线是IE6才能识别的 ，for IE6 */   
+_top: expression(documentElement.scrollTop + documentElement.clientHeight-this.offsetHeight);  }
+	.CT_pop_top{height: 24px; padding: 4px 10px 0px 10px; background-image:url("./newinf_titlebg.jpg");  border-bottom: 1px #C85702 solid;}
+	.CT_pop_top ul li{width: 97px; height:25px; line-height: 25px; font-weight:bold; float:left; color:#FFFFFF; font-size:13px; text-align: center;background:url('./newinf_title01.jpg');} 
+	.CT_pop_top span.CT_close{float:right;display:block;} 
+	.CT_pop_top span.CT_close a {color:#888888;}
+	.CT_pop_content{padding: 10px 5px 10px 5px;}
+	.CT_pop_content p {clear:both;}
+	.CT_pop_content ul li {line-height:25px; height:25px; width:90px; float:left; overfloat:hidden; text-align:center;}

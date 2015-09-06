@@ -1,0 +1,96 @@
+<?php $this->getModel("header")->init();?>
+<body>
+<!-- 顶部菜单 -->
+<?php $this->getModel("header")->headerMenu();?>
+<!-- banner广告位 -->
+<?php $this->getModel("header")->getBanner();?>
+
+<div class="wapper newcontent">
+	<!-- 左侧菜单 -->
+	<?php $this->getModel("company")->leftMenu2();?>
+    <div class="wright">
+    	<div id="body-container">
+		<div class="center clearfix">
+		<div class="col_2">
+			<p><b><a href="?m=Companyinfo&comId=<?php echo $jobInfo["cid"] ?>" target="_blank"><?php echo $jobInfo["cname"]; ?></a></b> 招聘  <b><?php echo $jobInfo["name"]; ?></b></p>
+			<div class="col_2">
+						<table cellspacing="0" cellpadding="0" class="job_details">
+							<tbody><tr>
+								<th id="company_name">职位名称：</th>
+								<td headers="contract"><?php echo $jobInfo["name"];?></td>
+								<th id="location">工作地区：</th>
+								<td headers="location"><?php echo $jobInfo["city"]; ?></td>
+							</tr>
+							<tr>
+								<th id="contract">招聘人数：</th>
+								<td headers="contract"><?php echo $jobInfo["num"];?>人</td>
+								<th id="salary">薪酬：</th>
+								<td headers="salary"><?php echo $jobInfo["jsalary"]; ?></td>
+							</tr>
+							<tr>
+								<th id="contract">学历要求：</th>
+								<td headers="contract"><?php echo $jobInfo["degree"];?></td>
+								<th id="salary">工作经验：</th>
+								<td headers="salary"><?php echo $jobInfo["workLength"]; ?></td>
+							</tr>
+							<tr>
+								<th id="contract">发布日期：</th>
+								<td headers="contract"><?php echo $jobInfo["pubDate"]; ?></td>
+								<th>截止日期：</th>
+								<td headers="salary"><?php echo $jobInfo['cutoffTime'];?></td>
+							</tr>
+						</tbody>
+					</table>
+					<div id="job_description" style="text-align:left;margin-left:40px;">
+						<h3>职位介绍</h3>
+						<?php echo nl2br($jobInfo["desc"]); ?>
+					</div>
+					<div style="margin-top:20px;height:35px;line-height:35px;">
+						<img src="./Template/2012/images/apply_btn.png" style="cursor:pointer;" onclick="jobApply('<?php echo $jobInfo['id'];?>');"/>
+						<br /><span id="applyInfo"></span>
+					</div>
+					</div>
+		</div>
+	</div>
+	</div>
+    </div>
+</div> 
+<link rel="stylesheet" href="./Template/2012/css/jobs.css" type="text/css" >
+<script type="text/javascript">
+var isLogin = '<?php echo $isLogin;?>';
+/**
+ * pId 为个人ID
+ * jId 为职位ID
+ */
+function jobApply(jobId){
+	if(isLogin == 'false'){
+		CT_pop('user_login');
+		return false;
+	}else{
+		$.ajax({
+			   type: "POST",
+			   url: "?m=personal&action=jobapply",
+			   data: "jobId="+jobId,
+			   dataType:"json",
+			   success: function(data){
+			     	switch(data['code']){
+			     	case '-1':
+			     		ShowMsg('applyInfo',0,data['msg']);
+			    		return false;
+				     	break;
+			     	case '-2':
+			     		CT_pop('user_login');
+				     	break;
+			     	case '1':
+			     		ShowMsg('applyInfo',1,data['msg']);
+			    		return false;
+				     	break;
+			     	}
+			   }
+			});
+	}
+}
+</script>
+<?php $this->getModel("header")->getLoginBox();?>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<?php $this->getModel("header")->init();?>
+<body>
+<!-- 顶部菜单 -->
+<?php $this->getModel("header")->headerMenu();?>
+
+<div class="wapper usercontent">
+	<?php $this->getModel("company")->leftMenu();?>
+    <div class="wright">
+    	<form name="info" method="post" action="" enctype="multipart/form-data">
+        <div class="myinfo" id="myinfo">
+        	<ul class="com myinfo">
+                <li class="myinfo_content" style="margin-left:100px;">
+                	<dl>
+                    	<dd>
+                        	<span>
+                            	公司名称
+                            </span>
+                            <div>
+                            	<input type="text" value="<?php echo $info["name"];?>" name="name" id="name" />
+                            </div>
+                        </dd>
+                        <dd>
+                        	<span>
+                            	所在城市
+                            </span>
+                            <div>
+                            	<input type="text" value="<?php echo $info["city"];?>" name="city" />
+                            </div>
+                        </dd>	
+                        <dd>
+                        	<span>
+                            	联系人
+                            </span>
+                            <div>
+                            	<input type="text" value="<?php echo $info["contact"];?>" name="contact" />
+                            </div>
+                        </dd>	
+                    </dl>
+                </li>
+                <li class="myinfo_contact">
+                    <dl>
+                    	<dd>
+                        	<span>
+                            	营业执照
+                            </span>
+                            <div class="longdiv">
+                            	<input type="text" value="<?php echo $info["code"];?>" name="code" id="code" />
+                            </div>
+                        </dd>	
+                    	<dd>
+                        	<span>
+                            	详细地址
+                            </span>
+                            <div class="longdiv">
+                            	<input type="text" value="<?php echo $info["address"];?>" name="address" id="address"  />
+                            </div>
+                        </dd>	
+                        <dd>
+                        	<span>
+                            	联系方式
+                            </span>
+                            <div class="longdiv">
+                            	<input type="text" value="<?php echo $info["phone"];?>" name="phone" id="phone" />
+                            </div>
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+        </div> 
+        
+        <div class="myinfo">
+        	<ul class="com exlist">
+        		<li class="com">
+                	<div class="extitle">
+                    	公司描述
+                    </div>
+                    <div class="extcon">
+                    	<dl>
+                        	<dd class="txt_top">
+                            	<img src="/Template/2012/images/txt_top.jpg" />
+                            </dd>
+                            <dd class="txt_mid">
+                            	<div class="txtdiv">
+                                  <textarea class="te" name="desc" id="desc"><?php echo $info["desc"];?></textarea>
+                                </div>
+                            </dd>
+                            <dd class="txt_footer">
+                            <img src="/Template/2012/images/txt_footer.jpg" />
+                            </dd>
+                        </dl>
+                    </div>
+                </li>
+                <li class="com">
+                	<div class="extitle">
+                    	公司LOGO
+                    </div>
+                    <div class="extcon">
+                    	<dl>
+                        	<input type="file" name="avatar"/>
+                        </dl>
+                    </div>
+                </li>
+                <li class="com">
+                	<div class="extitle">
+                    	营业执照
+                    </div>
+                    <div class="extcon">
+                    	<dl>
+                        	<input type="file" name="license"/>
+                        </dl>
+                    </div>
+                </li>
+            </ul>	
+        </div>
+        <div class="myinfo myinfo_update_btn">
+        	<input type="hidden" name="m" value="company"/>
+			<input type="hidden" name="action" value="infofinish"/>
+        	<input type="submit" value="确定修改" /><br />
+        	<span id="submitInfo"></span>
+        </div>
+        </form>
+    </div>
+</div> 
+</body>
+</html>

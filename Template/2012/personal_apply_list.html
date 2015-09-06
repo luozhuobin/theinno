@@ -1,0 +1,61 @@
+<?php $this->getModel("header")->init();?>			
+<div id="body-container">
+	<div class="center clearfix">
+		<div class="col_2" style="width:100%">
+				<h2>职位申请记录</h2>
+				<table cellspacing="0" cellpadding="0" class="job-table" id="latest-jobs">
+					<thead>
+						<tr>
+							<th class="pos-col" scope="col">职位名称</th>
+							<th scope="col">公司名称</th>
+							<th scope="col">工作地点</th>
+							<th scope="col">残疾类型</th>
+							<th scope="col">学历</th>
+							<th scope="col">薪酬</th>
+							<th scope="col">申请时间</th>
+						</tr>
+					</thead>		
+					<tfoot>
+						<tr>
+							<td colspan="7" class="pageCont">
+								<?php echo $subPageCss2;?>
+							</td>
+						</tr>
+					</tfoot>
+					<tbody>
+						<?php
+							foreach($list as $key=>$value){
+						?>
+							<tr>
+								<td><a href="?m=job&action=info&jobId=<?php echo $value['jobId'];?>" target="_blank"><?php echo $value['jname'];?></a></td>
+								<td><a href="?m=companyinfo&comId=<?php echo $value['comId'];?>" target="_blank"><?php echo $value['cname'];?></a></td>
+								<td><?php echo $value['city'];?></td>
+								<td><?php echo $value['displayType'];?></td>
+								<td><?php echo $value['degree'];?></td>
+								<td><?php echo $value['salary'];?></td>
+								<td><?php echo $value['applyTime'];?></td>
+							</tr>
+						<?php
+							}
+						?>
+						</tbody>		
+				</table>				
+			</div>
+	</div>
+</div>
+<style type="text/css">
+.logWrap{ min-width:130px; margin:0 auto; padding:5px; background:#fff;}
+.logCon{ background-color:#EEF8F9; border:#BBDDE5 1px solid; min-width:130px;}
+.logCon .close{ width:21px; height:21px; float:right; margin:9px 12px 0 0;}
+.logCon .logItem{ padding:20px 0 20px 25px;font-size:13px;}
+.logItem .check{ margin-left:60px; font-size:13px;}
+.logItem .reg_btn{ margin-top:10px; margin-left:110px;}
+</style>
+<div id="saveDiv" style="position: absolute; left: 508px; top: 126px; z-index: 10;display:none;" class="logWrap">
+	<div class="logCon">         
+    	<div class="logItem">
+			重新发布失败，请刷新页面重试。
+      	</div>
+    </div>   
+</div>
+<?php $this->getModel("header")->getFooter();?>

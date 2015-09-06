@@ -1,0 +1,46 @@
+<?php $this->getModel("header")->init();?>
+<body>
+<!-- 顶部菜单 -->
+<?php $this->getModel("header")->headerMenu();?>
+
+<div class="wapper usercontent">
+	<?php $this->getModel("header")->forgetModuleLeftMenu();?>
+    <div class="wright">
+    	
+         <div class="mypass">
+         	<form id="changePwd">
+         	<ul class="com">
+         		<li class="com" style="font-size:15px;color:green;">邮箱验证成功，请创建密码</li>
+         		<li class="com">
+                	<span>登录帐号</span>
+                    <div>
+                    	<?php echo $email;?>
+                    </div>
+                </li>
+            	<li class="com">
+                	<span>密码</span>
+                    <div>
+						<input name="password" id="password" class="form_field" type="password"/>
+						<span id="emailInfo"></span>
+                    </div>
+                </li>
+                <li class="com">
+                	<span>确认密码</span>
+                    <div>
+						<input name="confirm_password" id="confirm_password" class="form_field" type="password" />
+						<span id="emailInfo"></span>
+                    </div>
+                </li>
+            </ul>
+            <div class="com myinfo_update_btn pass_update_btn">
+            	<input type="hidden" value="<?php echo $code;?>" name="code" id="code"/>
+            	<input type="submit" value="确定" onclick="step2Submit('personal','changePwd');return false;" id="submit"/><br />
+            	<span id="passwordSubmit"></span>
+            </div>
+            </form>
+         </div>
+        
+    </div>
+</div> 
+</body>
+</html>

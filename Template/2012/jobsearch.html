@@ -1,0 +1,76 @@
+<?php $this->getModel("header")->init();?>
+<link rel="stylesheet" href="./Template/2012/css/jobs.css" type="text/css" media="screen">
+<div id="body-container">
+	<div class="center clearfix">	
+		
+		<div class="col_1_alt">
+			<h2>职位搜索</h2>
+			
+			<div id="advanced_search">
+				<form method="GET" action="">
+					<ul>
+						<li>
+							<label for="search_keywords">职位名称</label>
+							<input name="jkw" id="search_keywords" title="Job Title" type="text" value="<?php echo $jkw ?>">
+						</li>
+						<li>
+							<label for="search_company">公司名称</label>
+							<input name="ckw" id="search_company" title="Company Name" type="text" value="<?php echo $ckw ?>">
+						</li>
+						<li>
+							<label for="city_select">地区</label>
+							<input name="area" id="city_select" type="text" value="<?php echo $area ?>">
+						</li>
+							<input value="搜索" type="submit"/>
+						</li>
+					</ul>
+					<input type="hidden" name="m" value="job"/>
+				</form>
+			</div>
+		</div>
+		
+		<div class="col_2_alt">
+
+			<ul id="jobs_list">
+			
+						<?php
+								foreach($jobs as $item){
+						?>
+						<li>
+							<div class="job_desc">
+								<h3>
+									<a href="?m=job&action=info&jobId=<?php echo $item["jid"]?>" target="_blank"><?php echo $item["jname"]?></a>
+																	</h3>
+								<div class="summary"><?php echo $item["jinfo"]?></div>
+								
+								<table summary="This table shows a list of all the companies matching the search" class="job_details" cellpadding="0" cellspacing="0">
+									<tbody><tr>
+										<th id="company_name_0">公司名称：</th>
+										<td headers="company_name_0"><a target="_blank" href="?m=companyinfo&comId=<?php echo $item["cid"]?>"><?php echo $item["cname"]?></a></td>
+										<th id="location_0">工作地址：</th>
+										<td headers="location_0"><?php echo $item["jcity"]?></td>
+									</tr>
+									<tr>
+										<th id="contract_0">残疾类型：</th>
+										<td headers="contract_0"><?php echo $item['type'];?></td>
+										<th id="salary_0">薪酬待遇：</th>
+										<td headers="salary_0"><?php echo $item["jsalary"]?></td>
+									</tr>
+								</tbody></table>
+								
+								<div class="job_link">
+									<a target="_blank" href="?m=job&action=info&jobId=<?php echo $item["jid"]?>">
+										更多信息
+									</a>
+								</div>
+							</div>
+						</li>
+						<?php
+								}
+						?>
+						<?php echo $subPageCss1?>
+						</ul>
+		</div>
+	</div>
+</div>	
+<?php $this->getModel("header")->getFooter();?>

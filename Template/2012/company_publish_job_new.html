@@ -1,0 +1,174 @@
+<?php $this->getModel("header")->init();?>
+<body>
+<!-- 顶部菜单 -->
+<?php $this->getModel("header")->headerMenu();?>
+<script type="text/javascript" src="Template/Plugins/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="Template/Plugins/fckeditor/fckeditor.js"></script>
+<div class="wapper usercontent">
+	<?php $this->getModel("company")->leftMenu();?>
+    <div class="wright">
+    	<form name="info" method="post" action="" id="publicJob">
+        <div class="myinfo" id="myinfo">
+        	<ul class="com myinfo">
+                <li class="myinfo_content" style="margin-left:100px;">
+                	<dl>
+                    	<dd>
+                        	<span>
+                            	职位名称
+                            </span>
+                            <div>
+                            	<input type="text" value="<?php echo $info["name"];?>" name="name" id="jobName" />
+                            </div>
+                        </dd>
+                        <dd>
+                        	<span>
+                            	残疾类型
+                            </span>
+                            <div>
+                            	<select name="type" style="height:37px;">
+                            		<option value="">请选择</option>
+                            		<?php
+                            			foreach($disableType as $key=>$value){
+											$select = $key == $info["type"] ? 'selected="selected"' : '';
+											echo '<option value="'.$key.'" '.$select.'>'.$value.'</option>';
+										}
+                            		?>
+                            	</select>
+                            </div>
+                        </dd>	
+                        <dd>
+                        	<span>
+                            	工作经验
+                            </span>
+                            <div>
+                            	<select name="workLength" style="height:37px;width:80px;">
+                            		<option value="">请选择</option>
+                            		<?php
+                            			foreach($workLength as $key=>$value){
+											$selected = $info["workLength"] == $key ? 'selected="selected"' : '';
+											echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
+										}
+                            		?>
+                            	</select>
+                            </div>
+                        </dd>	
+                        <dd>
+                        	<span>
+                            	截至时间
+                            </span>
+                            <div>
+                            	<input type="text" value="<?php echo $info["cutoffTime"];?>" name="cutoffTime" onClick="WdatePicker({minDate:'%y-%M-%d'})"/>
+                            </div>
+                        </dd>
+                    </dl>
+                </li>
+                <li class="myinfo_contact">
+                    <dl>
+                    	<dd>
+                        	<span>
+                            	工作城市
+                            </span>
+                            <div class="longdiv">
+                            	<input type="text" value="<?php echo $info["city"];?>" name="city" id="city" />
+                            </div>
+                        </dd>	
+                    	<dd>
+                        	<span>
+                            	学历要求
+                            </span>
+                            <div class="longdiv">
+                            	<select name="degree" style="width:150px;height:37px;">
+                            		<option value="">请选择</option>
+                            		<?php
+                            			foreach($degree as $key=>$value){
+											$select = $key == $info["degree"] ? 'selected="selected"' : '';
+											echo '<option value="'.$key.'" '.$select.'>'.$value.'</option>';
+										}
+                            		?>
+                            	</select>
+                            </div>
+                        </dd>	
+                        <dd>
+                        	<span>
+                            	薪酬待遇
+                            </span>
+                            <div class="longdiv">
+                            	<select name="salary" style="height:37px;width:150px;">
+                            		<option value="">请选择</option>
+                            		<?php
+                            			foreach($salary as $key=>$value){
+											$selected = $info["salary"] == $key ? 'selected="selected"' : '';
+											echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
+										}
+                            		?>
+                            	</select>
+                            </div>
+                        </dd>
+                        <dd>
+                        	<span>
+                            	招聘人数
+                            </span>
+                            <div class="longdiv">
+                            	<input type="text" value="<?php echo $info["num"];?>" name="num" id="num" />
+                            </div>
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+        </div> 
+        
+        <div class="myinfo">
+        	<ul class="com exlist">
+        		<li class="com">
+                	<div class="extitle">
+                    	工作内容
+                    </div>
+                 <textarea class="te" name="desc" id="desc" rows="15" cols="30">
+                 	<?php echo $info["desc"];?>
+                 </textarea>
+                 <script type="text/javascript">
+				//<![CDATA[
+				        CKEDITOR.replace('desc',
+						{
+				        	filebrowserUploadUrl	  : '/?c=admin&m=list&action=upload4ListModify',
+				        	filebrowserImageUploadUrl : '/?c=admin&m=list&action=upload4ListModify',
+				        	width:'600px',
+				        	height:'300px'
+			        		
+						});
+				//]]>
+				</script>
+                </li>
+            </ul>	
+        </div>
+        <div class="myinfo myinfo_update_btn">
+        	<input type="hidden" name="m" value="company"/>
+			<input type="hidden" name="action" value="publishJobFinish"/>
+			<input type="hidden" value="<?php echo $info["id"];?>" name="jobId" id="jobId">
+        	<input type="submit" value="确定修改"/><br />
+        	<span id="submitInfo"></span>
+        </div>
+        </form>
+    </div>
+</div> 
+<script language="javascript" src="/Template/2012/js/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript">
+function submitCheck(){
+	var data = $("#publicJob").serialize();
+	$.ajax({
+		   type: "POST",
+		   url: "?m=company&action=publishJobFinish",
+		   data: data,
+		   dataType:"json",
+		   success: function(val){
+		   		if(val["result"] == "1"){
+		   			ShowMsg('submitInfo',1,val['msg']);
+			   	}else{
+			   		ShowMsg('submitInfo',0,val['msg']);
+				}
+		   }
+	});
+}
+</script>
+</body>
+</html>

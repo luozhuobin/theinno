@@ -1,0 +1,126 @@
+/** Simple Generic Form **/
+
+.basic-form ul {
+	margin:0;
+	padding:0;
+	list-style-type:none;
+}
+
+.basic-form ul li {
+	margin:0 0 15px 0;
+}
+
+.basic-form label {
+	font-weight:bold;
+	display:block;
+	padding:0 0 3px 0;
+}
+
+.basic-form .tick-label {
+	display:inline;
+	font-weight:normal;
+	padding:0;
+}
+
+.basic-form .label-info {
+	font-size:0.8em;
+}
+
+.basic-form .form_field {
+	width:300px;
+	padding: 5px;
+	border: 1px solid #ABADB3;
+	font-family: arial;
+	font-size: 1em;
+}
+
+.basic-form .form_field.small {
+	width:200px;
+}
+
+.basic-form .form_field.long {
+	width:570px;
+}
+
+.basic-form select {
+	padding:5px;
+	border: 1px solid #ABADB3;
+}
+
+.basic-form #submit {
+	padding:5px 10px;
+}
+
+.basic-form .check_form {
+	display:none;
+}
+
+/* CMS created forms have this around each field*/
+
+.basic-form .field-container {
+	margin:0 0 15px 0;	
+}
+
+/** Form Layout/Sections **/
+
+.basic-form .form-section {
+	background: #eaeaea;	
+	padding: 10px;
+}
+
+/** Field Hint **/
+
+.field-hint {
+	background:#f7f7f7;
+	margin:10px 0 0 0;
+	padding:10px;
+	font-size:0.88em;
+	line-height:1.3;
+	border:1px solid #C1C1C1;
+}
+
+.field-hint.icon {
+	background:#f7f7f7 url(./images/info_32.png) no-repeat 10px center;
+	padding:10px 10px 10px 60px;
+}
+
+.field-hint.top {
+	margin:0 0 10px 0;
+}
+
+/** Field/Form Errors **/
+
+.error-message {
+	border: 1px solid #FF7171;
+	background: #FFBFBF;
+	margin: 0 0 15px 0;
+	padding: 10px;
+}
+
+.field-error-message {
+	margin: 5px 0 0 0;
+	font-size: 0.88em;
+	color: #B30000;
+}
+
+.error-field .form_field {
+	border: 1px solid #FF7171;
+}
+
+/** Editor Fields **/
+
+.form_field.editor-field {
+	width:570px;
+}
+
+.form_field.editor-long-field {
+	width:670px;
+}
+
+/** Required Fields **/
+
+.required-field {
+	color: #9A1616;	
+	font-weight: normal;
+	font-size:0.9em;
+}

@@ -1,0 +1,94 @@
+<!-- $ $ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>统计信息</title>
+	<meta name="robots" content="noindex, nofollow">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="./Template/Admin/css/General.css" rel="stylesheet" type="text/css" />
+	<link href="./Template/Admin/css/Main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>
+	<span class="action-span1">统计信息</span>
+	<div style="clear:both"></div>
+</h1>
+<script type="text/javascript" src="./Template/Admin/js/Utils.js"></script>
+<script type="text/javascript" src="./Template/Admin/js/swfobject/swfobject1.5.js"></script>
+<script type="text/javascript">
+var so;
+window.onload = function()
+{
+// <![CDATA[
+		
+		so = new SWFObject("./Plugins/open-flash-chart.swf", "SearchBot", "100%", "260", "8", "#FFFFFF");
+		so.addParam('quality','high'); 
+		so.addParam("WMODE", "transparent");
+		so.addVariable("data", "./Model/Admin/statparam.php?|ramdom=4436");
+		so.addParam("movie", "./Plugins/open-flash-chart.swf");
+		so.write("SearchBot");
+
+		so = new SWFObject("./Plugins/open-flash-chart.swf", "VistorStat", "100%", "260", "8", "#FFFFFF");
+		so.addParam('quality','high'); 
+		so.addParam("WMODE", "transparent");
+		so.addVariable("data","./Model/Admin/statparam.php?|action=VistorStat|ramdom=2077");
+		so.addParam("movie", "./Plugins/open-flash-chart.swf");
+		so.write("VistorStat");
+		
+// ]]>
+}
+setTimeout('a()',15000);
+function a()
+{
+	so.addVariable("data", "./Model/Admin/statparam.php?|action=VistorStat|ramdom="+Math.random());
+	so.addParam("movie", "./Plugins/open-flash-chart.swf");
+	so.write("VistorStat");
+    setTimeout('g()',8000);
+    setTimeout('a()',15000);
+}
+
+function g() {
+    so.addVariable("data", "./Model/Admin/statparam.php?|ramdom="+Math.random());
+	so.addParam("movie", "./Plugins/open-flash-chart.swf");
+	so.write("SearchBot");
+}
+</script>
+
+
+<div class=descript>数据概况</div>
+<div class="list-div" style='clear:both;' id=listdiv>
+<form action='' method=post enctype="multipart/form-data">
+<table cellspacing='1' cellpadding='3' id="table1" width="100%">
+  <tr>
+    <td align="right">残疾人用 户 数：</td>
+    <td width="325" align="left"><?PHP echo $allpersonal;?></td>
+    <td align="right">本日注册数：</td>
+    <td width="331" align="left"><?PHP echo $todaypersonal;?></td>
+  </tr>
+  <tr>
+    <td align="right">企业用 户 数：</td>
+    <td width="325" align="left"><?PHP echo $allcompany;?></td>
+    <td align="right">本日注册数：</td>
+    <td width="331" align="left"><?PHP echo $todaycompany;?></td>
+  </tr>
+  <tr>
+    <td align="right">职位 数：</td>
+    <td width="325" align="left"><?PHP echo $alljob;?></td>
+    <td align="right">本日新增数：</td>
+    <td width="331" align="left"><?PHP echo $todayjob;?></td>
+  </tr>
+  <tr>
+    <td align="right">新闻数：</td>
+    <td width="325" align="left"><?PHP echo $allnews;?></td>
+    <td align="right">本日新增数：</td>
+    <td width="331" align="left"><?PHP echo $todaynews;?></td>
+  </tr>
+  </table>
+</form>
+</div>
+
+</div>
+
+
+
+</div>

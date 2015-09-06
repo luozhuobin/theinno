@@ -1,0 +1,71 @@
+<?php $this->getModel("header")->init();?>
+<script language="javascript" type="text/javascript" src="./Template/2012/js/login_register.js"></script>
+<div id="body-container">
+	<div class="center clearfix">
+		<div class="col_2 products">
+			<h2>邮件激活成功</h2>
+			<p>接下来请创建你的登录密码</p>
+			<form id="edit_profile" class="basic-form"  method="post" enctype="multipart/form-data">	
+				<div class="form-section">
+					<!-- <p>If you would like to change your account password, please enter the new password into the space provided. Otherwise, please leave this field blank.</p> -->
+					<ul>
+						<li class="">
+							<label for="new_password">登录账号</label>
+							<p><?php echo $email;?></p>
+						</li>
+						<li class="">
+							<label for="password">密码：</label>
+							<input name="password" id="password" class="form_field" type="password" onblur="passwordVerify('password','step2_password');"/>
+							<span id="step2_password"></span>
+						</li>
+						<li class="">
+							<label for="confirm_password">确认密码</label>
+							<input name="confirm_password" id="confirm_password" class="form_field" type="password" onblur="confirmPasswordVerify('password','step2_password','confirm_password','step2_confirm_password');" />
+							<span id="step2_confirm_password"></span>
+						</li>
+					</ul>
+				</div>
+				<p>
+					<input type="hidden" value="<?php echo $code;?>" name="code" id="code"/>
+					<input name="submit" id="submit" value="确定" type="button" onclick="step2Submit('personal');"/>
+					<span id="passwordSubmit"></span>
+				</p>
+			</form>
+		</div>
+		
+		<div class="col_1">
+			
+	<div class="account-menu">
+		<ul>
+			<li><a href="http://www.evenbreak.co.uk/employers/account">修改资料</a></li>			
+			<li><a href="http://www.evenbreak.co.uk/employers/account/jobs">职位列表</a></li>
+			<li><a href="http://www.evenbreak.co.uk/employers/account/jobs-add">发布职位</a></li>
+			<li><a href="http://www.evenbreak.co.uk/employers/account/jobs-add">收到应聘简历</a></li>				
+		</ul>
+	</div>
+	
+	<h2>Job Credits &amp; Access</h2>
+	<div class="job-credits">
+					<p class="token">You currently have no job post credits.</p>
+				
+			</div>
+			
+<h2>Buy Job Credits</h2>
+<div class="buy_credits">
+	<p>Want to advertise your job? Job credits never expire and allow you to post your vacancy on Evenbreak for 60 days.</p>
+	<a href="http://www.evenbreak.co.uk/employers/account/buy-credits" class="button"><img src="./images/buy_credits.png" alt="Buy Credits"></a>
+</div>
+
+<h2>Find Candidates</h2>
+<div class="subscribe">
+	<p>For as little as <strong>£10.00</strong> you can gain access to and search our database of candidates to view online profiles and CV's.</p>
+	<a href="http://www.evenbreak.co.uk/employers/account/buy-credits" class="button"><img src="./images/subscribe_now.png" alt="Subscribe Now"></a>
+</div>
+<h2>Employer Pack</h2>
+<div class="subscribe">
+	<p>Download our employer pack!
+	<a href="http://www.evenbreak.co.uk/images/Information%20Pack.pdf" target="_blank" class="button">Download Now</a></p>
+</div>		</div>
+	</div>
+</div>
+<?php $this->getModel("header")->getFooter();?>

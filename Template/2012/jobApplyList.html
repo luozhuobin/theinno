@@ -1,0 +1,51 @@
+<?php $this->getModel("header")->init();?>
+<body>
+<!-- 顶部菜单 -->
+<?php $this->getModel("header")->headerMenu();?>
+
+<div class="wapper usercontent">
+	<?php $this->getModel("company")->leftMenu();?>
+    <div class="wright">
+        <div class="com padleft hrtitle">
+        	应聘简历
+        </div>
+        <div class="com padleft hrlist">
+        	<table width="100%">
+            	<tr>
+                	<td>
+                    	求职者姓名
+                    </td>
+                    <td>
+                    	应聘职位
+                    </td>
+                    <td>
+                    	应聘时间
+                    </td>
+                </tr>	
+                <?php
+                	foreach($list as $key=>$value){
+						echo '<tr>
+                				<td>
+                    				<a href="?m=Resume&action=view&p='.$value["p"].'" target="_blank">'.$value["pname"].'</a>
+                    			</td>
+                    			<td>
+                    				'.$value["jname"].'
+                    			</td>
+                    			<td>
+                    				'.$value["createTime"].'
+                    			</td>
+                			</tr>';
+					}
+                ?>
+            </table>
+            <div class="com">
+                    <div class="fanye">
+                    	<?php echo $subPageCss2;?>
+                    </div>
+        	</div>
+        </div>
+    </div>
+</div> 
+ 
+</body>
+</html>

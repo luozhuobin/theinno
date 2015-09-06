@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>后台系统</title>
+	<link rel="stylesheet" type="text/css" media="screen" href="./Template/Admin/css/layout.css" />
+<script type="text/javascript" language="Javascript" src="./Template/Admin/js/jquery-1.8.1.min.js"></script>
+	
+    
+    <style type="text/css">
+	  body {
+	      color: #000;
+	      background: #f1f1f1 url(images/br.gif) repeat-y right top;
+	  }
+	  	  li.a {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 0px solid  ;
+    color: #000000;
+    line-height: 24px;
+    margin: 5px 0 10px;
+    padding: 0 8px;
+}
+	</style>
+    
+    
+    
+    
+   <SCRIPT   language=javascript>  
+  function show(){     
+      if (top.document.getElementById("menu").cols=='7,*')
+      {
+          top.document.getElementById("menu").cols='180,*';
+          document.getElementById("showside").className='hidden';
+      }
+      else
+      {
+          top.document.getElementById("menu").cols='7,*';
+          document.getElementById("showside").className='show';
+      }
+  } 
+  </SCRIPT>
+  
+	<base target="mainFrame">
+</head>
+
+<body>
+<div id="menu">
+    <p><a href="#" onclick="javascript:ShowAll(11)" title="展开所有二级菜单" target="leftFrame">展开所有</a> | <a href="#" onclick="javascript:HideAll(11)" title="关闭所有二级菜单" target="leftFrame">关闭所有</a></p>
+    <ul id="a">
+     <!-- <li class="a">
+	      <ul id="b1" class="b">
+	      	<li><a href="?c=admin&m=memberStatistics">会员注册</a></li>
+	      	<li><a href="?c=admin&m=memberStatistics&action=registerstat">会员注册(广告)</a></li>
+	      	<li><a href="?c=admin&m=WebAdsStatSpecial&action=serverlogin">游戏服务器登陆</a></li>
+	      	<li><a href="?c=admin&m=memberStatistics&action=day">每日注册(登陆)</a></li>
+	        <li><a href="?c=admin&m=WebAdsStatSpecial">渠道充值</a></li>
+            <li><a href="?c=admin&m=WebAdsStatSpecial_py">渠道充值(陪玩)</a></li>
+	      </ul>
+	  </li> -->
+      <li class="a"><!--<a href="#" onclick="javascript:ShowHideDiv('b1')" class="a" title="点击展开/关闭" target="leftFrame">系统管理</a>-->
+	      <ul id="b2" class="b">
+	        <li><a href="?c=admin&m=personal" title="求职者注册列表">求职者注册列表</a></li>
+	      </ul>
+	  </li>
+	  <li class="a"><!--<a href="#" onclick="javascript:ShowHideDiv('b1')" class="a" title="点击展开/关闭" target="leftFrame">系统管理</a>-->
+	      <ul id="b3" class="b" style='display:none'>
+	        <li><a href="?c=admin&m=company" title="企业注册列表">企业注册列表</a></li>
+	        <li><a href="?c=admin&m=company&action=jobList" title="职位列表">职位列表</a></li>
+	      </ul>
+	  </li>
+	  <li class="a"><!--<a href="#" onclick="javascript:ShowHideDiv('b1')" class="a" title="点击展开/关闭" target="leftFrame">系统管理</a>-->
+	      <ul id="b4" class="b" style='display:none'>
+	        <li><a href="?c=admin&m=list&action=add" title="发布资讯">发布资讯</a></li>
+			<li><a href="?c=admin&m=list" title="资讯列表">资讯列表</a></li>
+			<li><a href="?c=admin&m=list&action=friendLink" title="友情链接">友情链接</a></li>
+			<li><a href="?c=admin&m=platads&action=ls" title="平台广告">平台广告</a></li>
+	      </ul>
+	  </li>
+	  <li class="a"><!--<a href="#" onclick="javascript:ShowHideDiv('b1')" class="a" title="点击展开/关闭" target="leftFrame">系统管理</a>-->
+	      <ul id="b5" class="b" style='display:none'>
+	        <li><a href="?c=admin&m=list&action=jobAgency" title="代发职位">代发职位</a></li>
+	        <li><a href="?c=admin&m=list&action=jobAgencyList" title="代发职位列表">代发职位列表</a></li>
+	        <li><a href="?c=admin&m=list&action=resumeAgency" title="代发简历">代发简历</a></li>
+	        <li><a href="?c=admin&m=list&action=resumeAgencyList" title="代发简历列表">代发简历列表</a></li>
+	      </ul>
+	  </li>
+    </ul>
+</div>
+<a href="javascript:void(0)" id="showside" class="hidden" onclick="javascript:show();" title=""><span>显示/隐藏侧栏</span></a>
+</body>
+</html>
+<script language="JavaScript" type="text/javascript">
+<!--
+
+
+function ShowHideDiv(ulId)
+{
+
+	$('ul[id*=b]').each(function(){
+		if($(this).attr('id')==ulId){
+			
+			$(this).show(100);
+		}else{
+			$(this).hide(50);
+		}
+	});
+}
+function ShowAll(num)
+{
+    for (i=1; i<num; i++) {
+			document.getElementById("b"+i).style.display= "block";
+		}
+}
+function HideAll(num)
+{
+    for (i=1; i<num; i++) {
+			document.getElementById("b"+i).style.display= "none";
+		}
+}
+//-->
+</script>
+<?php if($_GET['name']){?>
+<script language="JavaScript" type="text/javascript">
+<!--
+ShowHideDiv('<?php echo $_GET['name']; ?>');
+//-->
+</script>
+<?php } ?>

@@ -1,0 +1,318 @@
+<?php $this->getModel("header")->init();?>
+<script type="text/javascript" src="./Template/2012/js/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript">
+
+//职位名称验证
+var isJobNameExist = false;//由于ajax是异步执行，所以定义一变量用来记录验证的结果，必须要isNameExist为true时，才认为验证通过
+function jobNameCheck(){
+	var name = jQuery("#jobName").val();
+	var jobId = jQuery("#jobId").val();
+	if(name == ''){
+		ShowMsg('jobNameInfo',0,'请输入你的职位名称。');
+		return false;
+	}else if(jobId == ''){
+		$.ajax({
+			   type: "POST",
+			   url: "?m=company&action=isJobNameExist",
+			   data: "jobName="+name+"&jobId="+jobId,
+			   dataType:"json",
+			   success: function(data){
+			    	switch(data['result']){
+			    		case '-1':
+			    			ShowMsg('jobNameInfo',0,data['msg']);
+							return false;
+				    		break;
+			    		case '1':
+			    			isJobNameExist = true;
+				    		ShowMsg('jobNameInfo',1,'');
+							return true;
+				    		break;
+			    	}
+			   }
+		});
+	}
+}
+//工作城市验证
+function jobCityCheck(){
+	var city = jQuery("#jobCity").val();
+	if(city == ''){
+		ShowMsg('jobCityInfo',0,'请输入该职位的工作城市。');
+		return false;
+	}else{
+		ShowMsg('jobCityInfo',1,'');
+		return true;
+	}
+}
+//残疾类型
+function disableTypeCheck(){
+	var disableType = jQuery("#disableType").val();
+	if(disableType == ''){
+		ShowMsg('disableTypeInfo',0,'请选择你职位的残疾类型。');
+		return false;
+	}else{
+		ShowMsg('disableTypeInfo',1,'');
+		return true;
+	}
+}
+//学历要求验证
+function degreeCheck(){
+	var degree = jQuery("#degree").val();
+	if(degree == ''){
+		ShowMsg('degreeInfo',0,'请选择学历要求。');
+		return false;
+	}else{
+		ShowMsg('degreeInfo',1,'');
+		return true;
+	}
+}
+//薪酬范围验证
+function salaryCheck(){
+	var salary = jQuery("#salary").val();
+	if(salary == ''){
+		ShowMsg('salaryInfo',0,'请选择薪酬范围。');
+		return false;
+	}else{
+		ShowMsg('salaryInfo',1,'');
+		return true;
+	}
+}
+//工作内容
+function descCheck(){
+	var content = jQuery("#desc").val();
+	if(content == ''){
+		ShowMsg('descInfo',0,'请输入该职位的工作内容。');
+		return false;
+	}else{
+		ShowMsg('descInfo',1,'');
+		return true;
+	}
+}
+//工作经验
+function workLengthCheck(){
+	var content = jQuery("#workLength").val();
+	if(content == ''){
+		ShowMsg('workLengthInfo',0,'请选择工作经验要求。');
+		return false;
+	}else{
+		ShowMsg('workLengthInfo',1,'');
+		return true;
+	}
+}
+//招聘人数
+function numCheck(){
+	var content = jQuery("#num").val();
+	if(content == ''){
+		ShowMsg('numInfo',0,'请选择招聘人数。');
+		return false;
+	}else{
+		ShowMsg('numInfo',1,'');
+		return true;
+	}
+}
+//截止招聘时间
+function cutoffTimeCheck(){
+	var content = jQuery("#cutoffTime").val();
+	if(content == ''){
+		ShowMsg('cutoffTimeInfo',0,'请选择招聘截止日期。');
+		return false;
+	}else{
+		ShowMsg('cutoffTimeInfo',1,'');
+		return true;
+	}
+}
+function submitCheck(){
+	var jobName = jQuery("#jobName").val();
+	var jobId = jQuery("#jobId").val();
+	var isJobNameOK = false;
+	if(jobName ==''){
+		ShowMsg('jobNameInfo',0,'请输入你的职位名称。');
+	}else{
+		if(isJobNameExist == false&&jobId ==''){
+			ShowMsg('jobNameInfo',0,'你已发布相同的职位名称，请重新输入。');
+		}else{
+			ShowMsg('jobNameInfo',1,'');
+			isJobNameOK = true;
+		}
+	}
+	var isCityOK = jobCityCheck();
+	var isDisableTypeOK = disableTypeCheck();
+	var isWorkLengthOK = workLengthCheck();
+	var numOK = numCheck();
+	var cutoffTimeOK = cutoffTimeCheck();
+	var isDegreeOK = degreeCheck();
+	var isSalaryOK = salaryCheck();
+	var isDescOK = descCheck();
+	if(isJobNameOK&&isCityOK&&isDisableTypeOK&&isWorkLengthOK&&numOK&&cutoffTimeOK&&isDegreeOK&&isSalaryOK&&isDescOK){
+		var jobName = jQuery("#jobName").val();
+		var jobCity = jQuery("#jobCity").val();
+		var disableType = jQuery("#disableType").val();
+		var degree = jQuery("#degree").val();
+		var salary = jQuery("#salary").val();
+		var desc = jQuery("#desc").val();
+		var jobId = jQuery("#jobId").val();
+		var workLength = jQuery("#workLength").val();
+		var num = jQuery("#num").val();
+		var cutoffTime = jQuery("#cutoffTime").val();
+		$.ajax({
+			   type: "POST",
+			   url: "?m=company&action=publishJobFinish",
+			   data: "jobName="+jobName+"&jobCity="+jobCity+"&disableType="+disableType+"&degree="+degree+"&salary="+salary+"&desc="+desc+"&jobId="+jobId+"&workLength="+workLength+"&num="+num+"&cutoffTime="+cutoffTime,
+			   dataType:"json",
+			   success: function(data){
+			     	switch(data['result']){
+			     		case '-1':
+			     			ShowMsg('jobNameInfo',0,data['msg']);
+				     		break;
+			     		case '-2':
+			     			ShowMsg('jobCityInfo',0,data['msg']);
+					     	break;
+			     		case '-3':
+			     			ShowMsg('disableTypeInfo',0,data['msg']);
+					     	break;
+			     		case '-4':
+			     			ShowMsg('degreeInfo',0,data['msg']);
+					     	break;
+			     		case '-5':
+			     			ShowMsg('salaryInfo',0,data['msg']);
+					     	break;
+			     		case '-6':
+			     			ShowMsg('descInfo',0,data['msg']);
+					     	break;
+			     		case '-7':
+			     			ShowMsg('submitInfo',0,data['msg']);
+					     	break;
+			     		case '1':
+			     			ShowMsg('submitInfo',1,data['msg']);
+					     	break;
+			     	}
+			   }
+		});
+	}
+}
+</script>
+<div id="body-container">
+	<div class="center clearfix">
+		<div class="col_2 products">
+			<form id="edit_profile" class="basic-form">	
+				<h3>发布职位</h3>
+				<div class="form-section">
+					<ul class="clearfix">
+						<li class="half-field ">
+							<label for="jobName">职位名称： <span class="required-field">（必填）</span></label>
+							<input name="jobName" id="jobName" class="form_field" value="<?php echo $info['name'];?>" type="text" onblur="jobNameCheck();"/>
+							<span id = "jobNameInfo"></span>
+						</li>
+						
+						<li class="half-field ">
+							<label for="jobCity">工作城市： <span class="required-field">（必填）</span></label>
+							<input name="jobCity" id="jobCity" class="form_field" value="<?php echo $info['city'];?>" type="text" onblur="jobCityCheck();"/>
+							<span id = "jobCityInfo"></span>
+						</li>
+						<li class="half-field ">
+							<label for="disableType">残疾类型： <span class="required-field">（必填）</span></label>
+							<select name="disableType" style="width:300px;" id="disableType" onchange="disableTypeCheck();">
+								<option value="">请选择残疾类型</option>
+								<?php
+									foreach($disableType as $key=>$value){
+										if($key == $info['type']){
+											$select = 'selected="selected"';
+										}else{
+											$select = '';
+										}
+										echo '<option value="'.$key.'" '.$select.'>'.$value.'</option>';
+									}
+								?>
+							</select>
+							<span id = "disableTypeInfo"></span>
+						</li>
+						<li class="half-field ">
+							<label for="degree">学历要求： <span class="required-field">（必填）</span></label>
+							<select name="degree" id="degree" style="width:300px;" onchange="degreeCheck();">
+								<option value="">请选择学历要求</option>
+								<?php
+									foreach($degree as $key=>$value){
+										if($key == $info['degree']){
+											$select = 'selected="selected"';
+										}else{
+											$select = '';
+										}
+										echo '<option value="'.$key.'" '.$select.'>'.$value.'</option>';
+									}
+								?>
+							</select>
+							<span id = "degreeInfo"></span>
+						</li>
+						<li class="half-field ">
+							<label for="workLength">工作经验： <span class="required-field">（必填）</span></label>
+							<select name="workLength" id="workLength" style="width:300px;" onchange="workLengthCheck();">
+								<option value="">请选择工作经验</option>
+								<?php
+									foreach($workLength as $key=>$value){
+										if($key == $info['workLength']){
+											$select = 'selected="selected"';
+										}else{
+											$select = '';
+										}
+										echo '<option value="'.$key.'" '.$select.'>'.$value.'</option>';
+									}
+								?>
+							</select>
+							<span id = "workLengthInfo"></span>
+						</li>
+						<li class="half-field ">
+							<label for="salary">薪酬待遇：<span class="required-field">（必填）</span></label>
+							<select name="salary" id="salary" style="width:300px;" onchange="salaryCheck();">
+								<option value="">请选择薪酬待遇</option>
+								<?php
+									foreach($salary as $key=>$value){
+										if($key == $info['salary']){
+											$select = 'selected="selected"';
+										}else{
+											$select = '';
+										}
+										echo '<option value="'.$key.'" '.$select.'>'.$value.'</option>';
+									}
+								?>
+							</select>
+							<span id = "salaryInfo"></span>
+						</li>
+						<li>
+							<label for="num">招聘人数：<span class="required-field">（必填）</span></label>
+							<select name="num" id="num" style="width:300px;" onchange="numCheck();">
+								<option value="">请选择招聘人数</option>
+								<?php
+									foreach($jobNum as $key=>$value){
+										if($key == $info['num']){
+											$select = 'selected="selected"';
+										}else{
+											$select = '';
+										}
+										echo '<option value="'.$key.'" '.$select.'>'.$value.'</option>';
+									}
+								?>
+							</select>
+							<span id = "numInfo"></span>
+						</li>	
+						<li>
+							<label for="cutoffTime">招聘截止时间：<span class="required-field">（必填）</span></label>
+							<input name="cutoffTime" id="cutoffTime" class="form_field" value="<?php echo $info['cutoffTime'];?>" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" type="text" onchange="cutoffTimeCheck();"/>
+							<span id = "cutoffTimeInfo"></span>
+						</li>
+					</ul>
+				</div>
+				<h3><label for="desc">工作内容：<span class="required-field">（必填）</span></label> </h3>
+				<div class="form-section ">					
+					<textarea name="desc" onblur="descCheck();" id="desc" rows="8" cols="88" class="form_field editor-field"><?php echo $info['desc'];?></textarea>
+					<span id="descInfo"></span>
+				</div>
+				<p>
+					<input type="hidden" value="<?php echo $info['id'];?>" name="jobId" id="jobId"/> 
+					<input name="submit" id="submit" value="保  存 " type="button" onclick="submitCheck();" />
+					<span id="submitInfo"></span>
+				</p>
+			</form>
+		</div>
+<?php $this->getModel("header")->companyRight();?>
+	</div>
+</div>
+<?php $this->getModel("header")->getFooter();?>

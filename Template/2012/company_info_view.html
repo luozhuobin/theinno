@@ -1,0 +1,45 @@
+<?php $this->getModel("header")->init();?>
+<div id="body-container">
+	<div class="center clearfix">
+		<div class="col_2 products">
+			<div class="basic-form">	
+				<h3>公司信息</h3>
+				<div class="form-section">
+					<ul class="clearfix">
+						<li class="half-field ">
+							<label for="name">公司名称：<?php echo $info['name'];?> </label>
+						</li>
+						<li class="half-field ">
+							<label for="code">营业执照： <?php echo $info['code'];?></label>
+						</li>
+						<li class="half-field ">
+							<label for="city">所在城市：<?php echo $info['city'];?> </label>
+						</li>
+						<li class="half-field ">
+							<label for="address">详细地址：<?php echo $info['address'];?> </label>
+						</li>
+						<!-- <li class="">
+							<label for="email">电子邮箱： </label>
+							<input name="email" id="email" class="form_field" value="" type="text" onblur="emailCheck();"/>
+						</li> -->
+
+						<li class="half-field ">
+							<label for="phone">联系电话：<?php echo $info['phone'];?></label>
+						</li>	
+					</ul>
+				</div>
+				<h3><label for="desc">公司描述：</label></h3>
+				<div class="form-section ">		
+				<?php echo $info['desc'];?>			
+				</div>
+
+				<h3><label for="logo">公司标志：</label></h3>
+				<div class="form-section ">
+					<img src="<?php echo $info['avatar'];?>" />
+				</div>
+			</div>
+		</div>
+<?php $this->getModel("header")->companyRight();?>
+	</div>
+</div>
+<?php $this->getModel("header")->getFooter();?>

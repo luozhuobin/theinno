@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Administrator's Control Panel</title>
+<link rel="stylesheet" href="./Template/Admin/css/admincp.css" type="text/css"/>
+<meta content="Comsenz Inc." name="Copyright" />
+</head>
+<body><div id="append"></div><script type="text/javascript">
+function $(id) {
+	return document.getElementById(id);
+}
+</script>
+
+<div class="container">
+	<form action="?c=admin&m=index" method="post" id="loginform" target="_top">
+	<input type=hidden name='action' value='checkadmin' />
+		<input type="hidden" name="formhash" value="756ee66355947b02"/>
+		<table class="mainbox">
+			<tr>
+				<td class="loginbox">
+					<h1>Administrator panel</h1>
+					<p>Administrator panel For Piaofen Design</p>
+				</td>
+				<td class="login">
+					<p id="usernamediv">用户名:<input type="text" name="username" class="txt" tabindex="1" id="username" value="" /></p>
+					<p>密　码:<input type="password" name="password" class="txt" tabindex="2" id="password" value="" /></p>
+					<p class="loginbtn"><input type="submit" name="submit" value="登 录" class="btn" tabindex="3" /></p>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<div class="footer">Powered by PiaoFen 1.0.0 &copy; 2008 Inc.</div>
+
+</body>
+</html>

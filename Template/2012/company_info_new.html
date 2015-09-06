@@ -1,0 +1,25 @@
+<?php $this->getModel("header")->init();?>
+<body>
+<!-- 顶部菜单 -->
+<?php $this->getModel("header")->headerMenu();?>
+<!-- banner广告位 -->
+<?php $this->getModel("header")->getBanner();?>
+
+<div class="wapper newcontent">
+	<!-- 左侧菜单 -->
+	<?php $this->getModel("company")->leftMenu2();?>
+    <div class="wright">
+    	 <div class="newsinfo">
+         	<div class="com newsinfo_title">
+            	<?php echo $cname;?>
+            </div>
+            <div class="com newscontent">
+            	<?php 
+            		echo $cinfo;
+            	?>
+            </div>
+         </div>
+    </div>
+</div> 
+</body>
+</html>

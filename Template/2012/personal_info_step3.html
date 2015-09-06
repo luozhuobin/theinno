@@ -1,0 +1,583 @@
+<?php $this->getModel("header")->init();?>
+<script language="javascript" type="text/javascript" src="./Template/2012/js/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript">
+//姓名验证
+function nameCheck(){
+	var name = jQuery("#name").val();
+	if(name.length==0){
+		ShowMsg('nameInfo',0,'请输入你的姓名。');
+		return false;
+	}else if(name.length<2||name.length>15){
+		ShowMsg('nameInfo',0,'姓名的长度在2~15个字符之间，请重新输入。');
+		return false;
+	}
+	ShowMsg('nameInfo',1,'');
+	return true;
+}
+//性别验证
+function sexCheck(){
+	var sex = jQuery("#sex").val();
+	if(sex==''){
+		ShowMsg('sexInfo',0,'请选择你的性别。');
+		return false;
+	}else{
+		ShowMsg('sexInfo',1,'');
+		return true;
+	}
+}
+//出生日期验证
+function birthdayCheck(){
+	var birthday = jQuery("#birthday").val();
+	if(birthday==''){
+		ShowMsg('birthdayInfo',0,'请选择你的出生日期。');
+		return false;
+	}else{
+		ShowMsg('birthdayInfo',1,'');
+		return true;
+	}
+}
+//详细地址验证
+function addressCheck(){
+	var address = jQuery("#address").val();
+	if(address == ''){
+		ShowMsg('addressInfo',0,'请输入你所在的详细地址。');
+		return false;
+	}else{
+		ShowMsg('addressInfo',1,'');
+		return true;
+	}
+}
+//城市验证
+function cityCheck(){
+	var city = jQuery("#city").val();
+	if(city == ''){
+		ShowMsg('cityInfo',0,'请输入你的所在城市。');
+		return false;
+	}else{
+		ShowMsg('cityInfo',1,'');
+		return true;
+	}
+}
+//身份证号码验证
+function idcardCheck(){
+	var idcard = jQuery("#idcard").val();
+	if(idcard == ''){
+		ShowMsg('idcardInfo',0,'请输入你的身份证号码。');
+		return false;
+	}else{
+		if(isIdCardNo(idcard)){
+			ShowMsg('idcardInfo',1,'');
+			return true;
+		}else{
+			ShowMsg('idcardInfo',0,'身份证号码有误。');
+			return false;
+		}
+	}
+}
+//学历验证
+function degreeCheck(){
+	var degree = jQuery("#degree").val();
+	if(degree == ''){
+		ShowMsg('degreeInfo',0,'请选择你的学历。');
+		return false;
+	}else{
+		ShowMsg('degreeInfo',1,'');
+		return true;
+	}
+}
+//是否在职验证
+function isWorkCheck(){
+	var isWork = jQuery("#isWork").val();
+	if(isWork == ''){
+		ShowMsg('isWorkInfo',0,'你现在在职吗？');
+		return false;
+	}else{
+		ShowMsg('isWorkInfo',1,'');
+		return true;
+	}
+}
+//残疾类型验证
+function typeCheck(){
+	var type = jQuery("#type").val();
+	if(type == ''){
+		ShowMsg('typeInfo',0,'请选择你的残疾类型。');
+		return false;
+	}else{
+		ShowMsg('typeInfo',1,'');
+		return true;
+	}
+}
+//残疾人号码验证
+/**
+ * 残疾证号
+二代残疾证号由居民身份证号+1位残疾类别代码+1位残疾等级代码组成，所有数据由基层办证人员录入残疾人人口基础数据库，实现全国联网。
+如残疾证遗失，补办证的残疾证将在20位编号后加印“B”，第二次遗失补办则加印“B2”，以此类推。
+ */
+function numberCheck(){
+	var number = jQuery("#number").val();
+	var idcard = jQuery("#idcard").val();
+	var type = jQuery("#type").val();
+	var disableRate = jQuery("#disableRate").val();
+	if(number == ''){
+		ShowMsg('numberInfo',0,'请输入你的残疾人号码。');
+		return false;
+	}else{
+		if(number.length == 20||number.length == 22){
+			if(idcard == number.substr(0,18)&&type == number.substr(18,1)&&disableRate == number.substr(19,1)){
+				ShowMsg('numberInfo',1,'');
+				return true;
+			}else{
+				ShowMsg('numberInfo',0,'残疾人号码不正确，请重新输入。');
+				return false;
+			}
+		}else{
+			ShowMsg('numberInfo',0,'残疾人号码不正确，请重新输入。');
+			return false;
+		}
+	}
+}
+//联系电话验证
+function phoneCheck(){
+	var phone = jQuery("#phone").val();
+	if(phone == ''){
+		ShowMsg('phoneInfo',0,'请输入你的联系电话。');
+		return false;
+	}else{
+		var ab=/^(13[0-9]|15[0|1|3|6|7|8|9]|18[8|9])\d{8}$/;
+		if(!ab.test(phone)){
+			ShowMsg('phoneInfo',0,'无效的联系电话。');
+			return false;
+		}else{
+			ShowMsg('phoneInfo',1,'');
+			return true;
+		}
+		
+	}
+}
+
+//期望职位验证
+function jobCheck(){
+	var job = jQuery("#job").val();
+	if(job.length==0){
+		ShowMsg('jobInfo',0,'请输入你的期望职位。');
+		return false;
+	}
+	ShowMsg('jobInfo',1,'');
+	return true;
+}
+//期望薪酬验证
+function salaryCheck(){
+	var salary = jQuery("#salary").val();
+	if(salary.length==0){
+		ShowMsg('salaryInfo',0,'请输入你的期望薪酬。');
+		return false;
+	}
+	ShowMsg('salaryInfo',1,'');
+	return true;
+}
+/**
+ * QQ号码验证
+ */
+function qqCheck(){
+	var qq = jQuery("#qq").val();
+	if(qq==''){
+		ShowMsg('qqInfo',0,'请输入你的QQ号码。');
+		return false;
+	}else{
+		var reg = /^[1-9]\d{4,10}$/;
+		if(reg.test(qq)){
+			ShowMsg('qqInfo',1,'');
+			return true;
+		}else{
+			ShowMsg('qqInfo',0,'无效的QQ号码。');
+			return false;
+		}
+	}
+}
+function disableRateCheck(){
+	var salary = jQuery("#disableRate").val();
+	if(salary.length==0){
+		ShowMsg('disableRateInfo',0,'请选择您的残疾等级。');
+		return false;
+	}
+	ShowMsg('disableRateInfo',1,'');
+	return true;
+}
+function workLengthCheck(){
+	var salary = jQuery("#workLength").val();
+	if(salary.length==0){
+		ShowMsg('workLengthInfo',0,'请选择您的工作经验。');
+		return false;
+	}
+	ShowMsg('workLengthInfo',1,'');
+	return true;
+}
+function submitConfirm(){
+	var nameOK = nameCheck();
+	var sexOK = sexCheck();
+	var birthdayOK = birthdayCheck();
+	var addressOK = addressCheck();
+	var cityOK = cityCheck();
+	var idcardOK = idcardCheck();
+	var degreeOK = degreeCheck();
+	var isWorkOK = isWorkCheck();
+	var typeOK = typeCheck();
+	var numberOK = numberCheck();
+	var phoneOK = phoneCheck();
+	var qqOK = qqCheck();
+	var disableRateOK = disableRateCheck();
+	var workLengthCheckOK = workLengthCheck();
+	if(nameOK&&sexOK&&birthdayOK&&addressOK&&cityOK&&idcardOK&&isWorkOK&&typeOK&&numberOK&&phoneOK&&qqOK&&disableRateOK&&workLengthCheckOK){
+		return true;
+	}else{
+		ShowMsg('submitInfo',0,'请检查表单内容是否全部正确无误。');
+		return false;
+	}
+}
+
+function isIdCardNo(num)
+{  
+      num = num.toUpperCase(); 
+     //身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X。  
+      if (!(/(^\d{15}$)|(^\d{17}([0-9]|X)$)/.test(num)))  
+      {
+           //alert('输入的身份证号长度不对，或者号码不符合规定！\n15位号码应全为数字，18位号码末位可以为数字或X。');
+          return false;
+     }
+    //校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
+    //下面分别分析出生日期和校验位
+    var len, re;
+    len = num.length;
+    if (len == 15)
+    {
+        re = new RegExp(/^(\d{6})(\d{2})(\d{2})(\d{2})(\d{3})$/);
+        var arrSplit = num.match(re);
+
+        //检查生日日期是否正确
+        var dtmBirth = new Date('19' + arrSplit[2] + '/' + arrSplit[3] + '/' + arrSplit[4]);
+        var bGoodDay;
+        bGoodDay = (dtmBirth.getYear() == Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) == Number(arrSplit[3])) && (dtmBirth.getDate() == Number(arrSplit[4]));
+        if (!bGoodDay){
+            //alert('输入的身份证号里出生日期不对！');  
+            return false;
+        }else{
+        //将15位身份证转成18位
+        //校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
+                  var arrInt = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
+                   var arrCh = new Array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');
+                   var nTemp = 0, i;  
+                    num = num.substr(0, 6) + '19' + num.substr(6, num.length - 6);
+                   for(i = 0; i < 17; i ++)
+                  {
+                        nTemp += num.substr(i, 1) * arrInt[i];
+                   }
+                   num += arrCh[nTemp % 11];  
+                    return num;  
+        }  
+    }
+    if (len == 18){
+        re = new RegExp(/^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/);
+        var arrSplit = num.match(re);
+
+        //检查生日日期是否正确
+        var dtmBirth = new Date(arrSplit[2] + "/" + arrSplit[3] + "/" + arrSplit[4]);
+        var bGoodDay;
+        bGoodDay = (dtmBirth.getFullYear() == Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) == Number(arrSplit[3])) && (dtmBirth.getDate() == Number(arrSplit[4]));
+        if (!bGoodDay)
+        {
+            //alert(dtmBirth.getYear());
+            //alert(arrSplit[2]);
+            //alert('输入的身份证号里出生日期不对！');
+            return false;
+        }else{
+            //检验18位身份证的校验码是否正确。
+            //校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
+            var valnum;
+            var arrInt = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
+            var arrCh = new Array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');
+            var nTemp = 0, i;
+            for(i = 0; i < 17; i ++)
+            {
+            nTemp += num.substr(i, 1) * arrInt[i];
+            }
+            valnum = arrCh[nTemp % 11];
+            if (valnum != num.substr(17, 1))
+            {
+                //alert('18位身份证的校验码不正确！应该为：' + valnum);
+                return false;
+            }
+            return num;
+        }
+    }
+    return false;
+} 
+
+</script>
+<div id="body-container">
+	<div class="center clearfix">
+		<div class="col_2 products">
+			<form id="edit_profile" class="basic-form" onsubmit="return submitConfirm();" action="?m=personal&action=resumefinish" method="post" enctype="multipart/form-data">	
+				<h3>完善个人简历</h3>
+				<div class="form-section">
+					<ul class="clearfix">
+						<li class="half-field ">
+							<label for="name">姓名 ：<span class="required-field">（必填）</span></label>
+							<input name="name" id="name" class="form_field" value="<?php echo $info['name'];?>" type="text" onblur="nameCheck();"/>
+							<span id="nameInfo"></span>
+						</li>
+						
+						<li class="half-field ">
+							<label for="sex" style="display:inline;">性别 ：<span class="required-field">（必填）</span></label>
+							<br /><select name="sex" id="sex" onchange="sexCheck();" class="form_field" style="width:312px;">
+								<option value="">请选择性别</option>
+								<option value="男" <?php echo $info['sex']=='男'?'selected="selected"':'';?>>男</option>
+								<option value="女" <?php echo $info['sex']=='女'?'selected="selected"':'';?>>女</option>
+							</select>
+							 <span id="sexInfo"></span>
+						</li>
+						<li class="half-field ">
+							<label for="birthday">出生日期：  <span class="required-field">（必填）</span></label>
+							<input type="text" value="<?php echo $info['birthday'];?>" id="birthday" class="form_field" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"  name="birthday" onchange="birthdayCheck();"/>
+							<span id="birthdayInfo"></span>
+						</li>
+						<li class="half-field ">
+							<label for="address">详细地址 ：<span class="required-field">（必填）</span></label>
+							<input name="address" id="address" class="form_field" value="<?php echo $info['address'];?>" type="text" onblur="addressCheck();"/>
+							<span id="addressInfo"></span>
+						</li>
+						<li class="half-field ">
+							<label for="city">所在城市： <span class="required-field">（必填）</span></label>
+							<input name="city" id="city" class="form_field" value="<?php echo $info['city'];?>" type="text" onblur="cityCheck();"/>
+							<span id="cityInfo"></span>
+						</li>
+						<li class="half-field ">
+							<label for="idcard">身份证号码 ：<span class="required-field">（必填）</span></label>
+							<input name="idcard" id="idcard" class="form_field" <?php echo $info['status']==1?'disabled="disabled"':'';?> value="<?php echo $info['idcard'];?>" type="text" onblur="idcardCheck();"/>
+							<span id="idcardInfo"></span>
+						</li>
+						<li class="half-field ">
+							<label for="degree" style="display:inline;">学历：<span class="required-field">（必填）</span> </label>
+							<br /><select name="degree" id="degree" onchange="degreeCheck();" class="form_field" style="width:312px;">
+								<option value="">请选择学历</option>
+								<?php
+									foreach($degree as $key=>$value){
+										if($key == $info['degree']){
+											$select = 'selected="selected"';
+										}else{
+											$select = '';
+										}
+										echo '<option value="'.$key.'" '.$select.'>'.$value.'</option>';
+									}
+								?>
+							</select>
+							
+							<span id="degreeInfo"></span>
+						</li>
+						<li class="half-field ">
+							<label for="specialty">所学专业：</label>
+							<input name="specialty" id="specialty" class="form_field" value="<?php echo $info['specialty'];?>" type="text" />
+							<span id="idcardInfo"></span>
+						</li>
+						<li class="half-field ">
+							<label for="isWork" style="display:inline;">是否在职： <span class="required-field">（必填）</span></label>
+							<br /><select name="isWork" id="isWork" onchange="isWorkCheck();" class="form_field" style="width:312px;">
+								<option value="">请选择是否在职</option>
+								<option value="是" <?php echo $info['isWork']=='是'?'selected="selected"':'';?>>是</option>
+								<option value="否" <?php echo $info['isWork']=='否'?'selected="selected"':'';?>>否</option>
+							</select>
+							<span id="isWorkInfo"></span>
+						</li>
+						<li class="half-field ">
+							<label for="workLength">工作经验： <span class="required-field">（必填）</span></label>
+							<select id="workLength" name="workLength" class="form_field" style="width:312px;" onchange="workLengthCheck();">
+								<option value="">请选择工作经验</option>
+								<?php
+									foreach($workLength as $key=>$value){
+										$select = $key==$info['workLength']?'selected="selected"':'';
+										echo '<option value="'.$key.'" '.$select.'>'.$value.'</option>';
+									}
+								?>
+							</select>
+							<span id="workLengthInfo"></span>
+						</li>
+						<li class="half-field ">
+							<label for="type" style="display:inline;">残疾类型： <span class="required-field">（必填）</span></label>
+							<br /><select name="type" id="type" <?php echo $info['status']==1?'disabled="disabled"':'';?> onchange="typeCheck();" class="form_field" style="width:312px;">
+								<option value="">请选择残疾类型</option>
+								<?php
+									foreach($disableType as $key=>$value){
+										if($key == $info['type']){
+											$select = 'selected="selected"';
+										}else{
+											$select = '';
+										}
+										echo '<option value="'.$key.'" '.$select.'>'.$value.'</option>';
+									}
+								?>
+							</select>
+							<span id="typeInfo"></span>
+						</li>
+						<li class="half-field ">
+							<label for="disableRate" style="display:inline;">残疾等级：<span class="required-field">（必填）</span></label>
+							<br /><select name="disableRate" id="disableRate" <?php echo $info['status']==1?'disabled="disabled"':'';?> onchange="disableRateCheck();" class="form_field" style="width:312px;">
+								<option value="">请选择残疾等级</option>
+								<?php
+									foreach($disableRate as $key=>$value){
+										if($key == $info['disableRate']){
+											$select = 'selected="selected"';
+										}else{
+											$select = '';
+										}
+										echo '<option value="'.$key.'" '.$select.'>'.$value.'</option>';
+									}
+								?>
+							</select>
+							<span id="disableRateInfo"></span>
+						</li>
+						<li class="half-field ">
+							<label for="number">残疾人号码 ：<span class="required-field">（必填）</span></label>
+							<input name="number" id="number" <?php echo $info['status']==1?'disabled="disabled"':'';?> class="form_field" value="<?php echo $info['number'];?>" type="text" onblur="numberCheck();"/>
+							<span id="numberInfo"></span>
+						</li>
+						<li class="half-field ">
+							<label for="addon">辅助工具：</label>
+							<input name="addon" id="addon" class="form_field" value="<?php echo $info['addon'];?>" type="text" />
+							<span id="addonInfo"></span>
+						</li>
+						<li class="half-field ">
+							<label for="phone">联系电话：<span class="required-field">（必填）</span></label>
+							<input name="phone" id="phone" class="form_field" type="text" value="<?php echo $info['phone'];?>" onblur="phoneCheck();"/>
+							<span id="phoneInfo"></span>
+						</li>
+						<li class="half-field ">
+							<label for="qq">QQ：<span class="required-field">（必填）</span></label>
+							<input name="qq" id="qq" class="form_field" type="text" value="<?php echo $info['qq'];?>" onblur="qqCheck();"/>
+							<span id="qqInfo"></span>
+						</li>
+						<li class="half-field ">
+							<label for="phone">兴趣爱好：</label>
+							<input name="interest" id="interest" class="form_field" type="text"" value="<?php echo $info['interest'];?>"/>
+							<span id="interest"></span>
+						</li>
+					</ul>
+				</div>
+				<h3><label for="intro">求职意向：</label></h3>
+				<div class="form-section ">					
+					<ul class="clearfix">
+						<li class="half-field ">
+							<label for="job_status">求职状态：</label>
+							<select name="jobStatus" id="jobStatus" class="form_field" style="width:312px;">
+								<option value="">请选择求职状态</option>
+								<?php
+									foreach($jobStatus as $key=>$value){
+										if($key == $info['jobStatus']){
+											$select = 'selected="selected"';
+										}else{
+											$select = '';
+										}
+										echo '<option value="'.$key.'" '.$select.'>'.$value.'</option>';
+									}
+								?>
+							</select>
+							<span id="jobStatusInfo"></span>
+						</li>
+						<li class="half-field ">
+							<label for="job">期望职位：</label>
+							<input name="job" id="job" class="form_field" value="<?php echo $info['job'];?>" type="text" />
+							<span id="jobInfo"></span>
+						</li>
+						<li class="half-field ">
+							<label for="salary">期望薪酬：</label>
+							<select name="salary" id="" class="form_field" style="width:312px;">
+								<option value="">请选择期望薪酬</option>
+								<?php
+									foreach($expSalary as $key=>$value){
+										if($key == $info['salary']){
+											$select = 'selected="selected"';
+										}else{
+											$select = '';
+										}
+										echo '<option value="'.$key.'" '.$select.'>'.$value.'</option>';
+									}
+								?>
+							</select>
+							<span id="salaryInfo"></span>
+						</li>
+						<li class="half-field ">
+							<label for="expAddress">期望地点：</label>
+							<input name="expAddress" id="expAddress" class="form_field" value="<?php echo $info['expAddress'];?>" type="text"/>
+							<span id="expAddressInfo"></span>
+						</li>
+						<li class="half-field ">
+							<label for="hillock">到岗时间：</label>
+							<select name="hillock" id="hillock" class="form_field" style="width:312px;">
+								<option value="">请选择到岗时间</option>
+								<?php
+									foreach($hillock as $key=>$value){
+											if($key == $info['hillock']){
+												$select = 'selected = "selected"';
+											}else{
+												$select = '';
+											}
+											echo '<option value="'.$key.'" '.$select.'>'.$value.'</option>';
+									}
+								?>
+							</select>
+							<span id="hillockInfo"></span>
+						</li>
+						<!-- <li class="half-field ">
+							<label for="expAddress">期望地点：</label>
+							<input name="expAddress" id="expAddress" class="form_field" value="<?php echo $info['expAddress'];?>" type="text"/>
+							<span id="expAddressInfo"></span>
+						</li>
+						<li class="half-field ">
+							<label for="expAddress">期望地点：</label>
+							<input name="expAddress" id="expAddress" class="form_field" value="<?php echo $info['expAddress'];?>" type="text"/>
+							<span id="expAddressInfo"></span>
+						</li> -->
+					</ul>
+				</div>
+				<h3><label for="intro">自我介绍：</label></h3>
+				<div class="form-section ">					
+					<textarea name="intro" id="intro" rows="4" cols="88" class="form_field editor-field"><?php echo $info['intro'];?></textarea>
+				</div>
+				<h3><label for="workExp">工作经验：</label></h3>
+				<div class="form-section ">					
+					<textarea name="workExp" id="workExp" rows="8" cols="88" class="form_field editor-field"><?php echo $info['workExp'];?></textarea>
+				</div>
+				<h3><label for="eduExp">教育经历：</label></h3>
+				<div class="form-section ">					
+					<textarea name="eduExp" id="eduExp" rows="8" cols="88" class="form_field editor-field"><?php echo $info['eduExp'];?></textarea>
+				</div>
+				<h3><label for="logo">个人头像</label></h3>
+				<div class="form-section ">
+					<?php 
+						if(!empty($info['avatar'])){
+							echo "<img src='{$info['avatar']}' style='width:100px;height:100px;'/><br />";
+						}
+					?>
+					<input type="file" id="logo" name="logo" value="<?php echo $info['avatar'];?>">
+					<!-- <div class="field-hint icon">
+						You can upload your logo in <strong>JPG or PNG</strong> format only and the file must not exceed <strong>3 MB</strong>
+					</div>
+					<p class="cv-upload-info">
+						<em>You have not yet uploaded your logo.</em>							
+					</p> -->
+				</div>
+				<p>
+					<input name="submit" id="submit" value="保存" type="submit" />
+					<span id="submitInfo"></span>
+				</p>
+			</form>
+		</div>
+		
+	<div class="col_1">
+	<?php $this->getModel("personal")->accountMenu();?>
+	<!-- <h2>Job Credits &amp; Access</h2>
+	<div class="job-credits">
+		<p class="token">You currently have no job post credits.</p>
+	</div> -->
+	</div>
+	</div>
+</div>
+<?php $this->getModel("header")->getFooter();?>

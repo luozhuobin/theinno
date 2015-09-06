@@ -1,0 +1,127 @@
+<style type="text/css">
+
+</style>
+<?php if(!$isLogin){?>
+<div class="col_1">
+		<div class="employer_login">
+		  <form>
+			<ul>
+				<li class="">
+					<label for="login_email">电子邮箱：<span class="required-field" id="login_email_info">(必填)</span></label>
+					<input type="text" class="form_field" id="login_email" name="login_email" onblur="emailVerify('login_email','login_email_info');"/>
+				</li>
+				<li class="">
+					<label for="login_password">密码： <span class="required-field" id="login_password_info">(必填)</span></label>
+					<input type="password" id="login_password" class="form_field" name="login_password" onblur="passwordVerify('login_password','login_password_info');"/>
+				</li>
+				<li class="">
+				    <input type="radio" name="identity" value="personal"/>雇员
+				    &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+				    <input type="radio" name="identity" value="company"/>雇主
+				    <span id="identity_info"></span>
+				</li>
+				<li>
+					 <input type="button" value="登录" name="sign-in" id="sign-in" class="loginBtn" onclick="doLogin('login_email','login_password','identity');"/>
+				</li>
+			</ul>
+		</form>
+		<div>
+			<a href="?m=personal&action=register" target="_blank" style="margin-left:22px;color:#9A1616">雇员注册</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="?m=personal&action=forgetpwd" target="_blank" style="color:#9A1616">雇员忘记密码？</a>
+		</div>
+	</div>
+</div>
+<?php }else if($header_identity == 'personal'){ ?>
+<div class="col_1">
+	<div class="faa PI-body">
+		<div class="PI-imgBox">
+			<a href="?m=personal&action=editinfo">
+				<img alt="<?php echo $header_info['name'];?>" src="<?php echo empty($header_info['avatar'])?'/Template/2012/images/default.jpg':$header_info['avatar'];?>">
+				<span class="PI-imgBox-Oper">[ 修改头像 ]</span>
+			</a>
+		</div>
+		<p class="PI-bodyName wsnhd">
+			<strong><?php echo empty($header_info['name'])?$header_info['email']:$header_info['name'];?></strong>
+		</p>
+		<dl class="PI-bodyList PI-ico PI-job  ">
+			<dt class="PI-Mes">面试通知：</dt>
+			<dd>
+				<a class="tdu red" href="?m=personal&action=interviewList" target="_blank"><strong><?php echo !empty($header_info['interviewCount'])?$header_info['interviewCount']:0;?></strong></a> 条
+			</dd>
+			<dt class="PI-JC">工作申请：</dt>
+			<dd>
+				<a class="tdu red" href="?m=personal&action=applyList" target="_blank"><strong><?php echo !empty($header_info['applyCount'])?$header_info['applyCount']:0;?></strong></a> 个
+			</dd>
+			<dd></dd>
+		</dl>
+		<dl class="PI-bodyList PI-Depart PI-ico">
+			<dt class="PI-Sta">求职状态：</dt>
+			<dd class="j-more angmoreP">
+				<a class="red j-container">
+					<?php echo !empty($header_info['jobStatus'])?$header_info['jobStatus']:'立即填写';?>
+				</a>
+			</dd>
+			<dt class="PI-Tel">手机号码：</dt>
+			<dd>
+				<a title="<?php echo $header_info['phone'];?>" class="gray3" href="?m=personal&action=editinfo"><?php echo !empty($header_info['phone'])?$header_info['phone']:'立即填写';?></a>
+			</dd>
+			<dt class="PI-JP">邮箱地址：</dt>
+			<dd>
+				<a title="<?php echo $header_info['email'];?>" class="gray3 PI-email" href="?m=personal&action=editinfo"><?php echo !empty($header_info['email'])?$header_info['email']:'立即填写';?></a>
+				<img alt="" class="vfsuc" src="http://htm.baicai.cn/template_2/images/cimg.png">
+			</dd>
+		</dl>
+		<p class="PI-btnGroup">
+			<a href="?m=personal&action=editinfo" class="PI-completeBtn" target="_blank">完善简历</a>
+			<a href="?m=resume&action=view&p=<?php echo base64_encode($header_info['id']);?>" class="PI-bookingBtn" target="_blank">预览简历</a>
+		</p>
+	</div>
+</div>
+<?php  } else if ($header_identity == 'company'){ ?>
+<div class="col_1">
+	<div class="faa PI-body">
+		<div class="PI-imgBox">
+			<a href="?m=company&action=editinfo">
+				<img alt="<?php echo $header_info['name'];?>" src="<?php echo empty($header_info['avatar'])?'/Template/2012/images/default.jpg':$header_info['avatar'];?>">
+				<span class="PI-imgBox-Oper">[ 修改头像 ]</span>
+			</a>
+		</div>
+		<p class="PI-bodyName wsnhd">
+			<strong title="<?php echo empty($header_info['name'])?$header_info['email']:$header_info['name'];?>">
+				<?php echo empty($header_info['name'])?mb_substr($header_info['email'],0,8,'UTF-8'):mb_substr($header_info['name'],0,8,'UTF-8');?>
+			</strong>
+		</p>
+		<dl class="PI-bodyList PI-ico PI-job  ">
+			<dt class="PI-Mes">职位数：</dt>
+			<dd>
+				<a class="tdu red" href="?m=company&action=joblist" target="_blank"><strong><?php echo !empty($header_info['interviewCount'])?$header_info['interviewCount']:0;?></strong></a> 个
+			</dd>
+			<dt class="PI-JC">收到简历：</dt>
+			<dd>
+				<a class="tdu red" href="?m=company&action=messageList" target="_blank"><strong><?php echo !empty($header_info['applyCount'])?$header_info['applyCount']:0;?></strong></a> 封
+			</dd>
+			<dd></dd>
+		</dl>
+		<dl class="PI-bodyList PI-Depart PI-ico">
+			<dt class="PI-Sta">审核状态：</dt>
+			<dd class="j-more angmoreP">
+					<?php echo !empty($header_info['status'])?$header_info['status']:'立即填写';?>
+			</dd>
+			<dt class="PI-Tel">手机号码：</dt>
+			<dd>
+				<a title="<?php echo $header_info['phone'];?>" class="gray3" href="?m=company&action=editinfo"><?php echo !empty($header_info['phone'])?$header_info['phone']:'立即填写';?></a>
+			</dd>
+			<dt class="PI-JP">邮箱地址：</dt>
+			<dd>
+				<a title="<?php echo $header_info['email'];?>" class="gray3 PI-email" href="?m=company&action=editinfo"><?php echo !empty($header_info['email'])?$header_info['email']:'立即填写';?></a>
+				<img alt="" class="vfsuc" src="http://htm.baicai.cn/template_2/images/cimg.png">
+			</dd>
+		</dl>
+		<p class="PI-btnGroup">
+			<a href="?m=company&action=editinfo" class="PI-completeBtn" target="_blank">修改资料</a>
+			<a href="?m=company&action=publishJob" class="PI-bookingBtn" target="_blank">发布职位</a>
+		</p>
+	</div>
+</div>
+<?php } ?>

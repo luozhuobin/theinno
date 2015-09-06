@@ -1,0 +1,53 @@
+<div class="big_wapper" id="header">
+	<div class="wapper" id="header_top">
+    	<div id="logo">
+        	<a href="">
+            	<img src="/Template/2012/images/logo.jpg" />
+            </a>
+        </div>
+        <div id="login_user">
+			<?php
+				if($m != "index"){
+					echo '<a href="?m='.$m.'&action=logout" class="loginout">退出</a>';
+				}
+			?>
+        	<span>您好，
+				<span style="float:right;"><a href="http://wpa.qq.com/msgrd?v=3&uin=2413758752&site=hrh.theinno.org&menu=yes">在线咨询</a></span>
+				<a href="?m=<?php echo $m;?>"><?php echo $name?></a><img src="/Template/2012/images/person.jpg" />
+			</span>
+        </div>
+        <Ul class="menu">
+        	<li>
+            	<a class="biga" href="?m=index">首页</a>
+            </li>
+        	<li>
+            	<a class="biga" href="?m=news&t=2">新闻中心</a>
+                <dl>
+                	<dd>
+                    	<a href="?m=news&t=2">残就新闻</a>
+                    </dd>
+                	<dd>
+                    	<a href="?m=news&t=1">活动培训</a>
+                    </dd>
+                    
+                    <dd>
+                    	<a href="?m=news&t=3">名企招聘</a>
+                    </dd>
+                </dl>
+            </li>
+            <li>
+            	<a class="biga" href="?m=job">求职天地</a>
+            </li>
+            <li>
+            	<a class="biga" href="?m=resume">招贤纳士</a>
+            </li>
+            <!--<li>
+            	<a class="biga" href="">咨询交流</a>
+            </li> -->
+            <li>
+            	<a class="biga" href="?m=about">关于映诺</a>
+            </li>
+        </Ul>
+		<span style="float:right;margin-right:20px;">专属残疾人的就业平台</span>
+    </div>	
+</div>

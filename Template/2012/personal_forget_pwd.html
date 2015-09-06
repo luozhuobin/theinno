@@ -1,0 +1,57 @@
+<?php $this->getModel("header")->init();?>
+<body>
+<!-- 顶部菜单 -->
+<?php $this->getModel("header")->headerMenu();?>
+
+<div class="wapper usercontent">
+	<?php $this->getModel("header")->forgetModuleLeftMenu();?>
+    <div class="wright">
+    	
+         <div class="mypass">
+         	<form id="changePwd">
+         	<ul class="com">
+            	<li class="com">
+                	<span>请输入帐号</span>
+                    <div>
+						<input name="email" id="email" class="form_field" type="text" onblur="emailVerify('email','emailInfo');"/>
+						<span id="emailInfo"></span>
+                    </div>
+                </li>
+            </ul>
+            <div class="com myinfo_update_btn pass_update_btn">
+            	<input type="submit" value="确定" onclick="sendEmail();return false;"/><br />
+            	<span id="resultInfo"></span>
+            </div>
+            </form>
+         </div>
+        
+    </div>
+</div> 
+<script type="text/javascript">
+function sendEmail(){
+	var email = jQuery("#email").val();
+	var isEmail = emailVerify('email','resultInfo');
+	if(isEmail){
+		$.ajax({
+			   type: "POST",
+			   url: "default.php?m=personal&action=sendForgetPwdEmail",
+			   data: "email="+email,
+			   dataType:"json",
+			   success: function(data){
+			   		switch(data['code']){
+			   			case '-1':
+			   				ShowMsg('resultInfo',0,data['msg']);
+				   		break;
+			   			case '1':
+			   				ShowMsg('resultInfo',1,data['msg']);
+				   			break;
+			   		}
+			   }
+			});
+	}
+
+}
+</script>
+<script type="text/javascript" src="/Template/2012/js/base.js"></script>
+</body>
+</html>

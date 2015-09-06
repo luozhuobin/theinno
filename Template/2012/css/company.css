@@ -1,0 +1,25 @@
+.job-table {
+    background: url("../images/template/table-background.png") repeat-x scroll left top #FAFAFA;
+    width: 100%;
+}
+.job-table thead tr th, .job-table thead tr td {
+    background: none repeat scroll 0 0 #06478B;
+    border-bottom: 4px solid #1C2A31;
+    color: #FFFFFF;
+    padding: 10px 15px;
+    text-align: left;
+    text-shadow: 0 -1px 0 #293E47;
+}
+.job-table tbody tr td {
+    border-bottom: 1px solid #D4D4D4;
+    border-top: 1px solid #FEFEFE;
+    padding: 8px 15px;
+}
+.job-table .last-col {
+    text-align: right;
+}
+.job-table tfoot td {
+    font-size: 0.88em;
+    padding: 10px 15px;
+    text-align: right;
+}

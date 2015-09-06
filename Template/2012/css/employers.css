@@ -1,0 +1,310 @@
+/** Employers **/
+
+/** Employers -- View Employer **/
+
+.view-employer .col_1 {
+	margin-top:30px;
+}
+
+.view-employer .employer_image {
+	width: 305px;
+}
+
+.view-employer .info_section {
+
+}
+
+.view-employer .info_section ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.view-employer h4 {
+	margin:0;
+	padding:15px 0 0 0;
+}
+
+.view-employer .col_1 p {
+	margin:0;
+	padding:0;
+}
+
+/** Employers -- Sidebar **/
+
+.employer_login {
+	background:#efefef;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #d1d1d1;
+	padding:10px;
+}
+
+.employer_login form ul {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+.employer_login form ul li {
+	margin:0 0 10px 0;
+}
+
+.employer_login form label {
+	font-weight:bold;
+	display:block;
+	margin:0 0 3px 0;
+}
+
+.employer_login form .form_field {
+	width:217px;
+	padding:4px;
+}
+
+.employer_login #sign-in {
+	padding:3px 10px;
+}
+
+.buy_credits,
+.subscribe {
+	background:#ACDC47;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ACDC47), color-stop(100%,#84B322)); 
+	background: -moz-linear-gradient(top, #ACDC47 0%, #84B322 100%); 
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ACDC47', endColorstr='#84B322', GradientType=0); 
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding:10px;
+	border: 1px solid #6B8831;
+}
+
+.buy_credits p,
+.subscribe p {
+	line-height:1.4;
+	margin:0;
+	padding:0;
+}
+
+.buy_credits a.button,
+.subscribe  a.button {
+	margin-top:10px;
+	display:block;
+}
+
+.account-menu ul {
+	margin: 20px 0 0 0;
+	padding: 0;
+	list-style-type: none;
+	background: #efefef;
+	border: 1px solid #e2e2e2;
+}
+
+.account-menu ul li a {
+	display: block;
+	padding: 10px;
+	border-bottom: 1px solid #d4d4d4;
+	border-top: 1px solid #fefefe;
+}
+
+.account-menu ul li a:hover {
+	background: #dadada;
+}
+
+.job-credits {
+	background: #F1EE63;
+	background: -moz-linear-gradient(top, #F1EE63 0%, #EFE81F 100%); /* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F1EE63), color-stop(100%,#EFE81F)); /* webkit */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F1EE63', endColorstr='#EFE81F',GradientType=0 ); /* ie */
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 10px;
+	border: 1px solid #CEB54D;
+}
+
+.job-credits p {
+	margin: 0;
+}
+
+.job-credits p.token {
+	background: url(./images/token.png) 5px 50% no-repeat;	
+	padding-left: 50px;
+}
+
+
+.job-credits p.access {
+	margin-top: 10px;
+	border-top: 1px solid #CEB54D;
+	padding-top: 10px;
+	background: url(./images/search.png) 5px 50% no-repeat;	
+	padding-left: 50px;
+}
+
+.small {
+	display: block;
+	font-size: 0.75em;
+}
+
+
+/** Account -- Dashboard **/
+
+.account-job {
+	background:#f0f0f0;
+	margin:0 0 15px 0;
+	font-size:0.9em;
+	padding:6px;
+	border-bottom:5px solid #ccc;
+}
+
+.account-job h2 {
+	font-size:1.2em;
+	font-weight:bold;
+	margin:0;
+	padding:6px 0 6px 0;
+}
+
+.account-job ul {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+.account-job .details {
+	float:left;
+	width:400px;
+}
+
+.account-job .details ul li {
+	padding:5px 0 5px 20px;
+	background:url(./images/plus.png) no-repeat left center;
+}
+
+.account-job .options {
+	width:180px;
+	border-left:1px solid #ccc;
+	float:right;
+	padding-left:10px;
+}
+
+.account-job .options ul li {
+	padding:5px 0 5px 0;
+}
+
+span.status {
+	font-weight:normal;
+	font-size: 0.8em;
+	padding: 2px 5px;
+	font-family: arial;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	vertical-align: 0;
+	color: #fff;
+}
+
+span.status.live {
+	background: #A8B613;
+}
+
+span.status.not-live {
+	background: #DC0A1F;
+}
+
+span.status.expired {
+	background: #333;
+}
+
+span.status.not-started {
+	background: #666;
+}
+
+/** Account -- Buy Credits **/
+
+.credit-packs .credit-pack {
+	width:176px;
+	height:200px;
+	float:left;
+	text-align:center;
+	margin:0 10px 10px 0;
+	font-size:0.88em;
+}
+
+
+.credit-packs .credit-pack ul {
+	margin:0 0 5px 0;
+	list-style:none;
+	background:#f5f5f5;
+	border:1px solid #e2e2e2;
+	padding:11px 6px 6px 6px;
+	height:120px;
+}
+
+.credit-packs .credit-pack ul li {
+	padding:0 0 5px 0;
+}
+
+.products h3 {
+	font-size:1.5em;
+}
+
+#subscription {
+	line-height:1.5;
+}
+
+/** Account - Add/Edit Job Form **/
+
+.sector-list {
+	margin:0;
+	padding:20px 0 0 0 !important;
+	list-style:none;
+}
+
+.sector-list li {
+	display:block;
+	float:left;
+	width:290px;
+	padding:0 0 4px 0;
+}
+
+/** Account - View Job**/
+
+#view-job .summary {
+	width:100%;
+	margin-top:15px;
+}
+
+#view-job .summary th {
+	text-align:left;
+	background:#E8E8E8;
+}
+
+#view-job .summary td {
+	background:#F2F2F2;
+}
+
+#view-job .summary td,
+#view-job .summary th
+{
+	padding:5px;
+	border-bottom:1px solid #DFDFDF;
+}
+
+#view-job .job_details {
+	font-size: 0.88em;
+	background: #f0f0f0;
+	border: 1px solid #e2e2e2;
+	padding: 10px;
+	width: 100%;
+	margin: 0 0 10px 0;
+}
+
+#view-job .job_details th {
+	text-align: left;
+	width: 13%;
+}
+
+#view-job .job_details th,
+#view-job .job_details td {
+	padding: 2px 0;
+}

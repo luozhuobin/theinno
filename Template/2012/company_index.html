@@ -1,0 +1,72 @@
+<?php $this->getModel("header")->init();?>
+<body>
+<!-- 顶部菜单 -->
+<?php $this->getModel("header")->headerMenu();?>
+
+<div class="wapper usercontent">
+	<?php $this->getModel("company")->leftMenu();?>
+    <div class="wright">
+        <div class="com padleft">
+        	用户名　　<?php echo $info["name"];?>
+        </div>
+        <div class="com padleft hrtitle">
+        	已发邀请的简历
+        </div>
+        <div class="com padleft hrlist">
+        	<table width="100%">
+            	<tr>
+                	<td>
+                    	求职者姓名
+                    </td>
+                    <td>
+                    	职位名
+                    </td>
+                    <td>
+                    	邀请时间
+                    </td>
+                    <td >
+                    	面试时间
+                    </td>
+                    <td >
+                    	面试地址
+                    </td>
+                    <td>
+                    	注意事项
+                    </td>
+                </tr>	
+                <?php
+                	foreach($resumeList as $key=>$value){
+						echo '<tr>
+                				<td>
+                    				'.$value["pname"].'
+                    			</td>
+                    			<td>
+                    				'.$value["jname"].'
+                    			</td>
+                    			<td>
+                    				'.$value["createTime"].'
+                    			</td>
+                    			<td >
+                    				'.$value["time"].'
+                    			</td>
+                    			<td >
+                    				'.$value["address"].'
+                    			</td>
+                    			<td>
+                    				'.$value["desc"].'
+                    			</td>
+                			</tr>';
+					}
+                ?>
+            </table>
+            <div class="com">
+                    <div class="fanye">
+                    	<?php echo $subPageCss2;?>
+                    </div>
+        	</div>
+        </div>
+    </div>
+</div> 
+ 
+</body>
+</html>

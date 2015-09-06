@@ -1,0 +1,31 @@
+<?php $this->getModel("header")->init();?>
+<body>
+<!-- 顶部菜单 -->
+<?php $this->getModel("header")->headerMenu();?>
+
+<div class="wapper usercontent">
+	<?php $this->getModel("header")->forgetModuleLeftMenu();?>
+    <div class="wright">
+    	
+         <div class="mypass">
+         	<form id="changePwd">
+         	<ul class="com">
+            	<li class="com">
+                	<span>请输入帐号</span>
+                    <div>
+						<input name="email" id="email" class="form_field" type="text" onblur="emailVerify('email','resultInfo');"/>
+						<span id="emailInfo"></span>
+                    </div>
+                </li>
+            </ul>
+            <div class="com myinfo_update_btn pass_update_btn">
+            	<input type="submit" value="确定" onclick="emailIsExist('personal');return false;" id="submit"/><br />
+            	<span id="resultInfo"></span>
+            </div>
+            </form>
+         </div>
+        
+    </div>
+</div> 
+</body>
+</html>

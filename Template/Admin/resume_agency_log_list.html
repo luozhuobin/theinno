@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>代发简历列表</title>
+	<meta name="robots" content="noindex, nofollow">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="./Template/Admin/css/General.css" rel="stylesheet" type="text/css" />
+	<link href="./Template/Admin/css/Main.css" rel="stylesheet" type="text/css" />
+	<script src='./Template/Admin/js/jquery-1.8.1.min.js'></script>
+	<script language=javascript src="./Template/Admin/js/facebox/facebox.js"></script>
+	<link href="./Template/Admin/js/facebox/facebox.css" rel="stylesheet" type="text/css" />
+</head>
+<script type="text/javascript">
+
+</script>
+<body>
+<style>
+	#x{
+		font-size:14pt;
+		color:red;
+		padding-left:5px;
+	}
+</style>
+<h1>
+	<span class="action-span1">代发简历列表</span>
+	<div style="clear:both"></div>
+</h1>
+<form action='' method=post>
+<div class="list-div" style='clear:both;' id=listdiv>
+<table cellspacing='1' cellpadding='3' id="table1" width="100%">
+<tr>
+<td>
+搜索：
+&nbsp;&nbsp;
+公司名称：<input type="text" name="cName" value="<?PHP echo !empty($_REQUEST['cName'])?$_REQUEST['cName']:'';?>" />
+&nbsp;&nbsp;
+职位名称：<input type="text" name="jName" value="<?PHP echo !empty($_REQUEST['jName'])?$_REQUEST['jName']:'';?>" />
+&nbsp;&nbsp;
+求职者姓名：<input type="text" name="name" value="<?PHP echo !empty($_REQUEST['name'])?$_REQUEST['name']:'';?>" />
+<input type="hidden" value="admin" name="c"/>
+<input type="hidden" value="list" name="m" />
+<input type="submit" name="Submit" value="搜索" />
+</td>
+</tr>
+</table>
+</div>
+</form>
+<div class="list-div" style='clear:both;' id=listdiv>
+<form action='' method=post enctype="multipart/form-data">
+<table cellspacing='1' cellpadding='3' id="table1" width="100%">
+<tr>
+<th>ID</th>
+<th>发送公司名称</th>
+<th>发送职位名称</th>
+<th>发送邮箱</th>
+<th>求职者姓名</th>
+<th>性别</th>
+<th>出生日期</th>
+<th>学历</th>
+<th>残疾类型</th>
+<th>残疾等级</th>
+<th>期望职位</th>
+<th>QQ号码</th>
+<th>手机号码</th>
+<th>邮箱</th>
+<th>工作经验</th>
+<th>教育经验</th>
+<!-- <th>技能特长</th> -->
+<th>自我介绍</th>
+<th>发送时间</th>
+<th>操作</th>
+</tr>
+<?PHP foreach($list as $id=>$arr){?>
+  <tr>
+    <td align="center"><?PHP echo $arr['id'];?></td>
+	<td align="center"><?php echo $arr['companyName'];?></td>
+	<td align="center"><?php echo $arr['jobName'];?></td>
+	<td align="center"><?php echo $arr['c_email'];?></td>
+	<td align="center"><?PHP echo $arr['name'];?></td>
+	<td align='center'><?PHP echo $arr['sex'];?></td>
+	<td align='center'><?PHP echo $arr['birthday'];?></td>
+	<td align='center'><?PHP echo $arr['degree'];?></td>
+	<td align='center'><?PHP echo $arr['disableType'];?></td>
+	<td align='center'><?PHP echo $arr['disableRate'];?></td>
+	<td align='center'><?PHP echo $arr['expJob'];?></td>
+	<td align='center'><?PHP echo $arr['qq'];?></td>
+	<td align='center'><?PHP echo $arr['phone'];?></td>
+	<td align='center'><?PHP echo $arr['email'];?></td>
+	<td align='center'><a href="?c=admin&m=list&action=resumeAgencyInfo&id=<?php echo $arr['id'];?>">查看详细</a></td>
+	<!-- <td align='center'><a href="?c=admin&m=list&action=resumeAgencyInfo&id=<?php echo $arr['id'];?>">查看详细</a></td> -->
+	<td align='center'><a href="?c=admin&m=list&action=resumeAgencyInfo&id=<?php echo $arr['id'];?>">查看详细</a></td>
+	<td align='center'><a href="?c=admin&m=list&action=resumeAgencyInfo&id=<?php echo $arr['id'];?>">查看详细</a></td>
+	<td align="center"><?php echo $arr['createTime'];?></td>
+	<td align="center"><a href="?c=admin&m=list&action=resumeAgency&id=<?php echo $arr['id'];?>">转发</a></td>
+    </tr>
+<?PHP };?>
+  <tr>
+    <td align="left" colspan="19" class="pageCont">
+    	<a href="javascript:;">共<?php echo $total;?>条</a>
+    	<a href="javascript:;">共<?php echo $page_total;?>页</a>
+    	<?php echo $subPageCss2;?>
+    </td>
+  </tr>
+  </table>
+</form>
+</div>
+<script type="text/javascript">
+function changeStatus(companyId,status,obj){
+	$.ajax({
+		   type: "POST",
+		   url: "?c=admin&m=company&action=changeStatus",
+		   data: "companyId="+companyId+"&status="+status,
+		   dataType:"json",
+		   success: function(data){
+				jQuery("#status"+companyId).html(data['msg']);
+		   }
+		});
+}
+</script>

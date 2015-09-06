@@ -1,0 +1,43 @@
+<div class="search">
+    <form id="form" name="form" method="GET" action="">
+    	<div class="search_con">
+        	<div class="com jobtitle">
+        		<?php
+        			if($_GET["m"] == "job"){
+						echo '搜索职位';
+					}else{
+						echo '搜索简历';
+					}
+        		?>
+            </div>
+            <div class="com jobname">
+            	<input type="text" value="<?php echo !empty($_GET['job'])?$_GET['job']:'请输入职位';?>" id="job" onfocus="if(value=='请输入职位') {value=''}" onblur="if (value=='') {value='请输入职位'}"  name="job"/>
+            </div>
+            <div class="com jobear" id="uboxstyle">
+                 <input type="text" id="c_input" class="selectbox" value="<?php echo !empty($_GET['area'])?$_GET['area']:'选择地区';?>" autocomplete="off" name="area"/>
+ 				 <div class="erlist">
+                 	<dl>
+                    	<dd>
+                        	<a href="javascript:void(0);">广州</a>
+                        </dd>
+                        <dd>
+                        	<a href="javascript:void(0);">上海</a>
+                        </dd>
+                        <dd>
+                        	<a href="javascript:void(0);">北京</a>
+                        </dd>
+                        <dd>
+                        	<a href="javascript:void(0);">深圳</a>
+                        </dd>
+                    </dl>
+                 </div>
+ 
+
+            </div>
+            <div class="com job_btn">
+            	<input type="hidden" value="<?php echo $_GET["m"];?>" name="m" />
+            	<input type="submit" value="搜 索" />
+            </div>
+        </div>
+        </form>
+    </div>	

@@ -1,0 +1,19 @@
+<?php $this->getModel("header")->init();?>
+<div id="body-container">
+	<div class="center clearfix">
+		<div class="col_2">
+			<div style="padding-top:20px;border-bottom:1px solid #CCC;">
+				<h2><?php echo $projects["title"] ?></h2>
+				<p>发布时间：<?php echo $projects["pdate"]; ?></p>
+				<p>来源：残疾人就业热线平台</p>
+			</div>
+			<div id="articles">
+			<?php echo $projects["desc"] ?>
+			</div>
+			
+		</div>
+		
+<?php $this->getModel("header")->getLoginForm();?>
+	</div>
+</div>	
+<?php $this->getModel("header")->getFooter();?>

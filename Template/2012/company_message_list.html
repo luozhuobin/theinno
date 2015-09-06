@@ -1,0 +1,58 @@
+<?php $this->getModel("header")->init();?>	
+<script type="text/javascript">
+/**
+ * 消息设置为已读
+ */
+function setRead(id,obj){
+	$.ajax({
+		   type: "POST",
+		   url: "<?php echo WEBDOMAIN;?>?m=company&action=setRead",
+		   data: "msgId="+id,
+		   dataType:"json",
+		   success: function(data){
+		     jQuery(obj).css("font-weight","normal");
+		   }
+		});
+}
+</script>		
+<div id="body-container">
+	<div class="center clearfix">
+		<div class="col_2" style="width:100%">
+				<h2>应聘记录</h2>
+				<table cellspacing="0" cellpadding="0" class="job-table" id="latest-jobs">
+					<thead>
+						<tr>
+							<th class="pos-col" scope="col">应聘日期</th>
+							<th scope="col">应聘简历</th>
+							<th scope="col">职位名称</th>
+							<th scope="col">工作地点</th>
+							<th scope="col">发布日期</th>
+						</tr>
+					</thead>		
+					<tfoot>
+						<tr>
+							<td colspan="7" class="pageCont">
+								<?php echo $subPageCss2;?>
+							</td>
+						</tr>
+					</tfoot>
+					<tbody>
+						<?php
+							foreach($list as $key=>$value){
+						?>
+							<tr <?php echo $value['isRead'].$value['trClick'];?>>
+								<td><?php echo $value['applyTime'];?></td>
+								<td><a href="<?php echo '?m=resume&action=view&p='.$value['pId'].'&j='.$value['jobId'];?>" target="_blank"><?php echo $value['resume'];?></a></td>
+								<td><a href="?m=job&action=info&jobId=<?php echo $value['jobId'];?>" target="_blank"><?php echo $value['jobName'];?></a></td>
+								<td><?php echo $value['city'];?></td>
+								<td><?php echo $value['publishTime'];?></td>
+							</tr>
+						<?php
+							}
+						?>
+						</tbody>		
+				</table>				
+			</div>
+	</div>
+</div>
+<?php $this->getModel("header")->getFooter();?>

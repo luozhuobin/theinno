@@ -1,0 +1,88 @@
+﻿<!-- $ $ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>软件目录</title>
+	<meta name="robots" content="noindex, nofollow">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="./Template/Admin/Css/General.css" rel="stylesheet" type="text/css" />
+	<link href="./Template/Admin/Css/Main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>
+	<span class='action-span'><a href='?c=admin&m=class&action=add'>添加类别</a></span>
+	<span class="action-span1">Manage - 资讯类别</span>
+	<div style="clear:both"></div>
+</h1>
+<script type="text/javascript" src="./Template/Admin/Js/Utils.js"></script>
+
+
+<div class="list-div" >
+<table cellspacing='1' cellpadding='3' id="table4" width="100%">
+  <tr>
+    <th class="group-title" height=28 style="text-align: left">类别编辑</th>
+  </tr>
+  <tr>
+    <td width="946" align="right" style="font-family: arial">
+	<div align="center">
+		<table class="tableborder" width="98%" id="table5">
+			<tr class="altbg1">
+				<td width="99%">
+					<?PHP
+	$comp_depth=1;
+	foreach((array)$list as $false=>$arr){
+		@extract($arr);
+		if(0==$parentid)
+		{
+			if($comp_depth>$depth){
+				for($k=$comp_depth;$k>=$depth;$k--){
+					echo "</ul>";
+				}
+				$comp_depth=$depth;
+			}
+			echo "<LI>{$title} <a href='?c=admin&m=class&id={$class_id}&action=add'>添加下级类别</a> <a href='?c=admin&m=class&action=edit&id={$class_id}'>编辑</a>&nbsp;<a href='".$param."&action=prev&id={$class_id}'>上移</a>&nbsp;<a href='".$param."&action=next&id={$class_id}'>下移</a> <a href=\"javascript:del('{$class_id}');\">删除</a></li>";#href='".$param."&action=del&id={$class_id}'
+		}
+		else
+		{
+			//echo $depth;
+			if($comp_depth<$depth){
+				echo "<UL>";
+				//echo "$comp_depth $depth";
+				$comp_depth=$depth;
+			}
+			elseif($comp_depth>$depth){
+				for($k=$comp_depth;$k>$depth;$k--){
+					echo "</ul>";
+				}
+				$comp_depth=$depth;
+			}
+			echo "<LI>{$title}  <a href='?c=admin&m=class&id={$class_id}&action=add'>添加下级类别</a> <a href='?c=admin&m=class&action=edit&id={$class_id}'>编辑</a>&nbsp;<a href='".$param."&action=prev&id={$class_id}'>上移</a>&nbsp;<a href='".$param."&action=next&id={$class_id}'>下移</a> <a href=\"javascript:del('{$class_id}');\">删除</a></li>";
+		}
+	}
+	echo "<UL>";
+	unset($class_id);
+	?>
+				</td>
+			</tr>
+		</table>
+	</div>
+	</td>
+  </tr>
+  </table>
+</div>
+<script language=javascript>
+function del(id)
+{
+	if(confirm("确定要删除记录吗？"))
+	{
+		window.location.replace("./?c=admin&m=class&action=del&id="+id);
+	}
+}
+function screen(id,title,action)
+{
+	if(confirm("确定要 "+action+" "+title+" 记录吗？"))
+	{
+		window.location.href("?c=admin&m=class_list&action=screen&id="+id);
+	}
+}
+</script>

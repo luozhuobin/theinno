@@ -1,0 +1,103 @@
+<!-- $ $ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title></title>
+	<meta name="robots" content="noindex, nofollow">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="./Template/Admin/css/General.css" rel="stylesheet" type="text/css" />
+	<link href="./Template/Admin/css/Main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>
+	<span class="action-span1">Manage - 职位详细信息</span>
+	<div style="clear:both"></div>
+</h1>
+<div class="list-div" id=listdiv>
+<table cellspacing='1' cellpadding='3' id="table1" width="100%">
+  <tr>
+    <th class="group-title" style="text-align: center;width:5%;">职位Id：</th>
+    <td class="group-title" >
+		<?PHP echo $list['id'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;width:5%;">公司名称：</th>
+    <td class="group-title" >
+		<?PHP echo $list['companyName'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >公司审核状态：</th>
+    <td class="group-title">
+		<?PHP echo $list['companyStatus'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >职位名称：</th>
+    <td class="group-title">
+		<?PHP echo $list['name'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >工作城市：</th>
+    <td class="group-title">
+		<?PHP echo $list['city'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >残疾类型：</th>
+    <td class="group-title">
+		<?PHP echo $list['disableType'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >学历：</th>
+    <td class="group-title">
+		<?PHP echo $list['degree'];?>
+	</td>
+  </tr>
+    <tr>
+    <th class="group-title" style="text-align: center;" >薪酬待遇：</th>
+    <td class="group-title">
+		<?PHP echo $list['salary'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >工作描述：</th>
+    <td class="group-title">
+		<?PHP echo $list['desc'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >职位截止时间：</th>
+    <td class="group-title">
+		<?PHP echo $list['cutofftime'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >审核状态：</th>
+    <td class="group-title">
+    	<?php echo $list['status'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >发布状态：</th>
+    <td class="group-title">
+    	<?php echo $list['publishStatus'];?>
+	</td>
+  </tr>
+    <tr>
+    <th class="group-title" style="text-align: center;" >发布时间：</th>
+    <td class="group-title">
+		<?PHP echo $list['createTime'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >最后修改资料时间：</th>
+    <td class="group-title">
+		<?PHP echo $list['lastUpdateTime'];?>
+	</td>
+  </tr>
+  </table>
+</div>

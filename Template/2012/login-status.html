@@ -1,0 +1,38 @@
+<li class="first">您好，<strong><a href="<?php echo WEBDOMAIN.'?m='.$header_identity;?>"><?php echo empty($header_info['name'])?$header_info['email']:$header_info['name'];?></a></strong></li>
+			<li class="last"><a href="<?php echo WEBDOMAIN.'?m='.$header_identity.'&action=editinfo';?>">修改资料</a></li>
+			<li class="last"><a href="<?php echo WEBDOMAIN.'?m='.$header_identity.'&action=logout';?>">退出</a></li>
+			
+			
+			
+			
+<script type="text/javascript" src="./Template/2012/js/CT_lightbox/CT_lightbox.js"></script>
+<link rel="stylesheet" href="./Template/2012/js/CT_lightbox/CT_lightbox.css" type="text/css" >
+<div class="CT_pop_window" id="CT_pop_window">
+	<div class="tipsWindow ac" id="user_login" style="display:none;">
+	<div class="logWrap">
+	<div class="logCon"> 
+        <div class="logTitle">        	
+            <div class="close"><a href="javascript:;" onclick="javascript:CT_close();"><img src="/Template/2012/images/reg1Close.gif" /></a></div>
+        </div>
+    	<div class="logItem" style="font-size:13px;">
+            <form action="?m=personal&action=doLogin" method="post">
+                	<div class="windowLogin">
+                		<div id="login_box_info"></div>
+                        <div class="regItem">
+                            您好，<strong><a href="<?php echo WEBDOMAIN.'?m='.$header_identity;?>"><?php echo empty($header_info['name'])?$header_info['email']:$header_info['name'];?></a></strong>
+							
+                        </div>
+                        <div class="regItem">
+                            <a href="<?php echo WEBDOMAIN.'?m='.$header_identity.'&action=editinfo';?>">修改资料</a>
+							<a href="<?php echo WEBDOMAIN.'?m='.$header_identity.'&action=logout';?>">退出</a>
+                        </div>
+                       
+                     </div> 
+
+            </form>
+      	</div>
+    </div>   
+	</div>
+    </div>
+</div>
+<div class="CT_mask"></div>

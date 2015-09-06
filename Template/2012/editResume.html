@@ -1,0 +1,360 @@
+<?php $this->getModel("header")->init();?>
+<body>
+<!-- 顶部菜单 -->
+<?php $this->getModel("header")->headerMenu();?>
+
+<div class="wapper usercontent">
+	<?php $this->getModel("personal")->leftMenu();?>
+    <div class="wright">
+    	<form name="info" method="post" action="?m=personal&action=resumefinish" enctype="multipart/form-data">
+        <div class="myinfo" id="myinfo">
+        	<ul class="com myinfo">
+            	<li class="myinfo_img">
+                	<img src="<?php echo empty($info["avatar"])?'/Template/2012/images/person.jpg':$info["avatar"];?>" />
+                </li>
+                <li class="myinfo_content">
+                	<dl>
+                    	<dd>
+                        	<span>
+                            	姓名
+                            </span>
+                            <div>
+                            	<input type="text" value="<?php echo $info["name"];?>" name="name"/>
+                            </div>
+                        </dd>
+                        <dd>
+                        	<span>
+                            	出生日期
+                            </span>
+                            <div>
+                            	<input type="text" value="<?php echo $info["birthday"];?>" name="birthday" onClick="WdatePicker()"/>
+                            </div>
+                        </dd>	
+                        <dd>
+                        	<span>
+                            	应聘职位
+                            </span>
+                            <div>
+                            	<input type="text" value="<?php echo $info["job"];?>" name="job" />
+                            </div>
+                        </dd>	
+                        <dd>
+                        	<span>
+                            	工作年限
+                            </span>
+                            <div>
+                            	<select name="workLength" style="width:80px;height:37px;">
+                            		<option value="">请选择</option>
+                            		<?php
+                            			foreach($workLength as $key=>$value){
+											$select = $key == $info["workLength"] ? 'selected="selected"' : '';
+											echo '<option value="'.$key.'" '.$select.'>'.$value.'</option>';
+										}
+                            		?>
+                            	</select>
+                            </div>
+                        </dd>	
+                        
+                        <dd>
+                        	<span>
+                            	求职状态
+                            </span>
+                            <div>
+                            	<select name="type" style="width:80px;height:37px;">
+                            		<option value="">请选择</option>
+                            		<?php
+                            			foreach($jobStatus as $key=>$value){
+											$select = $key == $info["jobStatus"] ? 'selected="selected"' : '';
+											echo '<option value="'.$key.'" '.$select.'>'.$value.'</option>';
+										}
+                            		?>
+                            	</select>
+                            </div>
+                        </dd>
+                         <dd>
+                        	<span>
+                            	残疾类型
+                            </span>
+                            <div>
+                            	<select name="type" style="height:37px;">
+                            		<option value="">请选择</option>
+                            		<?php
+                            			foreach($disableType as $key=>$value){
+											$select = $key == $info["type"] ? 'selected="selected"' : '';
+											echo '<option value="'.$key.'" '.$select.'>'.$value.'</option>';
+										}
+                            		?>
+                            	</select>
+                            </div>
+                        </dd>
+                        <dd>
+                        	<span>
+                            	学历
+                            </span>
+                            <div>
+                            	<select name="degree" style="width:80px;height:37px;">
+                            		<option value="">请选择</option>
+                            		<?php
+                            			foreach($degree as $key=>$value){
+											$select = $key == $info["degree"] ? 'selected="selected"' : '';
+											echo '<option value="'.$key.'" '.$select.'>'.$value.'</option>';
+										}
+                            		?>
+                            	</select>
+                            </div>
+                        </dd>
+                        <dd>
+                        	<span>
+                            	兴趣
+                            </span>
+                            <div>
+                            	<input type="text" value="<?php echo $info["interest"];?>" name="interest" />
+                            </div>
+                        </dd>
+                        <dd>
+                        	<span>
+                            	专业
+                            </span>
+                            <div class="longdiv">
+                            	<input type="text" value="<?php echo $info["specialty"];?>" name="specialty" />
+                            </div>
+                        </dd>
+                        <dd>
+                        	<span>
+                            	求职意向
+                            </span>
+                            <div>
+	                            	<select name="jobStatus" style="width:80px;height:37px;">
+	                            		<option value="">请选择</option>
+	                            	<?php                         
+	                            		foreach($jobStatus as $key=>$value){
+										$selected = $info["jobStatus"] == $key ? 'selected="selected"' : '';
+										echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
+									}
+                            		?>
+	                            	</select>
+                            </div>
+                        </dd>
+                        <dd>
+                        	<span>
+                            	期望城市
+                            </span>
+                            <div class="longdiv">
+                            	<input type="text" value="<?php echo $info["expAddress"];?>" name="expAddress" />
+                            </div>
+                        </dd>
+                    </dl>
+                </li>
+                <li class="myinfo_contact">
+                	
+                    <dl>
+                    	<dd>
+                        	<span>
+                            	性别
+                            </span>
+                            <div>
+                            	<select name="sex" style="height:37px;width:80px;">
+                            		<option value="">请选择</option>
+                            	<?php                         
+                            		foreach($sex as $key=>$value){
+										$selected = $info["sex"] !== '' &&$info["sex"] == $key ? 'selected="selected"' : '';
+										echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
+									}
+                            	?>
+                            	</select>
+                            </div>
+                        </dd>	
+                    	<dd>
+                        	<span>
+                            	所在城市
+                            </span>
+                            <div>
+                            	<input type="text" value="<?php echo $info["city"];?>" name="city" />
+                            </div>
+                        </dd>	
+                        <dd>
+                        	<span>
+                            	联系方式
+                            </span>
+                            <div class="longdiv">
+                            	<input type="text" value="<?php echo $info["phone"];?>" name="phone" />
+                            </div>
+                        </dd>
+                        <dd>
+                        	<span>
+                            	QQ
+                            </span>
+                            <div class="longdiv">
+                            	<input type="text" value="<?php echo $info["qq"];?>" name="qq" />
+                            </div>
+                        </dd>
+                        <dd>
+                        	<span>
+                            	居住地址
+                            </span>
+                            <div class="longdiv">
+                            	<input type="text"  value="<?php echo $info["address"];?>" name="address" />
+                            </div>
+                        </dd>
+                         
+                        <dd>
+                        	<span>
+                            	残疾等级
+                            </span>
+                            <div class="longdiv">
+                            	<select name="disableRate" style="height:37px;width:150px;">
+                            		<option value="">请选择</option>
+                            	<?php                         
+                            		foreach($disableRate as $key=>$value){
+										$selected = $info["disableRate"] == $key ? 'selected="selected"' : '';
+										echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
+									}
+                            	?>
+                            	</select>
+                            </div>
+                        </dd>
+                        <dd>
+                        	<span>
+                            	辅助工具
+                            </span>
+                            <div class="longdiv">
+                            	<input type="text" value="<?php echo $info["addon"];?>" name="addon" />
+                            </div>
+                        </dd>
+                        
+                        <dd>
+                        	<span>
+                            	残疾号码
+                            </span>
+                            <div class="longdiv">
+                            	<input type="text"  value="<?php echo $info["number"];?>" name="number" />
+                            </div>
+                        </dd>
+                         <dd>
+                        	<span>
+                            	身份证号
+                            </span>
+                            <div class="longdiv">
+                            	<input type="text"  value="<?php echo $info["idcard"];?>" name="idcard" />
+                            </div>
+                        </dd>
+                        <dd>
+                        	<span>
+                            	期望工资
+                            </span>
+                            <div class="longdiv">
+                            	<select name="salary" style="height:37px;width:150px;">
+                            		<option value="">请选择</option>
+                            		<?php
+                            			foreach($salary as $key=>$value){
+											$selected = $info["salary"] == $key ? 'selected="selected"' : '';
+											echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
+										}
+                            		?>
+                            	</select>
+                            </div>
+                        </dd>
+                        <dd>
+                        	<span>
+                            	到岗时间
+                            </span>
+                            <div class="longdiv">
+                            	<select name="hillock" style="height:37px;width:150px;">
+                            		<option value="">请选择</option>
+                            		<?php
+                            			foreach($hillock as $key=>$value){
+											$selected = $info["hillock"] == $key ? 'selected="selected"' : '';
+											echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
+										}
+                            		?>
+                            	</select>
+                            </div>
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+        </div> 
+        
+        <div class="myinfo">
+        	<ul class="com exlist">
+        		<li class="com">
+                	<div class="extitle">
+                    	自我介绍
+                    </div>
+                    <div class="extcon">
+                    	<dl>
+                        	<dd class="txt_top">
+                            	<img src="/Template/2012/images/txt_top.jpg" />
+                            </dd>
+                            <dd class="txt_mid">
+                            	<div class="txtdiv">
+                                  <textarea class="te" name="intro"><?php echo $info["intro"];?></textarea>
+                                </div>
+                            </dd>
+                            <dd class="txt_footer">
+                            <img src="/Template/2012/images/txt_footer.jpg" />
+                            </dd>
+                        </dl>
+                    </div>
+                </li>
+            	<li class="com">
+                	<div class="extitle">
+                    	工作经历
+                    </div>
+                    <div class="extcon">
+                    	<dl>
+                        	<dd class="txt_top">
+                            	<img src="/Template/2012/images/txt_top.jpg" />
+                            </dd>
+                            <dd class="txt_mid">
+                            	<div class="txtdiv">
+                                  <textarea class="te" name="workExp"><?php echo $info["workExp"];?></textarea>
+                                </div>
+                            </dd>
+                            <dd class="txt_footer">
+                            <img src="/Template/2012/images/txt_footer.jpg" />
+                            </dd>
+                        </dl>
+                    </div>
+                </li>
+               <li class="com">
+                	<div class="extitle">
+                    	教育经历
+                    </div>
+                    <div class="extcon">
+                    	<dl>
+                        	<dd class="txt_top">
+                            	<img src="/Template/2012/images/txt_top.jpg" />
+                            </dd>
+                            <dd class="txt_mid">
+                            	<div class="txtdiv">
+                                  <textarea class="te" name="eduExp"><?php echo $info["eduExp"];?></textarea>
+                                </div>
+                            </dd>
+                            <dd class="txt_footer">
+                            <img src="/Template/2012/images/txt_footer.jpg" />
+                            </dd>
+                        </dl>
+                    </div>
+                </li>
+                <li class="com" id="avatar">
+                	<div class="extitle">
+                    	头像
+                    </div>
+                    <div class="extcon">
+                    	<dl>
+                        	<input type="file" name="avatar" />
+                        </dl>
+                    </div>
+                </li>
+            </ul>	
+        </div>
+        <div class="myinfo myinfo_update_btn">
+        	<input type="submit" value="确定修改" />
+        </div>
+        </form>
+    </div>
+</div> 
+<script language="javascript" src="/Template/2012/js/My97DatePicker/WdatePicker.js"></script>
+</body>
+</html>

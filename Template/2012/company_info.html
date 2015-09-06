@@ -1,0 +1,45 @@
+<?php $this->getModel("header")->init();?>
+<link rel="stylesheet" href="./Template/2012/css/company.css" type="text/css" >
+<div id="body-container">
+	<div class="center clearfix">
+		<div class="col_2">
+					<h1><?php echo $cname ?></h1>
+			<div class="description">
+					<p style="text-indent:2em"><?php echo $cinfo ?></p>
+			</div>
+			<h3 class="job_posts">招聘职位列表</h3>
+			<table cellspacing="0" cellpadding="0"  class="job-table">
+				<thead>
+					<tr>
+						<th style="width:100px;text-align:center;">职位名称</th>
+						<th style="width:100px;text-align:center;">工作地点</th>
+						<th style="width:100px;text-align:center;">工作经验</th>
+						<th style="width:100px;text-align:center;">截止日期</th>
+						<th style="width:100px;text-align:center;">招聘人数</th>
+					</tr>
+				</thead>		
+				<tbody>
+					<?php
+						foreach($jobList as $row){ 
+					?>
+					<tr>
+						<td style="text-align:center;">
+							<a href="?m=job&action=info&jobId=<?php echo $row["jid"] ?>" target="_blank" title="<?php echo $row["jname"] ?>">
+								<?php echo $row["jname"] ?>
+							</a>
+						</td>
+						<td style="text-align:center;"><?php echo $row["jcity"] ?></td>
+						<td style="text-align:center;"><?php echo $row['workLength'];?></td>
+						<td style="text-align:center;"><?php echo $row['cutoffTime'];?></td>
+						<td style="text-align:center;"><?php echo $row['num'];?></td>
+					</tr>
+					<?php
+						}
+							?>
+				</tbody>		
+			</table>
+				</div>
+<?php $this->getModel("header")->getLoginForm();?>
+	</div>
+</div>	
+<?php $this->getModel("header")->getFooter();?>

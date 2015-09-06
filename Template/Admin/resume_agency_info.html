@@ -1,0 +1,127 @@
+<!-- $ $ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title></title>
+	<meta name="robots" content="noindex, nofollow">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="./Template/Admin/css/General.css" rel="stylesheet" type="text/css" />
+	<link href="./Template/Admin/css/Main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>
+	<span class="action-span1">Manage - 代发简历</span>
+	<div style="clear:both"></div>
+</h1>
+<div class="list-div" id=listdiv>
+<table cellspacing='1' cellpadding='3' id="table1" width="100%">
+  <tr>
+    <th class="group-title" style="text-align: center;width:5%;">发送企业：</th>
+    <td class="group-title" >
+		<?PHP echo $list['companyName'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >发送职位：</th>
+    <td class="group-title">
+		<?PHP echo $list['jobName'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >发送邮箱：</th>
+    <td class="group-title">
+		<?PHP echo $list['c_email'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >姓名：</th>
+    <td class="group-title">
+		<?PHP echo $list['name'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >性别：</th>
+    <td class="group-title">
+		<?PHP echo $list['sex'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >出生日期：</th>
+    <td class="group-title">
+		<?PHP echo nl2br($list['birthday']);?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >学历：</th>
+    <td class="group-title">
+    	<?php echo $list['degree'];?>
+	</td>
+  </tr>
+    <tr>
+    <th class="group-title" style="text-align: center;" >残疾类型：</th>
+    <td class="group-title">
+		<?PHP echo $list['disableType'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >残疾等级：</th>
+    <td class="group-title">
+		<?PHP echo $list['disableRate'];?>
+	</td>
+  </tr>
+     <tr>
+    <th class="group-title" style="text-align: center;" >期望职位：</th>
+    <td class="group-title">
+		<?PHP echo $list['expJob'];?>
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >qq号码：</th>
+    <td class="group-title">
+		<?PHP echo $list['qq'];?>
+	</td>
+  </tr>
+    <tr>
+    <th class="group-title" style="text-align: center;" >联系电话：</th>
+    <td class="group-title">
+		<?PHP echo $list['phone'];?>
+	</td>
+  </tr>
+    <tr>
+    <th class="group-title" style="text-align: center;" >邮箱：</th>
+    <td class="group-title">
+		<?PHP echo $list['email'];?>
+	</td>
+  </tr>
+    <tr>
+    <th class="group-title" style="text-align: center;" >工作经验：</th>
+    <td class="group-title">
+		<?PHP echo $list['workExp'];?>
+	</td>
+  </tr>
+    <tr>
+    <th class="group-title" style="text-align: center;" >教育经历：</th>
+    <td class="group-title">
+		<?PHP echo $list['eduExp'];?>
+	</td>
+  </tr>
+    <tr>
+    <th class="group-title" style="text-align: center;" >自我介绍：</th>
+    <td class="group-title">
+		<?PHP echo $list['intro'];?>
+	</td>
+  </tr>
+    <tr>
+    <th class="group-title" style="text-align: center;" >简历头像：</th>
+    <td class="group-title">
+		<img src="<?php echo $list['avatar'];?>" style="width:100px;height:100px;" />
+	</td>
+  </tr>
+  <tr>
+    <th class="group-title" style="text-align: center;" >发送时间：</th>
+    <td class="group-title">
+		<?PHP echo $list['createTime'];?>
+	</td>
+  </tr>
+  </table>
+</div>

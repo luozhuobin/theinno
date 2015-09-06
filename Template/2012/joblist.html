@@ -1,0 +1,148 @@
+<?php $this->getModel("header")->init();?>
+<body>
+<!-- 顶部菜单 -->
+<?php $this->getModel("header")->headerMenu();?>
+
+<div class="wapper usercontent">
+	<?php $this->getModel("company")->leftMenu();?>
+    <div class="wright">
+        <div class="com padleft hrtitle">
+        	应聘简历
+        </div>
+        <div class="com padleft hrlist">
+        	<table width="100%">
+            	<tr>
+                	<td>
+                    	职位名称
+                    </td>
+                    <td>
+                    	工作地点
+                    </td>
+                    <td>
+                    	残疾类型
+                    </td>
+                    <td>
+                    	发布状态
+                    </td>
+                    <td>
+                    	审核状态
+                    </td>
+                     <td>
+                    	发布时间
+                    </td>
+                     <td>
+                    	最后修改时间
+                    </td>
+                     <td>
+                    	操作
+                    </td>
+                </tr>	
+              		<?php
+					foreach($list as $key=>$value){
+						?>
+					<tr>
+						<td style="width:100px;"><a href="?m=job&action=info&jobId=<?php echo $value['id'];?>" target="_blank"><?php echo $value['name'];?></a></td>
+						<td><?php echo $value['city'];?></td>
+						<td><?php echo $value['displayType'];?></td>
+						<td id="publishStatus<?php echo $value['id'];?>"><?php echo $value['publish'];?></td>
+						<td><?php echo $value['status'];?></td>
+						<td><?php echo $value['createTime'];?></td>
+						<td id="lastUpdateTime<?php echo $value['id'];?>"><?php echo $value['lastUpdateTime'];?></td>
+						<td>
+							<a href="javascript:;" onclick="releasedPublish(<?php echo $value['id'];?>,this);">重新发布</a>
+							<a href="?m=company&action=publishJob&id=<?php echo $value['id'];?>" target="_blank">修改</a>
+							<a href="javascript:;" onclick="deleteJob(<?php echo $value['id'];?>,this);">删除</a>
+						</td>
+						
+					</tr>
+				<?php
+					}
+				?>
+            </table>
+            <div class="com">
+                    <div class="fanye">
+                    	<?php echo $subPageCss2;?>
+                    </div>
+        	</div>
+        </div>
+    </div>
+</div> 
+ <script type="text/javascript">
+/**
+ * 刷新职位或者是重新发布职位操作提示
+ */
+function showMessage(obj,msg){
+	var height = $(obj).height();//按钮的高度
+    var top = $(obj).offset().top;//按钮的位置高度
+    var left = $(obj).offset().left;//按钮的位置左边距离
+    //设置div的top left
+    $("#saveDiv").css("left",left);
+    $("#saveDiv").css("top",height+top);
+    $("#saveDiv").css("z-index",10);
+    $("#saveDiv .logItem").html(msg);
+    $("#saveDiv").show("slow");
+    var settimeout = setTimeout(function(){jQuery("#saveDiv").hide('slow');},3000);
+}
+/**
+ * 重新发布职位或者刷新职位
+ */
+function releasedPublish(jobId,obj){
+	$.ajax({
+		   type: "POST",
+		   url: "?m=company&action=releasedPublish",
+		   data: "jobId="+jobId,
+		   dataType:"json",
+		   success: function(data){
+		      switch(data['result']){
+		      		case '-1':
+		      			showMessage(obj,data['msg']);
+			      		break;
+		      		case '1':
+		      			showMessage(obj,data['msg']);
+		      			jQuery("#publishStatus"+jobId).html(data['publishStatus']);
+		      			jQuery("#lastUpdateTime"+jobId).html(data['lastUpdateTime']);
+			      		break;
+		      }
+		   }
+		});
+}
+/**
+ * 删除职位
+ */
+function deleteJob(jobId,obj){
+	$.ajax({
+		   type: "POST",
+		   url: "?m=company&action=deleleJob",
+		   data: "jobId="+jobId,
+		   dataType:"json",
+		   success: function(data){
+		      switch(data['result']){
+		      		case '-1':
+		      			showMessage(obj,data['msg']);
+			      		break;
+		      		case '1':
+		      			jQuery(obj).parents("tr").hide();
+			      		break;
+		      }
+		   }
+		});
+}
+</script>
+
+<style type="text/css">
+.logWrap{ min-width:130px; margin:0 auto; padding:5px; background:#fff;}
+.logCon{ background-color:#EEF8F9; border:#BBDDE5 1px solid; min-width:130px;}
+.logCon .close{ width:21px; height:21px; float:right; margin:9px 12px 0 0;}
+.logCon .logItem{ padding:20px 0 20px 25px;font-size:13px;}
+.logItem .check{ margin-left:60px; font-size:13px;}
+.logItem .reg_btn{ margin-top:10px; margin-left:110px;}
+</style>
+<div id="saveDiv" style="max-width:150px;position: absolute; left: 508px; top: 126px; z-index: 10;display:none;" class="logWrap">
+	<div class="logCon" style="max-width:150px;">         
+    	<div class="logItem">
+			重新发布失败，请刷新页面重试。
+      	</div>
+    </div>   
+</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+var width = <?=$width?>;
+var height = <?=$height?>;
+
+var out_width = width;
+var out_height = height + 20;
+document.writeln('<div class="fldiv" id="couplet_ad_div"  style="right:0;bottom:50px;position:fixed;width:'+out_width+'px;height:'+out_height+'px;_position:absolute;">');
+//document.writeln('<div class="fldiv" id="couplet_ad_div"  style="right:0;bottom:50px;position:fixed;width:'+out_width+'px;height:'+out_height+'px;_position:absolute;_bottom:auto;_top:expression(documentElement.scrollTop + documentElement.clientHeight-this.offsetHeight-50);_z_index:999;_background-attachment:fixed;">');
+document.writeln('<div style="height:20px; cursor:pointer" onClick="couplet_ad_close();">');
+document.writeln('<img src="http://img.yaowan.com/Template/2010ex/images/ad_close.gif" style="float:right" />');
+document.writeln('</div>');
+document.writeln('<div id="right_mid">');
+<? if($material_type == 2){?>
+<? $tourl = rawurlencode($tourl);?>
+document.writeln('<embed width="'+width+'" height="'+height+'" src="http://<?=$imagehost?>/<?=$imageurl?>?tourl=<?=$tourl?>" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" scale="noborder" wmode="transparent" allowfullscreen="false">');
+<? }else{?>
+document.writeln('<a href="<?=$tourl?>" target="<?=$target?>"><img width="'+width+'" height="'+height+'" src="<?=$imageurl?>"></a>');
+<? } ?>
+document.writeln('</div>');
+document.writeln('</div>');
+
+function couplet_ad_close(){ 
+    document.getElementById("couplet_ad_div").style.display = 'none';
+    return false;
+}
+if($.browser.msie && eval(parseInt($.browser.version))<7){
+	function rbAds(obj){ 
+		$(obj).css({
+			right:"auto",
+			left:$(window).width()+$(window).scrollLeft()-$(obj).width(),
+			bottom:"auto",
+			top:$(window).height()+$(window).scrollTop()-$(obj).height()-50
+			})
+	
+		}
+	$(window).bind("scroll resize",function(event){
+		//alert($(window).scrollLeft());
+		rbAds("#couplet_ad_div");
+		//ie6 resize时计算scrollLeft值有bug,
+		if(event.type=="resize"){
+			if($(window).width()>$(".mid").width()){
+			  $("#couplet_ad_div").css("left",$(window).width()-$("#couplet_ad_div").width())
+			}
+		}
+	});
+}

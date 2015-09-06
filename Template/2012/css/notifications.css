@@ -1,0 +1,21 @@
+.notification {
+	padding: 10px 15px;
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+.notification.error {
+	border: 1px solid #FF7171;
+	background: #FFBFBF;
+}
+
+.notification.success {
+	border: 1px solid #B3DA7E;
+	background: #E6FDCC;
+}
+
+.notification.error ul {
+	margin:0;
+	padding:0;
+	list-style:none;
+}

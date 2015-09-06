@@ -1,0 +1,487 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php echo empty($info['name'])?$info['email']:$info['name'];?>的简历 --残疾人就业热线平台</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta name="ROBOTS" content="all"/>
+<!--[if IE 6]>
+<script type="text/javascript">
+	document.execCommand("BackgroundImageCache", false, true);
+</script>
+<![endif]-->
+<script type="text/javascript" src="./Template/2012/js/jquery-1.8.1.min.js"></script>
+<link href="./Template/2012/css/reset.css" media="all" rel="stylesheet" type="text/css" />
+<link href="./Template/2012/css/resumepreview.css" media="all" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<style>
+	body{background-image:none;}
+</style>
+<div class="resumeContainer cfix">
+	<div class="personalResume">
+		<div class="personalHeader">
+       		<table border="0" cellpadding="0" cellspacing="0" align="center" width="720" class="RM-table" style="font-size:14px">
+                <tr>
+                    <td rowspan="2" width="47%">
+                    	<img src="/Template/2012/images/logo.jpg" />
+					</td>
+					<?php
+						if(!empty($jobList)){
+					?>
+					<td width="25%" style="font-size:14px;" >
+						<a id="sendInterview" class="print saveBtn" href="javascript:;" style="color:#ff0000;">发送面试通知</a>
+					</td>
+					<?php
+					}
+					?>
+                    <td width="28%" style="font-size:14px;  color:#333333;">
+						更新日期：<em style=""><?php echo date('Y-m-d',$info['lastUpdateTime']);?></em>
+					</td>
+                </tr>
+            </table>
+		</div>		
+		<div class="resumeContainer">						
+			<div class="resumeContent" id="resumeContent">
+				<table class="RM-table" border="0" cellpadding="0" cellspacing="0" align="center" width="720"  style="border:1px solid #93adce;" bgcolor="#FFFFFF">
+                    <tr>
+                        <td width="15"></td>
+                        <td>
+                        	<table border="0" cellpadding="0" cellspacing="0" align="center" width="100%">
+								<tr>
+                                    <td>
+                                    	<table border="0" cellpadding="0" cellspacing="0" align="center" width="100%">
+                                            <tr>
+                                                <td colspan="5" height="20"></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="5" style="font-size:24px; font-weight:bold;  color:#333333;">
+													<?php echo empty($info['name'])?$info['email']:$info['name'];?>
+												</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="5" style="border-bottom:1px solid #cccccc"></td>
+                                            </tr>
+                                        </table>
+									</td>
+                                </tr>								
+                                <tr>
+                                    <td bgcolor="#eeeeee">
+                                    	<table border="0" cellpadding="0" cellspacing="0" align="center" width="100%">
+                                            <tr>
+                                                <td colspan="7" height="10"></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="10" rowspan="5"></td>
+												<td width="80" height="25" style="font-size:14px; color:#333333; font-weight:bold;">出生日期：</td>
+                                                <td style="font-size:14px; color:#333333;"><?php echo $info['birthday'];?></td>
+                                                <td style="font-size:14px; color:#333333; font-weight:bold;" width="80">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</td>
+                                                <td style="font-size:14px; color:#333333;" width="22%"><?php echo $info['sex'];?></td>
+                                                <td rowspan="4" width="102"><img class="j-image" src="<?php echo empty($info['avatar'])?'/Template/2012/images/default.jpg':$info['avatar'];?>" width="100" height="80" style="border:1px solid #cccccc;" /></td>
+                                                <td width="10" rowspan="5"></td>
+                                            </tr>
+                                            <tr>
+                                    			<td height="25" style="font-size:14px; color:#333333; font-weight:bold;">现居城市：</td>
+                                                <td style="font-size:14px; color:#333333;"><?php echo $info['city'];?></td>
+                                                <td style="font-size:14px; color:#333333; font-weight:bold;">工作经验：</td>
+                                                <td style="font-size:14px; color:#333333;"><?php echo $info['workLength'];?></td>
+                                            </tr>
+											<tr>
+												<td height="25" style="font-size:14px; color:#333333; font-weight:bold;">最高学历：</td>
+												<td style="font-size:14px; color:#333333;"><?php echo $info['degree'];?></td>
+												<td style="font-size:14px; color:#333333; font-weight:bold;">所学专业：</td>
+												<td style="font-size:14px; color:#333333;"><?php echo $info['specialty'];?></td>
+											</tr>
+											<tr>
+												<td height="25" style="font-size:14px; color:#333333; font-weight:bold;">残疾类型：</td>
+												<td style="font-size:14px; color:#333333;"><?php echo $info['type'];?></td>
+												<td style="font-size:14px; color:#333333; font-weight:bold;">残疾级别：</td>
+												<td style="font-size:14px; color:#333333;"><?php echo $info['disableRate'];?></td>
+											</tr>
+											<tr>
+												<td style="font-size:14px; color:#333333; font-weight:bold;">残疾号码：</td>
+												<td style="font-size:14px; color:#333333;"><?php echo $info['number'];?></td>
+												<td height="25" style="font-size:14px; color:#333333; font-weight:bold;">辅助工具：</td>
+												<td style="font-size:14px; color:#333333;"><?php echo $info['addon'];?></td>
+											</tr>
+                                            <tr>
+                                                <td colspan="7" height="10"></td>
+                                            </tr>
+                                        </table>
+									</td>
+                                </tr>
+                                <tr>
+                                    <td height="10" style="border-bottom:1px dotted #cccccc"></td>
+                                </tr>
+                                <tr>
+                                    <td height="10"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    	<table border="0" cellpadding="0" cellspacing="0" align="center" width="100%">
+												<tr>
+													<td width="10" rowspan="3"></td>
+													<td height="25" width="80" style="font-size:14px; color:#333333;">手机号码：</td>
+													<td style="font-size:14px; color:#333333;" width="36%" id="phone"><?php echo $info['phone'];?></td>
+													<td style="font-size:14px; color:#333333;" width="80">E - mail：</td>
+													<td style="font-size:14px; color:#333333;" width="38%"><?php echo $info['email'];?></td>
+													<td width="10" rowspan="3"></td>
+												</tr>
+											<tr>
+												<td height="25" style="font-size:14px; color:#333333;">QQ&nbsp;&nbsp;&nbsp;&nbsp;号：</td>
+												<td style="font-size:14px; color:#333333;">
+													<?php echo $info['qq'];?>
+													<?php
+														if(!empty($jobList)&&!empty($info['qq'])){
+													?>
+													<!-- <a href="http://wpa.qq.com/msgrd?v=3&uin=<?php echo $info['qq'];?>&site=qq&menu=yes">
+														<img src="http://b.qq.com/static/images/wp/wp_3.gif?v=v5.4" title="QQ在线交谈" alt="QQ在线交谈" class="print" style="border:none; vertical-align:bottom;" />
+													</a> -->
+													<?php
+													}
+													?>
+													
+												</td>
+											</tr>
+										</table>
+									</td>
+                                </tr>
+								<tr>
+                                    <td height="15" style="border-bottom:1px dotted #cccccc"></td>
+                                </tr>
+                                <tr>
+                                    <td height="20"></td>
+                                </tr>
+								<tr>
+                                    <td>
+                                    	<table border="0" cellpadding="0" cellspacing="0" align="center" width="100%">
+                                            <tr>
+                                            	<td width="10"></td>
+                                            	<td colspan="2" align="left" style="font-size:14px; color:#333333;  line-height:22px;">
+													<b>自我评价：</b><br />
+													<p class="breakWord"><?php echo nl2br($info['intro']);?></p>
+												</td>
+												<td width="10"></td>
+											</tr>
+                                        </table>
+									</td>
+                                </tr>
+                                <tr>
+                                    <td height="20"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    	<table border="0" cellpadding="0" cellspacing="0" align="center" width="100%">
+                                            <tr>
+                                                <td height="30" width="100"  style="font-size:18px; font-weight:bold;  color:#c5262a; border-bottom:1px solid #CCCCCC" >求职意向</td>
+                                                <td width="87%" style="border-bottom:1px solid #cccccc"></td>
+                                            </tr>
+                                        </table>
+									</td>
+                                </tr>
+                                <tr>
+                                    <td height="20"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    	<table border="0" cellpadding="0" cellspacing="0" align="center" width="100%">
+                                            <tr>
+                                                <td width="10" rowspan="3"></td>
+                                                <td height="25" width="80" style="font-size:14px; color:#333333; font-weight:bold;">期望职位：</td>
+                                                <td style="font-size:14px; color:#333333;" width="36%"><?php echo $info['job'];?></td>
+                                                <td style="font-size:14px; color:#333333; font-weight:bold;" width="80">期望薪酬：</td>
+                                                <td style="font-size:14px; color:#333333;" width="38%"><?php echo $info['salary'];?></td>
+                                                <td width="10" rowspan="3"></td>
+                                            </tr>
+                                            <tr valign="top">
+                                                <td height="25" style="font-size:14px; color:#333333; font-weight:bold;">期望地点：</td>
+                                                <td style="font-size:14px; color:#333333;"><?php echo $info['expAddress'];?></td>
+                                                <td style="font-size:14px; color:#333333; font-weight:bold;">到岗时间：</td>
+                                                <td style="font-size:14px; color:#333333;"><?php echo $info['hillock'];?></td>
+                                            </tr>
+                                        </table>
+									</td>
+                                </tr>
+                                <tr>
+                                    <td height="20"></td>
+                                </tr>								
+                                <tr>
+                                    <td>
+                                    	<table border="0" cellpadding="0" cellspacing="0" align="center" width="100%">
+                                            <tr>
+                                                <td height="30" width="100"  style="font-size:18px; font-weight:bold; color:#c5262a; border-bottom:1px solid #CCCCCC" >
+													工作经历
+												</td>
+                                                <td width="87%" style="border-bottom:1px solid #cccccc"></td>
+                                            </tr>
+                                        </table>
+									</td>
+                                </tr>
+                                <tr>
+                                    <td height="20"></td>
+                                </tr>
+                                <tr>
+                                	 <td>
+                                    	<table border="0" cellpadding="0" cellspacing="0" align="center" width="100%">
+                                            <tr>
+			                                    <td width="10"></td>
+			                                    <td style="font-size:14px; color:#333333; line-height:22px;">
+													<p class="breakWord"><?php echo nl2br($info['workExp']);?></p>
+												</td>
+			                                    <td width="10"></td>
+											</tr>
+                                        </table>
+									</td>
+                                </tr>
+								<tr>
+                                    <td height="15"></td>
+                                </tr>
+                                <tr>
+                                    <td height="20"></td>
+                                </tr>
+	                                <tr>
+	                                    <td height="20"></td>
+	                                </tr>
+                                <tr>
+                                    <td>
+                                    	<table border="0" cellpadding="0" cellspacing="0" align="center" width="100%">
+                                            <tr>
+                                                <td height="30" width="100"  style="font-size:18px; font-weight:bold; color:#c5262a; border-bottom:1px solid #CCCCCC" >
+													教育经历
+												</td>
+                                                <td width="87%" style="border-bottom:1px solid #cccccc"></td>
+                                            </tr>
+                                        </table>
+									</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="20"></td>
+                                </tr>
+                                <tr>
+                                	<td>
+                                    	<table border="0" cellpadding="0" cellspacing="0" align="center" width="100%">
+                                            <tr>
+			                                    <td width="10"></td>
+			                                    <td style="font-size:14px; color:#333333;   line-height:22px;">
+													<p class="breakWord"><?php echo nl2br($info['eduExp']);?></p>
+												</td>
+			                                    <td width="10"></td>
+											</tr>
+                                        </table>
+									</td>
+                                </tr>
+                                <tr>
+                                    <td height="15"></td>
+                                </tr>
+                                <tr>
+                                    <td height="20"></td>
+                                </tr>
+								<tr>
+									<td height="15" style="border-bottom:1px dotted #cccccc"></td>
+								</tr>
+                                <tr>
+                                    <td height="20"></td>
+                                </tr>
+								<tr>
+									<td>
+                                    	<table border="0" cellpadding="0" cellspacing="0" align="center" width="100%">
+                                            <tr>
+			                                	<td width="10"></td>
+			                                	<td align="left" style="font-size:14px; color:#333333;  line-height:22px;">
+													<b>兴趣爱好：</b>
+														<br />
+													<p class="breakWord"><?php echo $info['interest'];?></p></td>
+												<td width="10"></td>
+											</tr>
+                                        </table>
+									</td>
+                                </tr>
+								<tr>
+                                    <td height="15" style="border-bottom:1px dotted #cccccc"></td>
+                                </tr>
+                                <tr>
+                                    <td height="20"></td>
+                                </tr>								                                                                                            
+                            </table>
+						</td>
+                    	<td width="15"></td>
+               		</tr>
+            	</table>
+       		</div>
+    	</div>
+    </div>
+</div>
+<div class="footer">
+</div>
+<script type="text/javascript">
+$("document").ready(function(){
+	$("#sendInterview").click(function(){
+	     var height = $(this).height();//按钮的高度
+	     var top = $(this).offset().top;//按钮的位置高度
+	     var left = $(this).offset().left;//按钮的位置左边距离
+	     //设置div的top left
+	     $("#saveDiv").css("left",left);
+	     $("#saveDiv").css("top",height+top);
+	     $("#saveDiv").css("z-index",10);
+	     $("#saveDiv").show();
+	});
+	$("#cancleBut").click(function(){
+		$("#saveDiv").hide();
+	});
+	});
+</script>
+<style type="text/css">
+.logWrap{ width:450px; margin:0 auto; padding:5px; background:#fff;}
+.logCon{ background-color:#DFE7FB; border:#BBDDE5 1px solid; width:448px;}
+.logTitle{ background:url(../images/logTitle.gif) no-repeat; height:40px;}
+.logTitle h2{ text-align:right; line-height:39px; width:180px; font-size:14px; color:#fff; }
+.logCon .close{ width21px; height:21px; float:right; margin:9px 12px 0 0;}
+.logCon .logItem{ padding:20px 0 20px 35px;}
+.windowLogin .regItem{ height:40px; margin:10px 0;line-height:40px;}
+.windowLogin .regItem label{ width:70px; color:#646464; display:block; float:left; font-size:14px; text-align:right; height:40px; font-size:14px;}
+.windowLogin .regItem span{ color:#969696;}
+.windowLogin .regItem span a{ color:red; margin-right:3px;}
+.windowLogin .regItem input{ font-size:14px; background:#fff; border:#d2d2d2 1px solid; color:#333; float:left; margin-top:4px; margin-right:3px; width:180px; padding:6px 3px; vertical-align:middle;}
+.windowLogin .regItem select{ padding:3px;}
+.logItem .check{ margin-left:60px; font-size:14px;}
+.logItem .reg_btn{ margin-top:10px; margin-left:110px;}
+</style>
+<script type="text/javascript" src="./Template/2012/js/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="./Template/2012/js/base.js"></script>
+<script type="text/javascript">
+/**
+ * 面试职位验证
+ */
+function SendJobCheck(){
+	var jobId = jQuery("#viewJob").val();
+	if(jobId==''){
+		ShowMsg('viewJobInfo',0,'请选择面试的职位。');
+		return false;
+	}else{
+		ShowMsg('viewJobInfo',1,'');
+		return true;
+	}
+}
+/**
+ * 面试时间验证
+ */
+function SendViewTimeCheck(){
+	var viewTime = jQuery("#viewTime").val();
+	var showId = "viewTimeInfo";
+	if(viewTime == ''){
+		ShowMsg(showId,0,'请填写面试时间。');
+		return false;
+	}else{
+		ShowMsg(showId,1,'');
+		return true;
+	}
+}
+/**
+ * 面试地点验证
+ */
+function SendViewAddressCheck(){
+	var viewAddress = jQuery("#viewAddress").val();
+	var showId = "viewAddressInfo";
+	if(viewAddress == ''){
+		ShowMsg(showId,0,'请填写面试地点。');
+		return false;
+	}else{
+		ShowMsg(showId,1,'');
+		return true;
+	}
+}
+function sendInterview(){
+	var sendJob = SendJobCheck();
+	var sendTime = SendViewTimeCheck();
+	var sendAddress = SendViewAddressCheck();
+	if(sendJob&&sendTime&&sendAddress){
+		var jobId = jQuery("#viewJob").val();
+		var viewTime = jQuery("#viewTime").val();
+		var viewAddress = jQuery("#viewAddress").val();
+		var desc = jQuery("#viewDesc").val();
+		var pId = jQuery("#pId").val();
+		$.ajax({
+			   type: "POST",
+			   url: "?m=company&action=sendInterview",
+			   data: "jobId="+jobId+"&time="+viewTime+"&address="+viewAddress+"&desc="+desc+"&pId="+pId,
+			   dataType:"json",
+			   success: function(data){
+			     switch(data['code']){
+			     case '-1':
+			    	 ShowMsg('viewJobInfo',0,data['msg']);
+				     break;
+			     case '-2':
+			    	 ShowMsg('viewTimeInfo',0,data['msg']);
+				     break;
+			     case '-3':
+			    	 ShowMsg('viewAddressInfo',0,data['msg']);
+				     break;
+			     case '-4':
+			    	 ShowMsg('sendButton',0,data['msg']);
+				     break;
+			     case '1':
+			    	 ShowMsg('sendButton',1,data['msg']);
+			    	 var timeout = setTimeout(function(){
+			    		 $("#saveDiv").hide('slow','linear');
+			    		 $("#sendInterview").click(function(){});
+				    	 },2000);
+				     break;
+			     }
+			   }
+			});
+	}
+	
+}
+</script>
+<!-- 面试通知 -->
+<div id="saveDiv" style="position: absolute; left: 508px; top: 126px; z-index: 10;display:none;" class="logWrap">
+	<div class="logCon">         
+    	<div class="logItem">
+            <form id="save_user">
+                	<div class="windowLogin">
+                	<div class="regItem">
+                            <label for="viewJob">面试职位：</label>
+                            <select name="viewJob" id="viewJob" style="width:188px;" onchange="SendJobCheck();">
+                            	<option value="">请选择面试职位</option>
+                            	<?php
+                            		foreach($jobList as $key=>$value){
+										if(!empty($_GET['j'])&&$_GET['j']==$key){
+											echo '<option value="'.$key.'" selected="selected">'.$value['name'].'</option>';
+										}else{
+											echo '<option value="'.$key.'">'.$value['name'].'</option>';
+										}
+										
+									}
+                            	?>
+                            </select>
+                            <span id="viewJobInfo"></span>
+                        </div>
+                        <div class="regItem">
+                            <label for="viewTime">面试时间：</label>
+                            <input type="text" name="viewTime" id="viewTime" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" onchange="SendViewTimeCheck();"/>
+                            <span id="viewTimeInfo"></span>
+                        </div>
+						<div class="regItem">
+                            <label for="viewAddress">面试地点：</label>
+                            <input type="text" name="viewAddress" id="viewAddress" onblur="SendViewAddressCheck();"/>
+                            <span id="viewAddressInfo"></span>
+                        </div>
+                        <div style="height:100px;" class="regItem">
+                            <label for="viewDesc">备注：</label>
+                             <textarea id="viewDesc" name="viewDesc" rows="5" cols="44"></textarea>
+                        </div>   
+                     </div>                      
+                    <div class="reg_btn">		
+                    	<span id="sendButton"></span><br />
+                    	<input type="hidden" value="<?php echo $_GET['p'];?>" name="pId" id="pId"/>				
+                        <input width="109" type="button" height="26" value="确定" onclick="sendInterview();" />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input width="109" type="button" height="26" value="取消" id="cancleBut"/>
+                    </div>     
+            </form>
+      	</div>
+    </div>   
+</div>
+</body>
+</html>
