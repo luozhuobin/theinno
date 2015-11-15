@@ -19,8 +19,10 @@ Class Model_Job extends Init
 		##职位搜索
 	public function init() {
 		$companyId = intval ( $_GET ['cid'] );
-		$job = $_GET ['job'];
-		$area = $_GET ['area'];
+		$job = urldecode($_GET ['job']);
+		$job = $job == '请输入职位' ? '' : $job;
+		$area = urldecode($_GET ['area']);
+		$area = $area == '选择地区' ? '' : $area;
 		$workLength = intval ( $_GET ['worklength'] );
 		$salary = intval ( $_GET ['salary'] );
 		$page = intval ( $_GET ['page'] ) > 1 ? intval ( $_GET ['page'] ) : 1;
@@ -81,10 +83,10 @@ Class Model_Job extends Init
 	public function getNewJob($job = '', $area = '',$workLength = '',$salary='',$companyId = 0 ,$page = 1, $pagesize = 30,$isTop = 0) {
 		$condition = array ("j.status = 1", "publishStatus = 1" ,"cutoffTime>=". time());
 		if (! empty ( $job )) {
-			$condition [] = ' job = "' . $job . '"';
+			$condition [] = ' j.name like "' . $job . '%"';
 		}
 		if (! empty ( $area )) {
-			$condition [] = ' city = "' . $area . '"';
+			$condition [] = ' j.city like "' . $area . '%"';
 		}
 		if (! empty ( $workLength )) {
 			$condition [] = ' workLength = ' . $workLength ;

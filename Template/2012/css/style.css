@@ -203,8 +203,8 @@
 	float:left; margin-left:22px; display:inline; padding:0px; margin-top:15px; width:665px; height:240px; border:1px #e5e5e5 solid;}
 
 
-        /* Í¨ÓÃÍ¼Æ¬ÁÐ±í_ÆÕÍ¨Ê½ */ 
-        .picList li{ width:100px;  } 
+        /* Í¨ï¿½ï¿½Í¼Æ¬ï¿½Ð±ï¿½_ï¿½ï¿½Í¨Ê½ */ 
+        .picList li{ width:100px;  }
 		.picList li .pic{
 			float:left; width:100%; height:100px; text-align:center; margin:0px; padding:0px;}
         .picList li .pic img{
@@ -212,7 +212,7 @@
 		.picList li .com{
 			text-align:center; font-size:13px; line-height:25px; color:#6b3906; padding-top:15px;}	
          
-        /* ¶à¸ö×ó¹ö¶¯ - ¹«ÓÃÀà */ 
+        /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */ 
         .leftLoop{ overflow:hidden; position:relative; padding:29px 0px 0px 10px; height:211px; width:655px;    } 
         
         .leftLoop .prev,.leftLoop .next{ display:block;   width:17px; height:61px; line-height:10px; float:right; margin-right:10px; margin-top:62px;  overflow:hidden;   
@@ -371,7 +371,7 @@ overFlow-x: hidden ;}
 .links{
 	padding-bottom:20px;}
 .picList li .com p{
-	display:block; float:left; height:25px; margin:0px; padding:0px; overflow:hidden; width:100%;}	
+	display:block; float:left; height:25px; margin:0px; padding:0px; overflow:hidden; width:100%;text-align: left;}
 /* logCon */
 .logWrap{ width:450px; margin:0 auto; padding:5px; background:#fff;}
 .logCon{ background-color:#f1f1f1; border:#D6D6D6 1px solid; width:448px;}
