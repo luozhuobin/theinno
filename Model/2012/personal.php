@@ -45,10 +45,10 @@ Class Model_Personal extends Init
     		echo json_encode(array('result'=>'-1','msg'=>'请输入电子邮箱。'));
     		exit();
     	}
-    	if(!preg_match("/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/",$email)){
-    		echo json_encode(array('result'=>'-1','msg'=>'无效的电子邮箱。'));
-    		exit();
-    	}
+		if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
+			echo json_encode(array('result'=>'-1','msg'=>'无效的电子邮箱。'));
+			exit();
+		}
     	$result = $this->db->fetch_assoc($this->db->query("SELECT * FROM `personal_login` WHERE `email` = '{$email}'"));
     	if(!empty($result)){
     		echo json_encode(array('result'=>'-1','msg'=>'该电子邮箱已被注册。'));

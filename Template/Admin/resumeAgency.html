@@ -143,14 +143,13 @@ function emailCheck(){
 		ShowMsg('emailInfo',0,'请输入联系邮箱。');
 		return false;
 	}else{
-		var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
-	    if(reg.test(email)){
-	    	ShowMsg('emailInfo',1,'');
+		if(filter_var($email,FILTER_VALIDATE_EMAIL)){
+			ShowMsg('emailInfo',1,'');
 			return true;
-	    }else{
-	    	ShowMsg('emailInfo',0,'无效的电子邮箱。');
+		}else{
+			ShowMsg('emailInfo',0,'无效的电子邮箱。');
 			return false;
-	    }
+		}
 	}
 }
 //工作经历验证
