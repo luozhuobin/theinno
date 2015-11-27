@@ -11,14 +11,7 @@ function emailVerify(id,showId){
 		ShowMsg(showId,0,'请输入电子邮箱。');
 		return false;
 	}
-	var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
-    if(reg.test(email)){
-    	ShowMsg(showId,1,'');
-		return true;
-    }else{
-    	ShowMsg(showId,0,'无效的电子邮箱。');
-		return false;
-    }
+	return true;
 }
 
 /**
