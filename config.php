@@ -57,9 +57,9 @@ define('domain',$_SERVER['HTTP_HOST']!='www.yaowan.com'?$_SERVER['HTTP_HOST']:'w
 //		define('mysql_user','cantopor_bin');//登陆用户
 //		define('mysql_pass','hellobin');//登陆密码
 		
-		define('mysql_server','127.0.0.1');//61.145.119.150');//数据库主机
-		define('mysql_user','root');//登陆用户
-		define('mysql_pass','');//登陆密码
+		define('mysql_server',$_SERVER['DATABASE_NAME']);//61.145.119.150');//数据库主机
+		define('mysql_user',$_SERVER['USERNAME']);//登陆用户
+		define('mysql_pass',$_SERVER['PASSWORD']);//登陆密码
 		
 		define('mysql_dbname','hrh_theinno_org');//数据库名
 		define('dfh_mysql_user',mysql_user);//dfh登陆用户

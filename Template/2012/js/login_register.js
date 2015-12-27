@@ -9,19 +9,6 @@ function emailIsExist(identity){
 	if(isEmail){
 		jQuery("#submit").removeAttr('onclick');
 		jQuery("#submit").attr('disable',true);
-		jQuery("#resultInfo").html('60秒后可重新发送邮件。');
-		var i = 60;
-		var Interval = setInterval(function(){
-				i--;
-				if(i == 0){
-					clearInterval(Interval);
-					jQuery("#resultInfo").html('');
-					jQuery("#submit").attr('onclick','emailIsExist(\''+identity+'\');');
-					jQuery("#submit").attr('disable',false);
-				}else{
-					jQuery("#resultInfo").html(i+'秒后可重新发送邮件。');
-				}
-			},1000);
 		$.ajax({
 			   type: "POST",
 			   url: "?m="+identity+"&action=emailIsExist",
@@ -34,6 +21,19 @@ function emailIsExist(identity){
 			    			ShowMsg('resultInfo',0,data['msg']);
 				    		break;
 			    		case '1':
+							jQuery("#resultInfo").html('60秒后可重新发送邮件。');
+							var i = 60;
+							var Interval = setInterval(function(){
+								i--;
+								if(i == 0){
+									clearInterval(Interval);
+									jQuery("#resultInfo").html('');
+									jQuery("#submit").attr('onclick','emailIsExist(\''+identity+'\');');
+									jQuery("#submit").attr('disable',false);
+								}else{
+									jQuery("#resultInfo").html(i+'秒后可重新发送邮件。');
+								}
+							},1000);
 			    			//ShowMsg('resultInfo',1,data['msg']);
 				    		break;
 			    	}
