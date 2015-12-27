@@ -142,16 +142,18 @@ Class Model_Company extends Init
     			$query = $this->db->query($sql);
     			if($query){
     				$insert_id = $this->db->insert_id();
+					$this->companyId = $insert_id;
 					$tmp_name = $this->Session->get("company_tmp_name");
 					$tmp_phone = $this->Session->get("company_tmp_phone");
 					$sqlKey = "`name`,`phone`";
 					$sqlValue = "'{$tmp_name}','{$tmp_phone}'";
 					if(!empty($tmp_name) || !empty($tmp_phone)){
-						$sql = "INSERT IGNORE INTO company_info(`id`,{$sqlKey},`status`,`createTime`,`lastUpdateTime`) VALUES('{$insert_id}',{$sqlValue},0,'".time()."','".time()."')";
+						$sql = "INSERT IGNORE INTO company_info(`id`,{$sqlKey},`status`,`createTime`,`lastUpdateTime`) VALUES('{$this->companyId}',{$sqlValue},0,'".time()."','".time()."')";
 						$query = $this->db->query($sql);
+						$companyInfo = $this->getCompanyInfo($this->companyId);
+						$this->Session->set ( 'company', $companyInfo );
 					}
     				$this->Session->set('companyId',$insert_id);
-    				$this->companyId = $insert_id;
     				##企业登录，需要清除同一浏览器的个人session
     				$this->Session->clear('personalId');
     				$this->Session->set('code',$code);//用于注册流程的第三步，尝试恢复第二步的url

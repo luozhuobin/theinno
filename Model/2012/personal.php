@@ -150,12 +150,13 @@ Class Model_Personal extends Init
     				$this->Session->set('personalId',$insert_id);
 					$tmp_name = $this->Session->get("tmp_name");
 					$tmp_phone = $this->Session->get("tmp_phone");
-
 					if(!empty($tmp_name) || !empty($tmp_phone)){
-						$sqlKey = '"name","phone"';
+						$sqlKey = '`name`,`phone`';
 						$sqlValue = "'{$tmp_name}','{$tmp_phone}'";
 						$sql = "INSERT IGNORE INTO personal_info(`id`,{$sqlKey},`status`,`createTime`,`lastUpdateTime`) VALUES('{$insert_id}',{$sqlValue},0,'".time()."','".time()."')";
 						$query = $this->db->query($sql);
+						$personalInfo = $this->getPersonalInfo($insert_id);
+						$this->Session->set ( 'personal', $personalInfo );
 					}
 
     				##个人登录，需要清除同一浏览器的企业session
