@@ -15,7 +15,7 @@ function emailIsExist(identity){
 			   type: "POST",
 			   url: "?m="+identity+"&action=emailIsExist",
 			   dataType:"json",
-			   data: "email="+email+"&name="+encodeURIComponent(name)+"&phone="+encodeURIComponent(name),
+			   data: "email="+email+"&name="+encodeURIComponent(name)+"&phone="+encodeURIComponent(phone),
 			   dataType:"json",
 			   success: function(data){
 			    	switch(data['result']){
