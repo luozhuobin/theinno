@@ -5,6 +5,8 @@
  */
 function emailIsExist(identity){
 	var email = jQuery("#email").val();
+	var name = jQuery("#name").val();
+	var phone = jQuery("#phone").val();
 	var isEmail = emailVerify('email','resultInfo');
 	if(isEmail){
 		jQuery("#submit").removeAttr('onclick');
@@ -13,7 +15,7 @@ function emailIsExist(identity){
 			   type: "POST",
 			   url: "?m="+identity+"&action=emailIsExist",
 			   dataType:"json",
-			   data: "email="+email,
+			   data: "email="+email+"&name="+name+"&phone="+phone,
 			   dataType:"json",
 			   success: function(data){
 			    	switch(data['result']){
