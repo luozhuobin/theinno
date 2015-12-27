@@ -734,9 +734,11 @@ Class Model_Company extends Init
    		$this->checkLoginAjax();
    		$jobId = intval($_POST['jobId']);
    		$time = strtotime($_POST['time']);
-   		$address = $_POST['address'];
-   		$desc = $_POST['desc'];
-   		$pId = intval($_POST['pId']);
+   		$address = htmlspecialchars($_POST['address']);
+   		$desc = htmlspecialchars($_POST['desc']);
+	    $mobile = htmlspecialchars($_REQUEST['mobile']);
+	    $linkman = htmlspecialchars($_REQUEST['linkman']);
+   		$pId = base64_decode($_POST['pId']);
    		if(empty($jobId)){
    			$this->ajaxJson("-1","请选择面试职位");
    		}
@@ -751,8 +753,8 @@ Class Model_Company extends Init
    		if($result['total']>0){
    			$this->ajaxJson("-4","7天内不能重复发送面试通知");
    		}
-   		$sql = "INSERT IGNORE INTO `interview`(`id`,`companyId`,`jobId`,`personalId`,`time`,`address`,`desc`,`createTime`) 
-   					VALUES(null,{$this->companyId},{$jobId},{$pId},{$time},'{$address}','{$desc}',".time().")";
+   		$sql = "INSERT IGNORE INTO `interview`(`id`,`companyId`,`jobId`,`personalId`,`time`,`address`,`desc`,`createTime`,`mobile`,`linkman`)
+   					VALUES(null,{$this->companyId},{$jobId},{$pId},{$time},'{$address}','{$desc}',".time().",'{$mobile}','{$linkman}')";
    		$query = $this->db->query($sql);
    		if($query){
    			##发送消息和邮件
@@ -769,7 +771,7 @@ Class Model_Company extends Init
             $email_class = new SmtpEmailEx();
             $result = Email_163::getInstance()->send(Email_163::MAIL_USER, $personal_login['email'], "面试通知 - 残疾人就业热线平台", $body);
             ##邮件记录
-            $emailLog = $this->db->query("INSERT INTO `log_email`(`id`,`email`,`type`,`content`,`createTime`) VALUES(null,'{$personal_login['email']}','interview','$content','".time()."')");
+            $emailLog = $this->db->query("INSERT INTO `log_email`(`id`,`email`,`type`,`content`,`createTime`) VALUES(null,'{$personal_login['email']}','interview','$body','".time()."')");
    			$this->ajaxJson("1","发送成功");
    		}else{
    			$this->ajaxJson("-4","面试通知发送失败，请重新发送");

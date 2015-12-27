@@ -401,10 +401,12 @@ function sendInterview(){
 		var viewAddress = jQuery("#viewAddress").val();
 		var desc = jQuery("#viewDesc").val();
 		var pId = jQuery("#pId").val();
+		var mobile = jQuery("#mobile").val();
+		var linkman = jQuery("#linkman").val();
 		$.ajax({
 			   type: "POST",
 			   url: "?m=company&action=sendInterview",
-			   data: "jobId="+jobId+"&time="+viewTime+"&address="+viewAddress+"&desc="+desc+"&pId="+pId,
+			   data: "jobId="+jobId+"&time="+viewTime+"&address="+viewAddress+"&desc="+desc+"&pId="+pId+"&mobile="+mobile+"&linkman="+linkman,
 			   dataType:"json",
 			   success: function(data){
 			     switch(data['code']){
@@ -459,7 +461,7 @@ function sendInterview(){
                         </div>
                         <div class="regItem">
                             <label for="viewTime">面试时间：</label>
-                            <input type="text" name="viewTime" id="viewTime" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" onchange="SendViewTimeCheck();"/>
+                            <input type="text" name="viewTime" id="viewTime" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'%y-%M-{%d+1}'})" onchange="SendViewTimeCheck();"/>
                             <span id="viewTimeInfo"></span>
                         </div>
 						<div class="regItem">
@@ -467,6 +469,14 @@ function sendInterview(){
                             <input type="text" name="viewAddress" id="viewAddress" onblur="SendViewAddressCheck();"/>
                             <span id="viewAddressInfo"></span>
                         </div>
+						<div class="regItem">
+							<label for="viewAddress">联系人：</label>
+							<input type="text" name="linkman" id="linkman"/>
+						</div>
+						<div class="regItem">
+							<label for="viewAddress">联系电话：</label>
+							<input type="text" name="mobile" id="mobile"/>
+						</div>
                         <div style="height:100px;" class="regItem">
                             <label for="viewDesc">备注：</label>
                              <textarea id="viewDesc" name="viewDesc" rows="5" cols="44"></textarea>
