@@ -64,6 +64,8 @@ Class Model_Company extends Init
 				$email_class = new SmtpEmailEx();
 				$result = Email_163::getInstance()->send(Email_163::MAIL_USER, $email, $subject, $body);
             	if($result){
+					$this->Session->set("company_tmp_name",$_POST['name']);
+					$this->Session->set("company_tmp_phone",$_POST['phone']);
             		##邮件记录
             		$emailLog = $this->db->query("INSERT INTO `log_email`(`id`,`email`,`type`,`content`,`createTime`) VALUES('','{$email}','company_register','$mail','".time()."')");
 					echo json_encode(array('result'=>'1','msg'=>'验证邮件已经发送至你邮箱，请 查收邮件。'));
@@ -140,6 +142,13 @@ Class Model_Company extends Init
     			$query = $this->db->query($sql);
     			if($query){
     				$insert_id = $this->db->insert_id();
+					$tmp_name = $this->Session->get("company_tmp_name");
+					$tmp_phone = $this->Session->get("company_tmp_phone");
+					$sqlKey = "`name`,`phone`";
+					$sqlValue = "'{$tmp_name}','{$tmp_phone}'";
+					if(!empty($tmp_name) || !empty($tmp_phone)){
+						$sql = "INSERT IGNORE INTO company_info(`id`,{$sqlKey},`status`,`createTime`,`lastUpdateTime`) VALUES('{$insert_id}',{$sqlValue},0,'".time()."','".time()."')";
+					}
     				$this->Session->set('companyId',$insert_id);
     				$this->companyId = $insert_id;
     				##企业登录，需要清除同一浏览器的个人session

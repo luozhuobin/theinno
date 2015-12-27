@@ -68,6 +68,8 @@ Class Model_Personal extends Init
             	if(!empty($result)){
             		##邮件记录
             		$emailLog = $this->db->query("INSERT INTO `log_email`(`id`,`email`,`type`,`content`,`createTime`) VALUES(null,'{$email}','personal_register','$subject','".time()."')");
+					$this->Session->set('tmp_phone',$_POST['phone']);
+					$this->Session->set('tmp_name',$_POST['name']);
 					echo json_encode(array('result'=>'1','msg'=>'验证邮件已经发送至你邮箱，请 查收邮件。'));
     				exit();
     	        }else{
@@ -146,6 +148,15 @@ Class Model_Personal extends Init
     			if($query){
     				$insert_id = $this->db->insert_id();
     				$this->Session->set('personalId',$insert_id);
+					$tmp_name = $this->Session->get("tmp_name");
+					$tmp_phone = $this->Session->get("tmp_phone");
+
+					if(!empty($tmp_name) || !empty($tmp_phone)){
+						$sqlKey = '"name","phone"';
+						$sqlValue = "'{$tmp_name}','{$tmp_phone}'";
+						$sql = "INSERT IGNORE INTO personal_info(`id`,{$sqlKey},`status`,`createTime`,`lastUpdateTime`) VALUES('{$insert_id}',{$sqlValue},0,'".time()."','".time()."')";
+					}
+
     				##个人登录，需要清除同一浏览器的企业session
     				$this->Session->clear('companyId');
     				$this->Session->set('code',$code);//用于注册流程的第三步，尝试恢复第二步的url

@@ -74,7 +74,7 @@ Class Model_Personal extends Control_Admin
      * 求职者资料审核
      */
     public function changeStatus(){
-    	$personalId = $_POST['personalId'];
+    	$personalId = intval($_POST['personalId']);
     	$status = $_POST['status'];
     	$content = $_POST['content'];
     	$sql = "UPDATE `personal_info` SET status = {$status} WHERE id={$personalId}";
