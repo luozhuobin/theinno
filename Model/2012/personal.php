@@ -696,7 +696,9 @@ Class Model_Personal extends Init
    		$row['companyId'] = $info['companyId'];
    		$row['companyName'] = $info['companyName'];
    		$row['jobName'] = $info['jobName'];
-   		$row['time'] = date('Y-m-d H点',$row['time']); 
+		$row['linkman'] = $row['linkman'];
+		$row['mobile'] = $row['mobile'];
+   		$row['time'] = date('Y-m-d H点',$row['time']);
 		$row['createTime'] = date('Y-m-d',$row['createTime']); 
    		$list[] = $row;
    	}

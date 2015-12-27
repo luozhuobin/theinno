@@ -17,7 +17,7 @@
                     	职位
                     </td>
                     <td>
-                    	公司名
+                    	公司名称
                     </td>
                     <td>
                     	面试时间
@@ -25,21 +25,29 @@
                     <td>
                     	面试地点
                     </td>
+					<td>
+						联系人
+					</td>
+					<td>
+						联系电话
+					</td>
                     <td>
                     	注意事项
                     </td>
-                    <td>
-                    	邀请时间
-                    </td>
+					<td>
+						邀请时间
+					</td>
                 </tr>
                 <?php
                 	foreach($list as $key=>$value){
+						$companyId = $value["companyId"];
+						$jobId = $value["jobId"];
 						echo '<tr>
                 				<td>
-                    				'.$value["jobName"].'
+                    				<a href="?m=job&action=info&jobId='.$jobId.'" target="_blank">'.$value["jobName"].'</a>
                     			</td>	
                     			<td>
-                    				'.$value["companyName"].'
+                    				<a href="?m=companyinfo&comId='.$companyId.'" target="_blank" >'.$value["companyName"].'</a>
                     			</td>
 								<td>
                     				'.$value["time"].'
@@ -47,6 +55,8 @@
 								<td>
                     				'.$value["address"].'
                     			</td>
+								<td>'.$value["linkman"].'</td>
+								<td>'.$value["mobile"].'</td>
 								<td>
                     				'.$value["desc"].'
                     			</td>
