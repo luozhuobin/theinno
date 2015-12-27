@@ -21,6 +21,7 @@ Class Model_Personal extends Init
 		$this->checkLogin ();
 		$info = $this->getPersonalInfo ( $this->personalId );
 		$this->tpl->assign ( "info", $info );
+		$page = $_REQUEST['page'];
 		##已投递的职位
 		$applyList = $this->applyList ();
 		$list = $applyList ['total'] > 0 ? $applyList ['list'] : array ();
@@ -348,10 +349,12 @@ Class Model_Personal extends Init
 			$sql .= implode(",",$tmp);
 			$sql .= " WHERE id = {$this->personalId}";		
 			$query = $this->db->query($sql);
+			$personalLogin = $this->getPersonalLogin();
+			$email =$personalLogin['email'];
 			if($query&&$result['status']!=1){
 				##发送通知邮件
 				$body = '
-             	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '.$_POST['name'].' 更新了个人简历信息，请及时审核资料。<a href="http://hrh.theinno.org/?c=admin&m=personal&action=jobList" target="_blank">立即查看</a></p>
+             	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '.$_POST['name'].' 更新了个人简历信息，请及时审核资料。<a href="http://hrh.theinno.org/?c=admin&m=personal&email='.$email.'" target="_blank">立即查看</a></p>
 		 		<p class="gray" style="text-align: center;">温馨提示：此邮件由系统发送，请勿直接回复。</p>
 			 	';
 				$email_class = new SmtpEmailEx();
@@ -402,6 +405,7 @@ Class Model_Personal extends Init
 		$personalInfo['avatar'] = ! empty ( $personalInfo ['avatar'] ) ? $personalInfo ['avatar'] : './Template/2012/images/default.jpg';
 		return $personalInfo;
 	}
+
     /**
      * 忘记密码
      */

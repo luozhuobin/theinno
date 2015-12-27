@@ -19,10 +19,10 @@ Class Model_Personal extends Control_Admin
     		}
     		
     	}
-    	if(!empty($_POST['email'])){
+    	if(!empty($_REQUEST['email'])){
     		$where .=" AND l.email = '{$_REQUEST['email']}'";
     	}
-    	if(!empty($_POST['name'])){
+    	if(!empty($_REQUEST['name'])){
     		$where .= " AND i.name = '{$_REQUEST['name']}'";
     	}
     	$page = empty($_GET['page'])||$_GET['page']<0?1:$_GET['page'];
