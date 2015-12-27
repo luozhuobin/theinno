@@ -64,8 +64,8 @@ Class Model_Company extends Init
 				$email_class = new SmtpEmailEx();
 				$result = Email_163::getInstance()->send(Email_163::MAIL_USER, $email, $subject, $body);
             	if($result){
-					$this->Session->set("company_tmp_name",$_POST['name']);
-					$this->Session->set("company_tmp_phone",$_POST['phone']);
+					$this->Session->set("company_tmp_name",urldecode($_POST['name']));
+					$this->Session->set("company_tmp_phone",urldecode($_POST['phone']));
             		##邮件记录
             		$emailLog = $this->db->query("INSERT INTO `log_email`(`id`,`email`,`type`,`content`,`createTime`) VALUES('','{$email}','company_register','$mail','".time()."')");
 					echo json_encode(array('result'=>'1','msg'=>'验证邮件已经发送至你邮箱，请 查收邮件。'));
@@ -148,6 +148,7 @@ Class Model_Company extends Init
 					$sqlValue = "'{$tmp_name}','{$tmp_phone}'";
 					if(!empty($tmp_name) || !empty($tmp_phone)){
 						$sql = "INSERT IGNORE INTO company_info(`id`,{$sqlKey},`status`,`createTime`,`lastUpdateTime`) VALUES('{$insert_id}',{$sqlValue},0,'".time()."','".time()."')";
+						$query = $this->db->query($sql);
 					}
     				$this->Session->set('companyId',$insert_id);
     				$this->companyId = $insert_id;
